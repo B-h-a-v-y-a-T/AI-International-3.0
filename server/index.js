@@ -1946,10 +1946,33 @@ async function runGroqChat(fullPrompt) {
   return String(response?.choices?.[0]?.message?.content || '').trim();
 }
 
+// ── Sensitive topic filter ───────────────────────────────────────────────────
+const SENSITIVE_PATTERNS = [
+  /\b(gunpowder|explosiv|bomb|dynamite|tnt|grenade|missile|ammunition|firearm|pistol|rifle|weapon)\b/i,
+  /\b(how\s+to\s+(kill|hurt|poison|make\s+a\s+bomb|build\s+a\s+weapon))\b/i,
+  /\b(meth(amphetamine)?|heroin|cocaine|drug\s+synthesis|how\s+to\s+(make|synthesize)\s+(drug|meth|heroin))\b/i,
+  /\b(suicide|self[- ]harm|kill\s+(my)?self|end\s+my\s+life|cut\s+myself|how\s+to\s+die)\b/i,
+  /\b(hack\s+into|crack\s+password|ddos|malware|ransomware|how\s+to\s+hack)\b/i,
+];
+
+function isSensitiveMessage(text) {
+  return SENSITIVE_PATTERNS.some(pattern => pattern.test(text));
+}
+
 // ── Main chat endpoint ────────────────────────────────────────────────────────
 app.post('/api/chat', async (req, res) => {
   const { message, history = [], userMood = null, language = 'English', userState = null, ragContext = null } = req.body;
   if (!message) return res.status(400).json({ error: 'Message is required' });
+
+  if (isSensitiveMessage(message)) {
+    return res.json({
+      reply: "I'm sorry, I can't help with that. I'm here to support your studies and well-being — feel free to ask me anything academic or just chat! 😊",
+      emotion: 'neutral',
+      sentimentScore: 0,
+      source: 'safety-filter',
+      videos: [],
+    });
+  }
 
   const sentimentResult = sentimentAnalyser.analyze(message);
   const sentimentScore = sentimentResult.score;
