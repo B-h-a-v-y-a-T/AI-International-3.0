@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content CMS - AdaptEd Admin</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body data-module="content">
+  <div class="admin-layout">
+    <aside class="sidebar"><div class="brand"><div class="brand-icon">A</div><div><h1>AdaptEd Admin</h1><p>Control Center</p></div></div><nav id="adminNav" class="nav-list"></nav></aside>
+    <main class="main">
+      <div class="topbar"><div><h2 id="pageTitle" class="page-title"></h2><p class="muted">Upload, tag, version, preview and publish study materials.</p></div><div class="row"><span id="adminIdentity" class="badge"></span><button id="logoutBtn">Logout</button></div></div>
+
+      <section class="grid cols-2">
+        <article class="card">
+          <h3>Upload Study Material</h3>
+          <form id="uploadForm" class="grid" style="margin-top:10px">
+            <input id="contentTitle" placeholder="Title" required />
+            <div class="grid cols-2">
+              <select id="contentSubject"><option>Physics</option><option>Chemistry</option><option>Math</option><option>Biology</option><option>General</option></select>
+              <input id="contentChapter" placeholder="Chapter" required />
+            </div>
+            <select id="contentDifficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+            <input id="contentFile" type="file" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.webp,.bmp,.tif,.tiff" required />
+            <button class="btn-primary" type="submit">Upload and Process</button>
+          </form>
+        </article>
+        <article class="card">
+          <h3>Bulk Upload + AI Preview</h3>
+          <p class="small muted">Bulk upload supports PDF, DOCX, TXT, and image files for OCR preview.</p>
+          <input id="bulkUpload" type="file" accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.webp,.bmp,.tif,.tiff" multiple />
+          <textarea id="summaryPreview" rows="11" style="margin-top:8px" placeholder="AI-generated summary preview will appear here before publish."></textarea>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top:14px">
+        <h3>Content Library</h3>
+        <table>
+          <thead><tr><th>Title</th><th>Subject</th><th>Chapter</th><th>Difficulty</th><th>Format</th><th>Version</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="contentRows"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

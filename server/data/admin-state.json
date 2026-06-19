@@ -1,0 +1,2199 @@
+{
+  "users": [
+    {
+      "id": "1775285904404",
+      "name": "kushal",
+      "email": "k@gmail.com",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775286256037",
+      "name": "kash",
+      "email": "m@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775287119978",
+      "name": "ma",
+      "email": "ma@gmail.com",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775290783580",
+      "name": "km",
+      "email": "km@gmail.com",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775291065688",
+      "name": "nm",
+      "email": "n@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775291083639",
+      "name": "das",
+      "email": "d@gmail.com",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775303305923",
+      "name": "Admin",
+      "email": "admin@123",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775891212644",
+      "name": "Param Test",
+      "email": "param.test.2026+1@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775891309720",
+      "name": "ps",
+      "email": "p@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775891634618",
+      "name": "Param Shah",
+      "email": "paramshahm@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775899571150",
+      "name": "Vedant",
+      "email": "vedantshah369@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775934780694",
+      "name": "Vedant",
+      "email": "vedant@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775948268889",
+      "name": "NonGemini Test",
+      "email": "nongemini_5679921@test.local",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775948491230",
+      "name": "NonGemini Test",
+      "email": "nongemini_236689@test.local",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1775959545290",
+      "name": "Vedant Shah",
+      "email": "vedantshah@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1776944999205",
+      "name": "V",
+      "email": "v@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1776945059075",
+      "name": "vx",
+      "email": "vx@gmail.com",
+      "role": "Admin",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    },
+    {
+      "id": "1781882091300",
+      "name": "X",
+      "email": "vxx@gmail.com",
+      "role": "Student",
+      "banned": false,
+      "uploads": 0,
+      "summaries": 0,
+      "lastSeen": "online"
+    }
+  ],
+  "content": [
+    {
+      "id": "c1",
+      "title": "Electrostatics Basics",
+      "subject": "Physics",
+      "chapter": "Electrostatics",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 4,
+      "status": "Review"
+    },
+    {
+      "id": "c2",
+      "title": "Chemical Bonding Notes",
+      "subject": "Chemistry",
+      "chapter": "Bonding",
+      "difficulty": "Easy",
+      "format": "DOCX",
+      "version": 2,
+      "status": "Draft"
+    },
+    {
+      "id": "c3",
+      "title": "Integration Tricks",
+      "subject": "Math",
+      "chapter": "Calculus",
+      "difficulty": "Hard",
+      "format": "TXT",
+      "version": 1,
+      "status": "Review"
+    },
+    {
+      "id": "cb17752890030000",
+      "title": "Module 2_260224_115016",
+      "subject": "General",
+      "chapter": "Bulk Import",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Review"
+    },
+    {
+      "id": "cb17752890030001",
+      "title": "Module -1_260217_103715",
+      "subject": "General",
+      "chapter": "Bulk Import",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Review"
+    },
+    {
+      "id": "cb17753043537540",
+      "title": "Rotational_Dynamics",
+      "subject": "General",
+      "chapter": "Bulk Import",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Review"
+    },
+    {
+      "id": "c1775304400766",
+      "title": "Rotational Dynamics",
+      "subject": "Physics",
+      "chapter": "1",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Draft"
+    },
+    {
+      "id": "c1775304795713",
+      "title": "Rotational Dynamics",
+      "subject": "Physics",
+      "chapter": "1",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Draft"
+    },
+    {
+      "id": "c1775305520169",
+      "title": "Rotational Dynamics",
+      "subject": "Physics",
+      "chapter": "1",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Draft"
+    },
+    {
+      "id": "c1775306045766",
+      "title": "Rotational Dynamics",
+      "subject": "Physics",
+      "chapter": "1",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Draft"
+    },
+    {
+      "id": "c1775306614946",
+      "title": "Rotational Dynamics",
+      "subject": "Physics",
+      "chapter": "1",
+      "difficulty": "Medium",
+      "format": "PDF",
+      "version": 1,
+      "status": "Draft"
+    }
+  ],
+  "summaries": [
+    {
+      "id": "s1",
+      "title": "Electrostatics Quick Summary",
+      "contentId": "c1",
+      "quality": 89,
+      "approved": true,
+      "downloads": 67,
+      "feedbackAvg": 4.4
+    },
+    {
+      "id": "s2",
+      "title": "Bonding Snapshot",
+      "contentId": "c2",
+      "quality": 61,
+      "approved": false,
+      "downloads": 15,
+      "feedbackAvg": 3.1
+    },
+    {
+      "id": "s3",
+      "title": "Integration Revision",
+      "contentId": "c3",
+      "quality": 48,
+      "approved": false,
+      "downloads": 7,
+      "feedbackAvg": 2.6
+    }
+  ],
+  "aiQueue": [
+    {
+      "id": "q1",
+      "task": "Summarize c2",
+      "type": "Medium",
+      "status": "queued",
+      "retries": 0
+    },
+    {
+      "id": "q2",
+      "task": "Keyword extraction c3",
+      "type": "Detailed",
+      "status": "failed",
+      "retries": 1
+    },
+    {
+      "id": "q1775287210813",
+      "task": "Manual run (Balanced)",
+      "type": "Short",
+      "status": "queued",
+      "retries": 0
+    }
+  ],
+  "aiLogs": [
+    {
+      "at": "10:22",
+      "item": "c1",
+      "output": "Strong conceptual clarity"
+    },
+    {
+      "at": "10:38",
+      "item": "c2",
+      "output": "Needs chapter examples"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat3",
+      "name": "Math",
+      "chapter": "Algebra",
+      "subtopic": "Quadratic"
+    },
+    {
+      "id": "cat1",
+      "name": "Physics",
+      "chapter": "Mechanics",
+      "subtopic": "Kinematics"
+    },
+    {
+      "id": "cat2",
+      "name": "Chemistry",
+      "chapter": "Organic",
+      "subtopic": "Hydrocarbons"
+    },
+    {
+      "id": "cat1775305025939",
+      "name": "Math",
+      "chapter": "Calculus",
+      "subtopic": "Derivates"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "f1",
+      "summaryId": "s1",
+      "rating": 5,
+      "comment": "Very crisp and exam helpful"
+    },
+    {
+      "id": "f2",
+      "summaryId": "s2",
+      "rating": 2,
+      "comment": "Too generic"
+    },
+    {
+      "id": "f3",
+      "summaryId": "s3",
+      "rating": 3,
+      "comment": "Need more solved examples"
+    }
+  ],
+  "searchQueries": [
+    "electrostatics formula sheet",
+    "integration by parts shortcut",
+    "neet cell cycle notes"
+  ],
+  "boosts": {
+    "formula": 0.65,
+    "exam": 0.6,
+    "revision": 0.75
+  },
+  "notifications": [
+    {
+      "id": "n1775305074904",
+      "title": "Exam tommorw",
+      "body": "Test on dERIVATIVES",
+      "audience": "all",
+      "at": "4/4/2026",
+      "by": "admin@123"
+    },
+    {
+      "id": "n1775291095048",
+      "title": "s",
+      "body": "s",
+      "audience": "all",
+      "at": "4/4/2026",
+      "by": "d@gmail.com"
+    },
+    {
+      "id": "n1775290063616",
+      "title": "A",
+      "body": "A",
+      "audience": "all",
+      "at": "4/4/2026"
+    },
+    {
+      "id": "n1775289418425",
+      "title": "test1",
+      "body": "testing",
+      "audience": "all",
+      "at": "4/4/2026"
+    },
+    {
+      "id": "n1775287264625",
+      "title": "test",
+      "body": "testing",
+      "audience": "all",
+      "at": "4/4/2026"
+    },
+    {
+      "id": "n1",
+      "title": "New Physics Pack",
+      "body": "Mechanics pack published",
+      "audience": "all",
+      "at": "today"
+    }
+  ],
+  "audit": [
+    {
+      "at": "09:12",
+      "actor": "System Admin",
+      "action": "Changed role for Riya Nair"
+    },
+    {
+      "at": "09:48",
+      "actor": "System Admin",
+      "action": "Approved summary s1"
+    }
+  ],
+  "metrics": {
+    "activity": {
+      "daily": [
+        22,
+        31,
+        17,
+        40,
+        36,
+        46,
+        28
+      ],
+      "weekly": [
+        184,
+        210,
+        198,
+        243
+      ],
+      "monthly": [
+        730,
+        870,
+        910,
+        1020
+      ]
+    },
+    "apiUsage": [
+      120,
+      130,
+      142,
+      156,
+      171,
+      165,
+      180
+    ],
+    "errorRate": [
+      4.1,
+      3.8,
+      2.9,
+      3.1,
+      2.1,
+      2.4,
+      1.9
+    ],
+    "responseTime": [
+      760,
+      700,
+      640,
+      620,
+      590,
+      610,
+      560
+    ],
+    "peakHours": [
+      [
+        "8 AM",
+        20
+      ],
+      [
+        "12 PM",
+        56
+      ],
+      [
+        "6 PM",
+        81
+      ],
+      [
+        "9 PM",
+        63
+      ]
+    ],
+    "strugglingSubjects": [
+      [
+        "Organic Chemistry",
+        74
+      ],
+      [
+        "Electromagnetics",
+        62
+      ],
+      [
+        "Differential Equations",
+        58
+      ]
+    ],
+    "summarizedChapters": [
+      [
+        "Electrostatics",
+        121
+      ],
+      [
+        "Chemical Bonding",
+        98
+      ],
+      [
+        "Matrices",
+        77
+      ]
+    ]
+  },
+  "backup": {
+    "lastBackup": "23/4/2026, 5:23:31 pm",
+    "storageUsedMb": 512,
+    "storageLimitMb": 2048
+  },
+  "studentPerformance": [
+    {
+      "userId": "1776944999205",
+      "topic": "kinematics",
+      "correct": 1,
+      "attempts": 1,
+      "accuracy": 1,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "laws of motion",
+      "correct": 1,
+      "attempts": 1,
+      "accuracy": 1,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "thermodynamics",
+      "correct": 0,
+      "attempts": 1,
+      "accuracy": 0,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "electrostatics",
+      "correct": 0,
+      "attempts": 2,
+      "accuracy": 0,
+      "timeTaken": 30,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "organic chemistry",
+      "correct": 0,
+      "attempts": 1,
+      "accuracy": 0,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "chemical bonding",
+      "correct": 0,
+      "attempts": 1,
+      "accuracy": 0,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "calculus",
+      "correct": 0,
+      "attempts": 2,
+      "accuracy": 0,
+      "timeTaken": 30,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    },
+    {
+      "userId": "1776944999205",
+      "topic": "probability",
+      "correct": 0,
+      "attempts": 1,
+      "accuracy": 0,
+      "timeTaken": 15,
+      "updatedAt": "2026-04-23T12:02:20.749Z"
+    }
+  ],
+  "doubtQuizzes": [
+    {
+      "id": "dq-1776945517704-z5wwx",
+      "type": "DoubtQuiz",
+      "title": "Doubt Quiz",
+      "topics": [],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-oc-3",
+          "topic": "organic chemistry",
+          "question": "SN1 reaction rate depends on:",
+          "options": [
+            "nucleophile concentration",
+            "substrate concentration",
+            "both equally",
+            "temperature only"
+          ],
+          "correctIndex": 1,
+          "explanation": "SN1 is unimolecular in rate determining step.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-kin-4",
+          "topic": "kinematics",
+          "question": "For motion with acceleration a=2t, velocity after 3 seconds from rest is:",
+          "options": [
+            "6 m/s",
+            "9 m/s",
+            "12 m/s",
+            "18 m/s"
+          ],
+          "correctIndex": 1,
+          "explanation": "v = integral(2t dt) from 0 to 3 = t^2 = 9 m/s.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-3",
+          "topic": "thermodynamics",
+          "question": "Efficiency of a heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "explanation": "Theoretical upper bound is 100%, practical engines are always below this.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cb-3",
+          "topic": "chemical bonding",
+          "question": "Molecule with zero dipole moment among these is:",
+          "options": [
+            "H2O",
+            "NH3",
+            "CO2",
+            "HCl"
+          ],
+          "correctIndex": 2,
+          "explanation": "CO2 is linear and symmetric, dipoles cancel.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-3",
+          "topic": "calculus",
+          "question": "For f(x)=x^2+3x, f'(2) is:",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correctIndex": 2,
+          "explanation": "f'(x)=2x+3, so f'(2)=7.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-4",
+          "topic": "calculus",
+          "question": "lim x->0 (sin x)/x equals:",
+          "options": [
+            "0",
+            "1",
+            "infinity",
+            "does not exist"
+          ],
+          "correctIndex": 1,
+          "explanation": "Standard limit value is 1.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-es-4",
+          "topic": "electrostatics",
+          "question": "Electric field inside a conductor at electrostatic equilibrium is:",
+          "options": [
+            "maximum",
+            "minimum",
+            "zero",
+            "depends on shape only"
+          ],
+          "correctIndex": 2,
+          "explanation": "Net electric field inside a conductor at equilibrium is zero.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-es-3",
+          "topic": "electrostatics",
+          "question": "Capacitance of a parallel plate capacitor is proportional to:",
+          "options": [
+            "d/A",
+            "A/d",
+            "A*d",
+            "1/(A*d)"
+          ],
+          "correctIndex": 1,
+          "explanation": "C = epsilon*A/d, hence directly proportional to A and inversely to d.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776880022219",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T11:58:37.704Z",
+      "editable": true,
+      "attempts": []
+    },
+    {
+      "id": "dq-1776945397083-uxqis",
+      "type": "DoubtQuiz",
+      "title": "Doubt Quiz",
+      "topics": [],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-thermo-3",
+          "topic": "thermodynamics",
+          "question": "Efficiency of a heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "explanation": "Theoretical upper bound is 100%, practical engines are always below this.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-kin-4",
+          "topic": "kinematics",
+          "question": "For motion with acceleration a=2t, velocity after 3 seconds from rest is:",
+          "options": [
+            "6 m/s",
+            "9 m/s",
+            "12 m/s",
+            "18 m/s"
+          ],
+          "correctIndex": 1,
+          "explanation": "v = integral(2t dt) from 0 to 3 = t^2 = 9 m/s.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-oc-3",
+          "topic": "organic chemistry",
+          "question": "SN1 reaction rate depends on:",
+          "options": [
+            "nucleophile concentration",
+            "substrate concentration",
+            "both equally",
+            "temperature only"
+          ],
+          "correctIndex": 1,
+          "explanation": "SN1 is unimolecular in rate determining step.",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-lom-2",
+          "topic": "laws of motion",
+          "question": "In an upward accelerating lift, apparent weight compared to actual weight is:",
+          "options": [
+            "less",
+            "same",
+            "more",
+            "zero"
+          ],
+          "correctIndex": 2,
+          "explanation": "Apparent weight m(g+a) is greater than mg for upward acceleration.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-kin-2",
+          "topic": "kinematics",
+          "question": "A projectile fired at 45 degrees has maximum range for a given speed because:",
+          "options": [
+            "sin(2theta) becomes 0",
+            "sin(2theta) becomes 1",
+            "cos(theta) becomes 0",
+            "time of flight is minimum"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is proportional to sin(2theta), maximum at sin(90 degrees) = 1.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-4",
+          "topic": "calculus",
+          "question": "lim x->0 (sin x)/x equals:",
+          "options": [
+            "0",
+            "1",
+            "infinity",
+            "does not exist"
+          ],
+          "correctIndex": 1,
+          "explanation": "Standard limit value is 1.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-3",
+          "topic": "calculus",
+          "question": "For f(x)=x^2+3x, f'(2) is:",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correctIndex": 2,
+          "explanation": "f'(x)=2x+3, so f'(2)=7.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "topic": "thermodynamics",
+          "question": "For an isothermal process of ideal gas, which quantity remains constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "explanation": "Isothermal means constant temperature.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776880022219",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T11:56:37.083Z",
+      "editable": true,
+      "attempts": []
+    }
+  ],
+  "adminQuizzes": [
+    {
+      "id": "aq-1776956719447-gerw0",
+      "type": "AdminQuiz",
+      "title": "Targeted Assignment - Thermodynamics",
+      "topics": [
+        "thermodynamics"
+      ],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-thermo-3",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Efficiency of heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "correctAnswer": "100%",
+          "explanation": "Theoretical upper bound is 100%",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "For isothermal process of ideal gas, what stays constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "correctAnswer": "Temperature",
+          "explanation": "Isothermal = constant temperature",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-1",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Gas absorbs 300 J heat, does 120 J work. ΔU?",
+          "options": [
+            "180 J",
+            "300 J",
+            "420 J",
+            "-180 J"
+          ],
+          "correctIndex": 0,
+          "correctAnswer": "180 J",
+          "explanation": "ΔU=Q-W=300-120=180 J",
+          "difficulty": "easy",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T15:05:19.448Z",
+      "editable": true,
+      "attempts": []
+    },
+    {
+      "id": "aq-1776956668664-u6qyh",
+      "type": "AdminQuiz",
+      "title": "Targeted Assignment - Thermodynamics",
+      "topics": [
+        "thermodynamics"
+      ],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-thermo-3",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Efficiency of heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "correctAnswer": "100%",
+          "explanation": "Theoretical upper bound is 100%",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "For isothermal process of ideal gas, what stays constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "correctAnswer": "Temperature",
+          "explanation": "Isothermal = constant temperature",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-1",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Gas absorbs 300 J heat, does 120 J work. ΔU?",
+          "options": [
+            "180 J",
+            "300 J",
+            "420 J",
+            "-180 J"
+          ],
+          "correctIndex": 0,
+          "correctAnswer": "180 J",
+          "explanation": "ΔU=Q-W=300-120=180 J",
+          "difficulty": "easy",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T15:04:28.664Z",
+      "editable": true,
+      "attempts": []
+    },
+    {
+      "id": "aq-1776956637320-xfa4q",
+      "type": "AdminQuiz",
+      "title": "Targeted Assignment - Thermodynamics",
+      "topics": [
+        "thermodynamics"
+      ],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-thermo-3",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Efficiency of heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "correctAnswer": "100%",
+          "explanation": "Theoretical upper bound is 100%",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "For isothermal process of ideal gas, what stays constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "correctAnswer": "Temperature",
+          "explanation": "Isothermal = constant temperature",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-1",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Gas absorbs 300 J heat, does 120 J work. ΔU?",
+          "options": [
+            "180 J",
+            "300 J",
+            "420 J",
+            "-180 J"
+          ],
+          "correctIndex": 0,
+          "correctAnswer": "180 J",
+          "explanation": "ΔU=Q-W=300-120=180 J",
+          "difficulty": "easy",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T15:03:57.320Z",
+      "editable": true,
+      "attempts": []
+    },
+    {
+      "id": "aq-1776955098345-hmlmg",
+      "type": "AdminQuiz",
+      "title": "Doubt Quiz: Thermodynamics",
+      "topics": [
+        "thermodynamics",
+        "kinematics"
+      ],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-thermo-3",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Efficiency of heat engine can never exceed:",
+          "options": [
+            "25%",
+            "50%",
+            "75%",
+            "100%"
+          ],
+          "correctIndex": 3,
+          "correctAnswer": "100%",
+          "explanation": "Theoretical upper bound is 100%",
+          "difficulty": "hard",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "For isothermal process of ideal gas, what stays constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "correctAnswer": "Temperature",
+          "explanation": "Isothermal = constant temperature",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-1",
+          "subject": "physics",
+          "topic": "thermodynamics",
+          "question": "Gas absorbs 300 J heat, does 120 J work. ΔU?",
+          "options": [
+            "180 J",
+            "300 J",
+            "420 J",
+            "-180 J"
+          ],
+          "correctIndex": 0,
+          "correctAnswer": "180 J",
+          "explanation": "ΔU=Q-W=300-120=180 J",
+          "difficulty": "easy",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-kin-1",
+          "subject": "physics",
+          "topic": "kinematics",
+          "question": "A body starts from rest with acceleration 2 m/s² for 5s. Its displacement is:",
+          "options": [
+            "10 m",
+            "20 m",
+            "25 m",
+            "50 m"
+          ],
+          "correctIndex": 2,
+          "correctAnswer": "25 m",
+          "explanation": "s = ½at² = ½×2×25 = 25 m",
+          "difficulty": "easy",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T14:38:18.345Z",
+      "editable": true,
+      "attempts": []
+    },
+    {
+      "id": "aq-1776945659323-a4gd7",
+      "type": "AdminQuiz",
+      "title": "kinematics",
+      "topics": [
+        "kinematics",
+        "laws of motion",
+        "thermodynamics",
+        "electrostatics",
+        "organic chemistry",
+        "chemical bonding",
+        "calculus",
+        "probability"
+      ],
+      "difficulty": "medium",
+      "questions": [
+        {
+          "id": "qb-kin-2",
+          "topic": "kinematics",
+          "question": "A projectile fired at 45 degrees has maximum range for a given speed because:",
+          "options": [
+            "sin(2theta) becomes 0",
+            "sin(2theta) becomes 1",
+            "cos(theta) becomes 0",
+            "time of flight is minimum"
+          ],
+          "correctIndex": 1,
+          "explanation": "Range is proportional to sin(2theta), maximum at sin(90 degrees) = 1.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-lom-2",
+          "topic": "laws of motion",
+          "question": "In an upward accelerating lift, apparent weight compared to actual weight is:",
+          "options": [
+            "less",
+            "same",
+            "more",
+            "zero"
+          ],
+          "correctIndex": 2,
+          "explanation": "Apparent weight m(g+a) is greater than mg for upward acceleration.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-thermo-2",
+          "topic": "thermodynamics",
+          "question": "For an isothermal process of ideal gas, which quantity remains constant?",
+          "options": [
+            "Pressure",
+            "Volume",
+            "Temperature",
+            "Internal energy always changes"
+          ],
+          "correctIndex": 2,
+          "explanation": "Isothermal means constant temperature.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-es-3",
+          "topic": "electrostatics",
+          "question": "Capacitance of a parallel plate capacitor is proportional to:",
+          "options": [
+            "d/A",
+            "A/d",
+            "A*d",
+            "1/(A*d)"
+          ],
+          "correctIndex": 1,
+          "explanation": "C = epsilon*A/d, hence directly proportional to A and inversely to d.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-es-4",
+          "topic": "electrostatics",
+          "question": "Electric field inside a conductor at electrostatic equilibrium is:",
+          "options": [
+            "maximum",
+            "minimum",
+            "zero",
+            "depends on shape only"
+          ],
+          "correctIndex": 2,
+          "explanation": "Net electric field inside a conductor at equilibrium is zero.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-oc-2",
+          "topic": "organic chemistry",
+          "question": "Markovnikov rule applies in addition of HX to:",
+          "options": [
+            "alkanes",
+            "symmetrical alkenes",
+            "unsymmetrical alkenes",
+            "alkynes only"
+          ],
+          "correctIndex": 2,
+          "explanation": "It predicts major product orientation for unsymmetrical alkenes.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cb-3",
+          "topic": "chemical bonding",
+          "question": "Molecule with zero dipole moment among these is:",
+          "options": [
+            "H2O",
+            "NH3",
+            "CO2",
+            "HCl"
+          ],
+          "correctIndex": 2,
+          "explanation": "CO2 is linear and symmetric, dipoles cancel.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-3",
+          "topic": "calculus",
+          "question": "For f(x)=x^2+3x, f'(2) is:",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "correctIndex": 2,
+          "explanation": "f'(x)=2x+3, so f'(2)=7.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-cal-4",
+          "topic": "calculus",
+          "question": "lim x->0 (sin x)/x equals:",
+          "options": [
+            "0",
+            "1",
+            "infinity",
+            "does not exist"
+          ],
+          "correctIndex": 1,
+          "explanation": "Standard limit value is 1.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        },
+        {
+          "id": "qb-prob-2",
+          "topic": "probability",
+          "question": "If P(A)=0.3, P(B)=0.4 and P(A intersect B)=0.1, P(A union B) is:",
+          "options": [
+            "0.4",
+            "0.5",
+            "0.6",
+            "0.7"
+          ],
+          "correctIndex": 2,
+          "explanation": "P(A union B)=P(A)+P(B)-P(A intersect B)=0.6.",
+          "difficulty": "medium",
+          "source": "question-bank"
+        }
+      ],
+      "assignedTo": [
+        "1775286256037",
+        "1775291065688",
+        "1775891212644",
+        "1775891309720",
+        "1775891634618",
+        "1775899571150",
+        "1775934780694",
+        "1775948268889",
+        "1775948491230",
+        "1775959545290",
+        "1776880022219",
+        "1776944999205"
+      ],
+      "createdBy": "vx@gmail.com",
+      "createdAt": "2026-04-23T12:00:59.323Z",
+      "editable": true,
+      "attempts": [
+        {
+          "userId": "1776944999205",
+          "userEmail": "V@gmail.com",
+          "score": 20,
+          "correct": 2,
+          "total": 10,
+          "weakAreas": [
+            "thermodynamics",
+            "electrostatics",
+            "organic chemistry",
+            "chemical bonding",
+            "calculus",
+            "probability"
+          ],
+          "wrongQuestionIds": [
+            "qb-thermo-2",
+            "qb-es-3",
+            "qb-es-4",
+            "qb-oc-2",
+            "qb-cb-3",
+            "qb-cal-3",
+            "qb-cal-4",
+            "qb-prob-2"
+          ],
+          "topicBreakdown": [
+            {
+              "topic": "kinematics",
+              "correct": 1,
+              "attempts": 1,
+              "accuracy": 1,
+              "timeTaken": 15
+            },
+            {
+              "topic": "laws of motion",
+              "correct": 1,
+              "attempts": 1,
+              "accuracy": 1,
+              "timeTaken": 15
+            },
+            {
+              "topic": "thermodynamics",
+              "correct": 0,
+              "attempts": 1,
+              "accuracy": 0,
+              "timeTaken": 15
+            },
+            {
+              "topic": "electrostatics",
+              "correct": 0,
+              "attempts": 2,
+              "accuracy": 0,
+              "timeTaken": 30
+            },
+            {
+              "topic": "organic chemistry",
+              "correct": 0,
+              "attempts": 1,
+              "accuracy": 0,
+              "timeTaken": 15
+            },
+            {
+              "topic": "chemical bonding",
+              "correct": 0,
+              "attempts": 1,
+              "accuracy": 0,
+              "timeTaken": 15
+            },
+            {
+              "topic": "calculus",
+              "correct": 0,
+              "attempts": 2,
+              "accuracy": 0,
+              "timeTaken": 30
+            },
+            {
+              "topic": "probability",
+              "correct": 0,
+              "attempts": 1,
+              "accuracy": 0,
+              "timeTaken": 15
+            }
+          ],
+          "submittedAt": "2026-04-23T12:02:20.749Z",
+          "timeTaken": 150
+        }
+      ]
+    }
+  ],
+  "questionMeta": {
+    "qb-kin-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    }
+  }
+}

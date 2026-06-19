@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Studio - AdaptEd Admin</title>
+  <meta name="description" content="Create and manage quizzes, view doubt heatmaps, and generate targeted assessments." />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body data-module="quizzes">
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">A</div><div><h1>AdaptEd Admin</h1><p>Control Center</p></div></div>
+      <nav id="adminNav" class="nav-list"></nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h2 id="pageTitle" class="page-title"></h2>
+          <p class="muted">Heatmap-driven doubt quizzes and admin-created assignments.</p>
+        </div>
+        <div class="row"><span id="adminIdentity" class="badge"></span><button id="logoutBtn">Logout</button></div>
+      </div>
+
+      <div id="mainView">
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 1: SUBJECT HEATMAP CARDS -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section style="margin-bottom: 20px;">
+          <div class="row" style="justify-content:space-between; margin-bottom: 12px;">
+            <h3 style="margin:0">Class Doubt Heatmap</h3>
+            <button id="refreshHeatmapBtn" class="btn" style="display:flex; align-items:center; gap:6px; font-weight:600; font-size:13px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+              Refresh
+            </button>
+          </div>
+          <p class="small muted" style="margin-top:0">Click any topic chip to view struggling students and create targeted doubt quizzes.</p>
+          
+          <div id="heatmapSubjectGrid" class="grid cols-3" style="gap: 16px; margin-top: 14px;">
+            <!-- Rendered via JS -->
+            <div class="muted small">Loading heatmap data...</div>
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 2: QUIZ CREATION CONFIG BLOCK -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="card" id="quizCreationBlock" style="margin-bottom: 20px;">
+          <div class="grid" style="gap:16px;">
+            <div>
+              <div id="creationTopicCheckboxes" style="background: var(--surface); padding: 12px; border-radius: 8px; border: 1px solid var(--line); max-height: 240px; overflow-y: auto;">
+                <!-- Populated via JS -->
+                <span class="muted small">Loading subjects...</span>
+              </div>
+            </div>
+
+            <div class="grid cols-3" style="gap: 16px;">
+              <label style="flex:1;">
+                <span style="font-size: 11px; font-weight: 800; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Total Questions</span>
+                <div style="position:relative; display:flex; align-items:center;">
+                  <svg style="position:absolute; left:12px; color:var(--ink-muted);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <input type="number" id="configTotalQ" value="10" min="3" max="50" style="padding-left:36px; height: 46px;" />
+                </div>
+              </label>
+              <label style="flex:1;">
+                <span style="font-size: 11px; font-weight: 800; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Time Limit (Mins)</span>
+                <div style="position:relative; display:flex; align-items:center;">
+                  <svg style="position:absolute; left:12px; color:var(--ink-muted);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <input type="number" id="configTotalTime" value="15" min="5" max="120" style="padding-left:36px; height: 46px;" />
+                </div>
+              </label>
+              <div style="display:flex; align-items:flex-end;">
+                <button class="btn btn-primary" id="initQuizFlowBtn" style="height:46px; padding: 0 24px; font-weight:700; display:flex; align-items:center; gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  Create Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- SECTION 3: EXISTING QUIZZES -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section class="grid cols-2" style="margin-top:24px">
+          <article class="card">
+            <h3 style="margin-top:0">Admin Quizzes</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Topics</th>
+                  <th>Questions</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminQuizRows"></tbody>
+            </table>
+          </article>
+
+          <article class="card">
+            <h3 style="margin-top:0">Doubt Quizzes</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Topics</th>
+                  <th>Questions</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="doubtQuizRows"></tbody>
+            </table>
+          </article>
+        </section>
+      </div>
+
+      <!-- SIDE PANEL (Hidden by Default) -->
+      <aside id="studentInsightPanel" class="side-panel">
+        <div class="panel-header">
+          <h3 id="panelTopicTitle" style="margin:0;">Topic Insight</h3>
+          <button id="closePanelBtn" class="btn-close" style="display:flex; align-items:center; justify-content:center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+        <div class="panel-body">
+          <p class="muted small" style="margin-top: 0; margin-bottom: 16px;">Students struggling with <strong id="panelTopicName">this topic</strong> sorted by lowest accuracy.</p>
+          
+          <button class="btn btn-danger" id="panelCreateDoubtBtn" style="width: 100%; margin-bottom: 16px; height:46px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 7 7-7 7"/><path d="m14 3 7 7-7 7"/></svg>
+            Generate Targeted Quiz
+          </button>
+
+          <div id="panelStudentList" class="student-list">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- EDITOR VIEW (Hidden by Default) -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div id="editorView" style="display: none;">
+        
+        <!-- Loading Timeline Component -->
+        <div id="timelineLoader" class="loading-timeline-overlay" style="display:none;">
+          <div class="timeline-box">
+            <h2 style="margin-top:0;">Preparing Studio</h2>
+            <div class="timeline-steps">
+              <div class="t-step" id="tStep1"><span class="t-dot"></span> Analyzing topic metrics...</div>
+              <div class="t-step" id="tStep2"><span class="t-dot"></span> Selecting priority questions...</div>
+              <div class="t-step" id="tStep3"><span class="t-dot"></span> Preparing editor...</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="editorLayout" class="editor-layout" style="display:none;">
+          <!-- Editor Header -->
+          <div class="editor-header" style="height: 72px;">
+            <div style="display:flex; align-items:center; gap: 20px;">
+              <button class="btn btn-sm" id="editorBackBtn" style="display:flex; align-items:center; gap:6px; font-weight:600;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Cancel
+              </button>
+              <input type="text" id="editorQuizTitle" class="editor-title-input" placeholder="Enter Quiz Title..." />
+            </div>
+            <div style="display:flex; align-items:center; gap: 12px;">
+              <select id="editorAssignTarget" class="editor-select" style="height:44px; min-width: 180px;">
+                <option value="all">Assign: All Students</option>
+                <option value="custom">Assign: Custom...</option>
+              </select>
+              <button class="btn btn-primary" id="editorSaveBtn" style="height:44px; padding: 0 20px; font-weight:700; display:flex; align-items:center; gap:8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Save & Assign
+              </button>
+            </div>
+          </div>
+
+          <!-- Split Pane -->
+          <div class="editor-split">
+            <!-- Left Pane: Q List -->
+            <div class="editor-sidebar">
+              <div style="padding: 12px; border-bottom: 1px solid var(--line); font-weight: 700;">
+                Questions (<span id="editorQCount">0</span>)
+              </div>
+              <div id="editorQList" class="editor-q-list">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+            <!-- Right Pane: Preview -->
+            <div class="editor-main">
+              <div id="editorPreviewParams" class="editor-preview-wrapper">
+                <div class="muted" style="text-align:center; padding-top: 40px;">Select a question to preview</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000; display:none; align-items:center; justify-content:center;">
+    <div style="background:#fff; border-radius:14px; padding:20px; width:min(500px,90vw); max-height:80vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+      <h3 style="margin-top:0;" id="editModalTitle">Edit Question</h3>
+      <div class="grid" style="gap:8px;">
+        <label>Question <textarea id="editQText" rows="3"></textarea></label>
+        <div class="grid cols-2" style="gap:8px;">
+          <label>Option 1 <input id="editOpt1" /></label>
+          <label>Option 2 <input id="editOpt2" /></label>
+          <label>Option 3 <input id="editOpt3" /></label>
+          <label>Option 4 <input id="editOpt4" /></label>
+        </div>
+        <label>Correct Option
+          <select id="editCorrect">
+            <option value="0">Option 1</option>
+            <option value="1">Option 2</option>
+            <option value="2">Option 3</option>
+            <option value="3">Option 4</option>
+          </select>
+        </label>
+        <div class="row" style="justify-content:flex-end; gap:8px; margin-top:8px;">
+          <button class="btn" id="editModalCancel">Cancel</button>
+          <button class="btn btn-primary" id="editModalSave">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

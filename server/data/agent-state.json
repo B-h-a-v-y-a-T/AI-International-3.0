@@ -1,0 +1,2732 @@
+{
+  "anonymous": {
+    "scores": {
+      "chemistry": 46,
+      "physics": 56,
+      "mixed": 28,
+      "math": 74,
+      "chem": 55
+    },
+    "weak_topics": [
+      "first law",
+      "thermodynamics",
+      "nomenclature",
+      "organic reactions",
+      "mixed"
+    ],
+    "strong_topics": [
+      "kinematics"
+    ],
+    "streak": 20,
+    "recent_scores": [
+      0.2,
+      0.4
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "unknown",
+    "confidence": "low",
+    "quiz_history": [
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.782Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.787Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T21:03:55.749Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:23:33.863Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:23:52.607Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:44:18.236Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:47:24.243Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:53:09.416Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:53:36.247Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:56:06.177Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.57,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T23:03:50.598Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.57,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T23:16:39.266Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T23:26:50.235Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T23:29:19.045Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-12T02:28:28.712Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-12T02:28:28.978Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.787Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.782Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.787Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.65,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T17:49:43.224Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:02:12.889Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:04:14.765Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T18:07:03.436Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.782Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.42,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T20:29:39.787Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T21:03:55.749Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:23:33.863Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:23:52.607Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:44:18.236Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:47:24.243Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:53:09.416Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:53:36.247Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.58,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T22:56:06.177Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.57,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T23:03:50.598Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "thermodynamics",
+        "score": 0.57,
+        "mistakes": [
+          {
+            "topic": "first law"
+          }
+        ],
+        "timestamp": "2026-04-11T23:16:39.266Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T23:26:50.235Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "organic reactions",
+        "score": 0.45,
+        "mistakes": [
+          {
+            "topic": "nomenclature"
+          }
+        ],
+        "timestamp": "2026-04-11T23:29:19.045Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-12T02:28:28.712Z"
+      }
+    ],
+    "bandit": {
+      "thermodynamics": {
+        "shown": 3.7414441916196426e+50,
+        "reward": 0.5599,
+        "last_seen": "2026-04-11T23:16:39.267Z"
+      },
+      "first law": {
+        "shown": 3.7414441916196426e+50,
+        "reward": 0.2059,
+        "last_seen": "2026-04-11T23:16:39.267Z"
+      },
+      "organic reactions": {
+        "shown": 2.1778071482940062e+40,
+        "reward": 0.4671,
+        "last_seen": "2026-04-11T23:29:19.045Z"
+      },
+      "nomenclature": {
+        "shown": 2.1778071482940062e+40,
+        "reward": 0.3029,
+        "last_seen": "2026-04-11T23:29:19.045Z"
+      },
+      "mixed": {
+        "shown": 7340030,
+        "reward": 0.4074,
+        "last_seen": "2026-04-12T02:28:28.713Z"
+      }
+    },
+    "last_active": "2026-04-12T05:15:17.776Z"
+  },
+  "vedantshah369@gmail.com": {
+    "scores": {
+      "mixed": 67,
+      "math": 78,
+      "chemistry": 60,
+      "physics": 71
+    },
+    "weak_topics": [
+      "chemistry",
+      "physics",
+      "laws of motion"
+    ],
+    "strong_topics": [
+      "maths",
+      "kinematics",
+      "physics"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      1,
+      0.5,
+      1
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "fluctuating",
+    "confidence": "low",
+    "quiz_history": [
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:54:46.618Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:07:20.411Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-12T00:18:46.039Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "laws of motion",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-12T02:42:28.306Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:23:44.267Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:24:36.920Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:25:24.341Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.318Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.326Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.336Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.344Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.355Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.365Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.375Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.391Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:32:25.296Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:33:46.003Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-11T20:54:46.618Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:07:20.411Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-12T00:18:46.039Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "laws of motion",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-12T02:42:28.306Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "physics",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:23:44.267Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:24:36.920Z"
+      },
+      {
+        "subject": "math",
+        "topic": "maths",
+        "score": 1,
+        "mistakes": [],
+        "timestamp": "2026-04-12T03:25:24.341Z"
+      }
+    ],
+    "bandit": {
+      "mixed": {
+        "shown": 5.59937698872056e+37,
+        "reward": 0.7695,
+        "last_seen": "2026-04-12T00:18:46.042Z"
+      },
+      "maths": {
+        "shown": 7.975367974699824e+36,
+        "reward": 0.6941,
+        "last_seen": "2026-04-12T03:25:24.341Z"
+      },
+      "chemistry": {
+        "shown": 7.975367974699824e+36,
+        "reward": 0.53,
+        "last_seen": "2026-04-11T20:32:25.336Z"
+      },
+      "physics": {
+        "shown": 7.975367974699824e+36,
+        "reward": 0.671,
+        "last_seen": "2026-04-12T03:23:44.269Z"
+      },
+      "laws of motion": {
+        "shown": 8796093022207,
+        "reward": 0.53,
+        "last_seen": "2026-04-12T02:42:28.308Z"
+      }
+    },
+    "last_active": "2026-04-12T05:16:11.045Z"
+  },
+  "vedant@gmail.com": {
+    "scores": {
+      "chemistry": 80,
+      "mixed": 72
+    },
+    "weak_topics": [
+      "physics",
+      "kinematics",
+      "mechanics",
+      "optics",
+      "thermodynamics",
+      "waves",
+      "equilibrium",
+      "thermochemistry",
+      "atomic structure",
+      "organic chemistry",
+      "chemical bonding",
+      "electrochemistry",
+      "combinatorics",
+      "coordinate geometry",
+      "algebra",
+      "probability",
+      "calculus"
+    ],
+    "strong_topics": [
+      "chemistry"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.8,
+      0.6,
+      0.8,
+      0.8,
+      0.5,
+      0.4,
+      0.6
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "revise",
+    "trend": "declining",
+    "confidence": "medium",
+    "quiz_history": [
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:29:19.104Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:37:36.197Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T23:06:31.990Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.743Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.755Z"
+      },
+      {
+        "subject": "chemistry",
+        "topic": "chemistry",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.766Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.8,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:17:10.694Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:29:19.104Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.4,
+        "mistakes": [],
+        "timestamp": "2026-04-11T21:37:36.197Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.6,
+        "mistakes": [],
+        "timestamp": "2026-04-11T23:06:31.990Z"
+      }
+    ],
+    "bandit": {
+      "mixed": {
+        "shown": 83902986,
+        "reward": 0.56,
+        "last_seen": "2026-04-11T23:06:31.990Z"
+      },
+      "chemistry": {
+        "shown": 25165823,
+        "reward": 0.59,
+        "last_seen": "2026-04-11T21:17:10.766Z"
+      }
+    },
+    "last_active": "2026-04-11T23:07:30.264Z"
+  },
+  "vedantshah@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [
+      "kinematics"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-04-12T02:06:01.906Z"
+  },
+  "v@gmail.com": {
+    "scores": {
+      "mixed": 71,
+      "math": 80,
+      "chemistry": 60,
+      "physics": 60
+    },
+    "weak_topics": [
+      "chemistry",
+      "laws of motion",
+      "modern physics",
+      "thermodynamics",
+      "optics",
+      "mechanics",
+      "equilibrium",
+      "atomic structure",
+      "chemical bonding",
+      "organic chemistry",
+      "electrochemistry",
+      "thermochemistry",
+      "probability",
+      "algebra",
+      "calculus",
+      "coordinate geometry",
+      "combinatorics"
+    ],
+    "strong_topics": [
+      "kinematics",
+      "maths"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.4,
+      0.6,
+      0.6,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      1,
+      0.6
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "advance",
+    "trend": "improving",
+    "confidence": "medium",
+    "quiz_history": [],
+    "bandit": {
+      "mixed": {
+        "shown": 4599,
+        "reward": 0.7531,
+        "last_seen": null
+      },
+      "maths": {
+        "shown": 511,
+        "reward": 0.59,
+        "last_seen": null
+      },
+      "chemistry": {
+        "shown": 511,
+        "reward": 0.53,
+        "last_seen": null
+      },
+      "physics": {
+        "shown": 511,
+        "reward": 0.53,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-04-22T17:48:10.633Z"
+  },
+  "V@gmail.com": {
+    "scores": {
+      "mixed": 29,
+      "math": 80,
+      "chemistry": 60,
+      "physics": 60
+    },
+    "weak_topics": [
+      "mixed",
+      "chemistry",
+      "laws of motion",
+      "modern physics",
+      "thermodynamics",
+      "optics",
+      "mechanics",
+      "equilibrium",
+      "atomic structure",
+      "chemical bonding",
+      "organic chemistry",
+      "electrochemistry",
+      "thermochemistry",
+      "probability",
+      "algebra",
+      "calculus",
+      "coordinate geometry",
+      "combinatorics",
+      "kinematics"
+    ],
+    "strong_topics": [
+      "maths"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.6,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      1,
+      0.6,
+      0.2
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "stable",
+    "confidence": "low",
+    "quiz_history": [
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.2,
+        "mistakes": [],
+        "timestamp": "2026-04-23T12:02:27.908Z"
+      }
+    ],
+    "bandit": {
+      "mixed": {
+        "shown": 4662,
+        "reward": 0.5872,
+        "last_seen": "2026-04-23T12:02:27.908Z"
+      },
+      "maths": {
+        "shown": 511,
+        "reward": 0.59,
+        "last_seen": null
+      },
+      "chemistry": {
+        "shown": 511,
+        "reward": 0.53,
+        "last_seen": null
+      },
+      "physics": {
+        "shown": 511,
+        "reward": 0.53,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-04-23T12:43:25.517Z"
+  },
+  "1776944999205": {
+    "scores": {
+      "adminquiz": 20
+    },
+    "weak_topics": [
+      "thermodynamics",
+      "electrostatics",
+      "organic chemistry",
+      "chemical bonding",
+      "calculus",
+      "probability",
+      "kinematics"
+    ],
+    "strong_topics": [],
+    "recent_scores": [
+      0.2
+    ],
+    "quiz_history": [
+      {
+        "subject": "adminquiz",
+        "topic": "kinematics",
+        "score": 0.2,
+        "mistakes": [
+          {
+            "topic": "thermodynamics",
+            "concept": "thermodynamics"
+          },
+          {
+            "topic": "electrostatics",
+            "concept": "electrostatics"
+          },
+          {
+            "topic": "organic chemistry",
+            "concept": "organic chemistry"
+          },
+          {
+            "topic": "chemical bonding",
+            "concept": "chemical bonding"
+          },
+          {
+            "topic": "calculus",
+            "concept": "calculus"
+          },
+          {
+            "topic": "probability",
+            "concept": "probability"
+          }
+        ],
+        "timestamp": "2026-04-23T12:02:20.754Z"
+      }
+    ],
+    "streak": 1,
+    "last_active": "2026-04-23T12:02:20.756Z",
+    "bandit": {
+      "kinematics": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "thermodynamics": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "electrostatics": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "organic chemistry": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "chemical bonding": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "calculus": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      },
+      "probability": {
+        "shown": 1,
+        "reward": 0.41,
+        "last_seen": "2026-04-23T12:02:20.756Z"
+      }
+    }
+  },
+  "vx@gmail.com": {
+    "scores": {
+      "mixed": 62,
+      "chemistry": 80
+    },
+    "weak_topics": [
+      "physics",
+      "kinematics",
+      "mechanics",
+      "optics",
+      "thermodynamics",
+      "waves",
+      "equilibrium",
+      "thermochemistry",
+      "atomic structure",
+      "organic chemistry",
+      "chemical bonding",
+      "electrochemistry",
+      "combinatorics",
+      "coordinate geometry",
+      "algebra",
+      "probability",
+      "calculus",
+      "modern physics",
+      "electromagnetism",
+      "chemical kinetics",
+      "vectors and 3d geometry",
+      "trigonometry"
+    ],
+    "strong_topics": [
+      "chemistry"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.8,
+      0.6,
+      0.8,
+      0.8,
+      0.5,
+      0.4,
+      0.6
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "declining",
+    "confidence": "medium",
+    "quiz_history": [],
+    "bandit": {
+      "mixed": {
+        "shown": 6,
+        "reward": 0.5622,
+        "last_seen": null
+      },
+      "chemistry": {
+        "shown": 1,
+        "reward": 0.59,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-04-23T13:34:54.210Z"
+  },
+  "vxx@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-06-19T17:13:31.012Z"
+  }
+}

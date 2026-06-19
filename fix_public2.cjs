@@ -1,0 +1,1 @@
+const fs = require('fs'); let c = fs.readFileSync('server/index.js', 'utf8'); c = c.replace(const publicDir = path.join(__dirname, '..', 'public');, const publicDir = path.join(__dirname, '..');); fs.writeFileSync('server/index.js', c);

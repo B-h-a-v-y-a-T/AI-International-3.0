@@ -1,0 +1,200 @@
+[
+  {
+    "id": "1775285904404",
+    "name": "kushal",
+    "email": "k@gmail.com",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$oKN40Q3VGZFdz6dmFg5Pc.xuevGlfaoyBw75m3vJncLfC616mHBvS",
+    "createdAt": "2026-04-04T06:58:24.404Z"
+  },
+  {
+    "id": "1775286256037",
+    "name": "kash",
+    "email": "m@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$89cm6VM/gt02G51f1xIC4.Kz4/TtkxNPyPFU/UBxSkOOGS3EqIMBS",
+    "createdAt": "2026-04-04T07:04:16.037Z"
+  },
+  {
+    "id": "1775287119978",
+    "name": "ma",
+    "email": "ma@gmail.com",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$xEb7tEBl3bGCqTsXq1eFpuV09SQyayUwU7KJD78lthqFzMtMahwW.",
+    "createdAt": "2026-04-04T07:18:39.978Z"
+  },
+  {
+    "id": "1775290783580",
+    "name": "km",
+    "email": "km@gmail.com",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$7YbCSBjZ9XJ/k47KmhUjZ.oPyWq5kkwuxKrKvvQfyr0SLysibZJDO",
+    "createdAt": "2026-04-04T08:19:43.580Z"
+  },
+  {
+    "id": "1775291065688",
+    "name": "nm",
+    "email": "n@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$hiwutfrMPGERthWy3xuzFuc9ztnuBDmfyL3wdMefpGYthUM9rKnLu",
+    "createdAt": "2026-04-04T08:24:25.688Z"
+  },
+  {
+    "id": "1775291083639",
+    "name": "das",
+    "email": "d@gmail.com",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$HvPvCnCE2bRJrT/KzDT30ORGzuVvp7aj5zGVFmeZ/1A0cdHomVi1W",
+    "createdAt": "2026-04-04T08:24:43.639Z"
+  },
+  {
+    "id": "1775303305923",
+    "name": "Admin",
+    "email": "admin@123",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$rg7MAL/.H/F3XKAZIXoc5.9z8oDinEITW4xVkj1E/khUUeOpjQmgG",
+    "createdAt": "2026-04-04T11:48:25.923Z"
+  },
+  {
+    "id": "1775891212644",
+    "name": "Param Test",
+    "email": "param.test.2026+1@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$MSJDi3ApchE8j9VCYNcynOpB6R.EJS.vBR29QSkFIRTu4HPfpMfJ2",
+    "createdAt": "2026-04-11T07:06:52.644Z"
+  },
+  {
+    "id": "1775891309720",
+    "name": "ps",
+    "email": "p@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$C4jC2JPKHjzPPVibDDDqheIjl4HxW6Y.i2w7Phk6mXA9TMM5GmZE.",
+    "createdAt": "2026-04-11T07:08:29.720Z"
+  },
+  {
+    "id": "1775891634618",
+    "name": "Param Shah",
+    "email": "paramshahm@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$VqHYnO2i3WWs2EMaD9GlnOeRn1WcbsxlGuNBl2kH3TwV/YAxI.UPa",
+    "createdAt": "2026-04-11T07:13:54.618Z"
+  },
+  {
+    "id": "1775899571150",
+    "name": "Vedant",
+    "email": "vedantshah369@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$ZpuwXq8HlWSUOETs2sPh2O6Qkm/XbvjlE7mZk4ynpbXofyZC8HbLK",
+    "createdAt": "2026-04-11T09:26:11.150Z"
+  },
+  {
+    "id": "1775934780694",
+    "name": "Vedant",
+    "email": "vedant@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$a4yDYBjdYzGp7XpZGlSlPelBFNWzrZ7OL8wwwdSFWMYU38wAfsVS2",
+    "createdAt": "2026-04-11T19:13:00.695Z"
+  },
+  {
+    "id": "1775948268889",
+    "name": "NonGemini Test",
+    "email": "nongemini_5679921@test.local",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$Jm.OmbfdI5S852.Cyh37OuHFmj6aewpHg97w1aqnGpw8uXKAYS8de",
+    "createdAt": "2026-04-11T22:57:48.889Z"
+  },
+  {
+    "id": "1775948491230",
+    "name": "NonGemini Test",
+    "email": "nongemini_236689@test.local",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$IvqHCuscMlI9190dDJvdgOAkmO7Ydj1XZQxLu.qUdAiXFndFNWzCm",
+    "createdAt": "2026-04-11T23:01:31.230Z"
+  },
+  {
+    "id": "1775959545290",
+    "name": "Vedant Shah",
+    "email": "vedantshah@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$s7vp5vZsISPHdZiMYPsaheTn0ZLMpGFCa6Qyukq.2rSnhRxbctTBK",
+    "createdAt": "2026-04-12T02:05:45.291Z"
+  },
+  {
+    "id": "1776944999205",
+    "name": "V",
+    "email": "v@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$MIwCVOQZMIEnf59Ws.I3Sucvfi0w.qFW32P1EJoVLBv3YUHSHrLE2",
+    "createdAt": "2026-04-23T11:49:59.205Z"
+  },
+  {
+    "id": "1776945059075",
+    "name": "vx",
+    "email": "vx@gmail.com",
+    "role": "Admin",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$y9/DuaOkO2vgS1dYv8exd.FcCt6Z6GibvS8c5wF/lxJJf2XX4XhrG",
+    "createdAt": "2026-04-23T11:50:59.075Z"
+  },
+  {
+    "id": "1781882091300",
+    "name": "X",
+    "email": "vxx@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$cX33QBRoXOR9B.KSXd/4ZOkyKsH2jca0XK03oOpGkj2ZDrcYAY8/e",
+    "createdAt": "2026-06-19T15:14:51.300Z"
+  }
+]

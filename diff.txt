@@ -1,0 +1,78 @@
+diff --git a/app.js b/app.js
+index 375f9c8..6af9532 100644
+--- a/app.js
++++ b/app.js
+@@ -224,27 +224,65 @@ const QuizEngine = {
+     },
+ 
+     /**
+-     * Select `count` questions from a bank for a given topic.
+-     * Priority order: previously-wrong GåÆ current-difficulty GåÆ other-difficulty
++     * MAB-based Selection (Bandit Algorithm)
++     * Exploration (20-30%): New or completely random topics/questions (to identify hidden weaknesses).
++     * Exploitation (70-80%): Focus heavily on predefined `weakTopics` and previously failed `wrongIds`.
+      */
+     selectQuestions(bank, topic, count, mixedTopics) {
+         const topics = topic === 'Mixed'
+             ? (mixedTopics || ['Physics', 'Chemistry', 'Maths', 'Biology'])
+             : [topic];
+ 
+-        let pool = [];
++        let state = null;
++        try { state = JSON.parse(localStorage.getItem('userState')); } catch { }
++        const weak = state?.weakTopics || [];
++
++        let exploitationPool = [];
++        let explorationPool = [];
++
+         topics.forEach(t => {
+             const diff = this.getDifficulty(t);
+             const { wrongIds } = this.getTopicPerf(t);
+             const tqs = bank.filter(q => q.topic === t);
++            
+             const wSet = new Set(wrongIds || []);
+-            const wrong = _shuffle(tqs.filter(q => wSet.has(q.id)));
+-            const diffMatch = _shuffle(tqs.filter(q => !wSet.has(q.id) && q.difficulty === diff));
+-            const rest = _shuffle(tqs.filter(q => !wSet.has(q.id) && q.difficulty !== diff));
+-            pool.push(...wrong, ...diffMatch, ...rest);
++            const wrongQs = _shuffle(tqs.filter(q => wSet.has(q.id)));
++            const unseenQs = _shuffle(tqs.filter(q => !wSet.has(q.id)));
++
++            // If it's a weak topic or specific topic was requested (Exploit)
++            if (topic !== 'Mixed' || weak.includes(t)) {
++                exploitationPool.push(...wrongQs, ...unseenQs.filter(q => q.difficulty === diff));
++                // Add rest of the unseen qs to exploration
++                explorationPool.push(...unseenQs.filter(q => q.difficulty !== diff));
++            } else {
++                // Strong/Neutral/Unseen topic (Explore)
++                explorationPool.push(...wrongQs, ...unseenQs);
++            }
+         });
+ 
+-        return _shuffle(pool).slice(0, count);
++        exploitationPool = _shuffle(exploitationPool);
++        explorationPool = _shuffle(explorationPool);
++
++        // Bandit Split: ~80% Exploit / 20% Explore
++        const exploitCount = Math.floor(count * 0.8);
++        const selected = [];
++
++        if (exploitationPool.length >= exploitCount) {
++            selected.push(...exploitationPool.splice(0, exploitCount));
++        } else {
++            selected.push(...exploitationPool);
++        }
++
++        const remaining = count - selected.length;
++        if (explorationPool.length >= remaining) {
++            selected.push(...explorationPool.splice(0, remaining));
++        } else {
++            selected.push(...explorationPool);
++            const stillRemaining = count - selected.length;
++            if (stillRemaining > 0) selected.push(...exploitationPool.splice(0, stillRemaining));
++        }
++
++        return _shuffle(selected).slice(0, count);
+     }
+ };
+ 

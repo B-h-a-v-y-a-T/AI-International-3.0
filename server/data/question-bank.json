@@ -1,0 +1,2360 @@
+{
+  "questions": [
+    {
+      "id": "qb-kin-1",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "A body starts from rest with acceleration 2 m/s² for 5s. Its displacement is:",
+      "options": [
+        "10 m",
+        "20 m",
+        "25 m",
+        "50 m"
+      ],
+      "correctAnswer": "25 m",
+      "correctIndex": 2,
+      "explanation": "s = ½at² = ½×2×25 = 25 m"
+    },
+    {
+      "id": "qb-kin-2",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "A projectile fired at 45° has maximum range because:",
+      "options": [
+        "sin(2θ) becomes 0",
+        "sin(2θ) becomes 1",
+        "cos(θ) becomes 0",
+        "time of flight is minimum"
+      ],
+      "correctAnswer": "sin(2θ) becomes 1",
+      "correctIndex": 1,
+      "explanation": "Range ∝ sin(2θ), max at sin(90°)=1"
+    },
+    {
+      "id": "qb-kin-3",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "A car slows from 20 m/s to 0 in 5s with uniform deceleration. Distance covered is:",
+      "options": [
+        "25 m",
+        "50 m",
+        "75 m",
+        "100 m"
+      ],
+      "correctAnswer": "50 m",
+      "correctIndex": 1,
+      "explanation": "Avg speed = (u+v)/2 = 10 m/s, d=10×5=50 m"
+    },
+    {
+      "id": "qb-kin-4",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "hard",
+      "question": "For motion with acceleration a=2t, velocity after 3 seconds from rest is:",
+      "options": [
+        "6 m/s",
+        "9 m/s",
+        "12 m/s",
+        "18 m/s"
+      ],
+      "correctAnswer": "9 m/s",
+      "correctIndex": 1,
+      "explanation": "v = ∫2t dt = t² = 9 m/s at t=3"
+    },
+    {
+      "id": "k1",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "A ball is thrown vertically upward with velocity 20 m/s. Maximum height? (g=10)",
+      "options": [
+        "20 m",
+        "10 m",
+        "40 m",
+        "5 m"
+      ],
+      "correctAnswer": "20 m",
+      "correctIndex": 0,
+      "explanation": "h = u²/2g = 400/20 = 20 m"
+    },
+    {
+      "id": "k2",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "A car accelerates from rest at 2 m/s² for 5s. Distance covered?",
+      "options": [
+        "25 m",
+        "50 m",
+        "10 m",
+        "20 m"
+      ],
+      "correctAnswer": "25 m",
+      "correctIndex": 0,
+      "explanation": "s = ½at² = ½×2×25 = 25 m"
+    },
+    {
+      "id": "k3",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "hard",
+      "question": "Two balls thrown simultaneously: A up at 20 m/s, B down at 20 m/s from 200m tower. Time difference to reach ground?",
+      "options": [
+        "4 s",
+        "0 s",
+        "2 s",
+        "6 s"
+      ],
+      "correctAnswer": "4 s",
+      "correctIndex": 0,
+      "explanation": "Time difference = 2u/g = 4s"
+    },
+    {
+      "id": "k4",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "A projectile fired at 30° with velocity 40 m/s. Range? (g=10)",
+      "options": [
+        "80√3 m",
+        "160 m",
+        "80 m",
+        "40√3 m"
+      ],
+      "correctAnswer": "80√3 m",
+      "correctIndex": 0,
+      "explanation": "R = u²sin2θ/g = 1600×sin60°/10 = 80√3 m"
+    },
+    {
+      "id": "k5",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "Body moves in circle of radius 10m at constant speed 5 m/s. Centripetal acceleration?",
+      "options": [
+        "2.5 m/s²",
+        "5 m/s²",
+        "10 m/s²",
+        "0.5 m/s²"
+      ],
+      "correctAnswer": "2.5 m/s²",
+      "correctIndex": 0,
+      "explanation": "a = v²/r = 25/10 = 2.5 m/s²"
+    },
+    {
+      "id": "k6",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "If v-t graph is a straight line with positive slope, the motion is:",
+      "options": [
+        "Uniformly accelerated",
+        "Uniform velocity",
+        "Decelerating",
+        "At rest"
+      ],
+      "correctAnswer": "Uniformly accelerated",
+      "correctIndex": 0,
+      "explanation": "Positive slope = constant positive acceleration"
+    },
+    {
+      "id": "k7",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "A stone dropped from balloon ascending at 10 m/s reaches ground in 8s. Height? (g=10)",
+      "options": [
+        "240 m",
+        "320 m",
+        "160 m",
+        "400 m"
+      ],
+      "correctAnswer": "240 m",
+      "correctIndex": 0,
+      "explanation": "h = -10×8 + ½×10×64 = 240 m"
+    },
+    {
+      "id": "k9",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "Particle starts from rest, a=2t. Velocity at t=3s:",
+      "options": [
+        "9 m/s",
+        "6 m/s",
+        "12 m/s",
+        "3 m/s"
+      ],
+      "correctAnswer": "9 m/s",
+      "correctIndex": 0,
+      "explanation": "v = ∫2t dt = t² = 9 m/s at t=3"
+    },
+    {
+      "id": "k10",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "Two bodies m and 2m dropped from h and 2h. Ratio of times:",
+      "options": [
+        "1:√2",
+        "1:2",
+        "√2:1",
+        "2:1"
+      ],
+      "correctAnswer": "1:√2",
+      "correctIndex": 0,
+      "explanation": "t = √(2h/g), ratio = 1:√2"
+    },
+    {
+      "id": "k11",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "Car at 72 km/h brakes and stops in 5s. Deceleration?",
+      "options": [
+        "4 m/s²",
+        "2 m/s²",
+        "8 m/s²",
+        "10 m/s²"
+      ],
+      "correctAnswer": "4 m/s²",
+      "correctIndex": 0,
+      "explanation": "72 km/h=20 m/s, a=20/5=4"
+    },
+    {
+      "id": "k14",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "medium",
+      "question": "Rain falls vertically at 10 m/s. Man walks at 10 m/s. Umbrella angle to vertical?",
+      "options": [
+        "45°",
+        "30°",
+        "60°",
+        "90°"
+      ],
+      "correctAnswer": "45°",
+      "correctIndex": 0,
+      "explanation": "tanθ = v_man/v_rain = 1, θ=45°"
+    },
+    {
+      "id": "k15",
+      "subject": "physics",
+      "topic": "kinematics",
+      "difficulty": "easy",
+      "question": "Time of flight of projectile on horizontal plane:",
+      "options": [
+        "2u sinθ/g",
+        "u sinθ/g",
+        "2u cosθ/g",
+        "u²sin2θ/g"
+      ],
+      "correctAnswer": "2u sinθ/g",
+      "correctIndex": 0,
+      "explanation": "T = 2u sinθ/g"
+    },
+    {
+      "id": "qb-lom-1",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "A 5 kg block on frictionless surface pulled by 10 N. Acceleration?",
+      "options": [
+        "1 m/s²",
+        "2 m/s²",
+        "5 m/s²",
+        "10 m/s²"
+      ],
+      "correctAnswer": "2 m/s²",
+      "correctIndex": 1,
+      "explanation": "a = F/m = 10/5 = 2 m/s²"
+    },
+    {
+      "id": "qb-lom-2",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "In upward accelerating lift, apparent weight vs actual weight:",
+      "options": [
+        "less",
+        "same",
+        "more",
+        "zero"
+      ],
+      "correctAnswer": "more",
+      "correctIndex": 2,
+      "explanation": "W = m(g+a) > mg"
+    },
+    {
+      "id": "qb-lom-3",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "A force of 50 N acts for 0.1s. Impulse:",
+      "options": [
+        "0.5 N·s",
+        "5 N·s",
+        "50 N·s",
+        "500 N·s"
+      ],
+      "correctAnswer": "5 N·s",
+      "correctIndex": 1,
+      "explanation": "J = F×t = 50×0.1 = 5 N·s"
+    },
+    {
+      "id": "lm2",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "Mass 2 kg acted by forces 3N and 4N perpendicular. Acceleration?",
+      "options": [
+        "2.5 m/s²",
+        "3.5 m/s²",
+        "5 m/s²",
+        "7 m/s²"
+      ],
+      "correctAnswer": "2.5 m/s²",
+      "correctIndex": 0,
+      "explanation": "F=√(9+16)=5N, a=5/2=2.5"
+    },
+    {
+      "id": "lm3",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "Newton's third law: action and reaction:",
+      "options": [
+        "Act on different bodies",
+        "Act on same body",
+        "Are unequal",
+        "Same direction"
+      ],
+      "correctAnswer": "Act on different bodies",
+      "correctIndex": 0,
+      "explanation": "Action-reaction pairs act on different bodies"
+    },
+    {
+      "id": "lm4",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "Lift accelerates up at 2 m/s². Apparent weight of 60 kg person? (g=10)",
+      "options": [
+        "720 N",
+        "600 N",
+        "480 N",
+        "840 N"
+      ],
+      "correctAnswer": "720 N",
+      "correctIndex": 0,
+      "explanation": "W = m(g+a) = 60×12 = 720 N"
+    },
+    {
+      "id": "lm5",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "μ_s=0.4. Min force to move 10 kg block? (g=10)",
+      "options": [
+        "40 N",
+        "10 N",
+        "100 N",
+        "4 N"
+      ],
+      "correctAnswer": "40 N",
+      "correctIndex": 0,
+      "explanation": "f = μmg = 0.4×10×10 = 40 N"
+    },
+    {
+      "id": "lm6",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "hard",
+      "question": "2 kg body on rough incline (30°, μ=0.2) slides down. Net acceleration?",
+      "options": [
+        "3.27 m/s²",
+        "5 m/s²",
+        "1 m/s²",
+        "6.7 m/s²"
+      ],
+      "correctAnswer": "3.27 m/s²",
+      "correctIndex": 0,
+      "explanation": "a=g(sinθ-μcosθ)=10(0.5-0.173)=3.27"
+    },
+    {
+      "id": "lm8",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "Two blocks 2kg and 3kg connected by string, pulled 10N on frictionless surface. Tension?",
+      "options": [
+        "4 N",
+        "6 N",
+        "10 N",
+        "2 N"
+      ],
+      "correctAnswer": "4 N",
+      "correctIndex": 0,
+      "explanation": "a=10/5=2, T=2×2=4N"
+    },
+    {
+      "id": "lm9",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "A force of 50 N acts on body for 0.1s. Impulse:",
+      "options": [
+        "5 N·s",
+        "50 N·s",
+        "0.5 N·s",
+        "500 N·s"
+      ],
+      "correctAnswer": "5 N·s",
+      "correctIndex": 0,
+      "explanation": "J=F×t=50×0.1=5 N·s"
+    },
+    {
+      "id": "lm12",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "Banking of roads provides:",
+      "options": [
+        "Centripetal force",
+        "Centrifugal force",
+        "Gravitational force",
+        "Friction"
+      ],
+      "correctAnswer": "Centripetal force",
+      "correctIndex": 0,
+      "explanation": "Banking provides centripetal force component"
+    },
+    {
+      "id": "lm14",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "medium",
+      "question": "Body on weighing machine in freely falling lift. Reading?",
+      "options": [
+        "Zero",
+        "mg",
+        "2mg",
+        "mg/2"
+      ],
+      "correctAnswer": "Zero",
+      "correctIndex": 0,
+      "explanation": "Free fall: effective g=0, apparent weight=0"
+    },
+    {
+      "id": "lm15",
+      "subject": "physics",
+      "topic": "laws of motion",
+      "difficulty": "easy",
+      "question": "Friction force is independent of:",
+      "options": [
+        "Area of contact",
+        "Normal force",
+        "Nature of surface",
+        "Roughness"
+      ],
+      "correctAnswer": "Area of contact",
+      "correctIndex": 0,
+      "explanation": "Friction depends on N and μ, not area"
+    },
+    {
+      "id": "we1",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Work done by 10 N force moving object 5 m in same direction:",
+      "options": [
+        "50 J",
+        "15 J",
+        "2 J",
+        "100 J"
+      ],
+      "correctAnswer": "50 J",
+      "correctIndex": 0,
+      "explanation": "W=F×d=10×5=50 J"
+    },
+    {
+      "id": "we2",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "2 kg body moving at 10 m/s. Kinetic energy:",
+      "options": [
+        "100 J",
+        "20 J",
+        "200 J",
+        "50 J"
+      ],
+      "correctAnswer": "100 J",
+      "correctIndex": 0,
+      "explanation": "KE=½mv²=½×2×100=100 J"
+    },
+    {
+      "id": "we3",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Spring k=200 N/m compressed 0.1 m. PE stored?",
+      "options": [
+        "1 J",
+        "2 J",
+        "10 J",
+        "0.1 J"
+      ],
+      "correctAnswer": "1 J",
+      "correctIndex": 0,
+      "explanation": "PE=½kx²=½×200×0.01=1 J"
+    },
+    {
+      "id": "we4",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "medium",
+      "question": "Engine lifts 100 kg to 10 m in 5 s. Power? (g=10)",
+      "options": [
+        "2000 W",
+        "1000 W",
+        "500 W",
+        "5000 W"
+      ],
+      "correctAnswer": "2000 W",
+      "correctIndex": 0,
+      "explanation": "P=mgh/t=100×10×10/5=2000 W"
+    },
+    {
+      "id": "we5",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "medium",
+      "question": "If KE doubled, momentum becomes:",
+      "options": [
+        "√2 times",
+        "2 times",
+        "4 times",
+        "Same"
+      ],
+      "correctAnswer": "√2 times",
+      "correctIndex": 0,
+      "explanation": "KE=p²/2m, if KE→2KE, p→√2p"
+    },
+    {
+      "id": "we6",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Work by gravity on body moving horizontally:",
+      "options": [
+        "Zero",
+        "mgh",
+        "mg",
+        "Negative"
+      ],
+      "correctAnswer": "Zero",
+      "correctIndex": 0,
+      "explanation": "θ=90°, cos90°=0, W=0"
+    },
+    {
+      "id": "we8",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Work-energy theorem states:",
+      "options": [
+        "Net work = change in KE",
+        "Work = Force × time",
+        "PE+KE = constant",
+        "Power = work/distance"
+      ],
+      "correctAnswer": "Net work = change in KE",
+      "correctIndex": 0,
+      "explanation": "W_net = ΔKE"
+    },
+    {
+      "id": "we9",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "medium",
+      "question": "Engine of 10 kW pulls train at 36 km/h. Tractive force?",
+      "options": [
+        "1000 N",
+        "360 N",
+        "100 N",
+        "10000 N"
+      ],
+      "correctAnswer": "1000 N",
+      "correctIndex": 0,
+      "explanation": "F=P/v=10000/10=1000 N"
+    },
+    {
+      "id": "we11",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Elastic collision conserves:",
+      "options": [
+        "Both KE and momentum",
+        "Only momentum",
+        "Only KE",
+        "Neither"
+      ],
+      "correctAnswer": "Both KE and momentum",
+      "correctIndex": 0,
+      "explanation": "Elastic = both KE and momentum conserved"
+    },
+    {
+      "id": "we13",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "easy",
+      "question": "Work done by friction is always:",
+      "options": [
+        "Negative",
+        "Positive",
+        "Zero",
+        "Depends"
+      ],
+      "correctAnswer": "Negative",
+      "correctIndex": 0,
+      "explanation": "Friction opposes motion, W=Fd cos180° < 0"
+    },
+    {
+      "id": "we15",
+      "subject": "physics",
+      "topic": "work energy power",
+      "difficulty": "hard",
+      "question": "Two bodies same KE, masses m and 4m. Ratio of momenta?",
+      "options": [
+        "1:2",
+        "1:4",
+        "2:1",
+        "1:1"
+      ],
+      "correctAnswer": "1:2",
+      "correctIndex": 0,
+      "explanation": "p=√(2mKE), ratio=√m:√(4m)=1:2"
+    },
+    {
+      "id": "qb-thermo-1",
+      "subject": "physics",
+      "topic": "thermodynamics",
+      "difficulty": "easy",
+      "question": "Gas absorbs 300 J heat, does 120 J work. ΔU?",
+      "options": [
+        "180 J",
+        "300 J",
+        "420 J",
+        "-180 J"
+      ],
+      "correctAnswer": "180 J",
+      "correctIndex": 0,
+      "explanation": "ΔU=Q-W=300-120=180 J"
+    },
+    {
+      "id": "qb-thermo-2",
+      "subject": "physics",
+      "topic": "thermodynamics",
+      "difficulty": "medium",
+      "question": "For isothermal process of ideal gas, what stays constant?",
+      "options": [
+        "Pressure",
+        "Volume",
+        "Temperature",
+        "Internal energy always changes"
+      ],
+      "correctAnswer": "Temperature",
+      "correctIndex": 2,
+      "explanation": "Isothermal = constant temperature"
+    },
+    {
+      "id": "qb-thermo-3",
+      "subject": "physics",
+      "topic": "thermodynamics",
+      "difficulty": "hard",
+      "question": "Efficiency of heat engine can never exceed:",
+      "options": [
+        "25%",
+        "50%",
+        "75%",
+        "100%"
+      ],
+      "correctAnswer": "100%",
+      "correctIndex": 3,
+      "explanation": "Theoretical upper bound is 100%"
+    },
+    {
+      "id": "qb-es-1",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Electric field due to point charge q at distance r:",
+      "options": [
+        "kq/r",
+        "kq/r²",
+        "kr/q",
+        "q/(kr²)"
+      ],
+      "correctAnswer": "kq/r²",
+      "correctIndex": 1,
+      "explanation": "E = kq/r²"
+    },
+    {
+      "id": "qb-es-2",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Potential difference across 5Ω resistor with 2A current:",
+      "options": [
+        "2.5 V",
+        "5 V",
+        "10 V",
+        "20 V"
+      ],
+      "correctAnswer": "10 V",
+      "correctIndex": 2,
+      "explanation": "V=IR=2×5=10 V"
+    },
+    {
+      "id": "qb-es-3",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "medium",
+      "question": "Capacitance of parallel plate capacitor proportional to:",
+      "options": [
+        "d/A",
+        "A/d",
+        "A×d",
+        "1/(A×d)"
+      ],
+      "correctAnswer": "A/d",
+      "correctIndex": 1,
+      "explanation": "C=ε₀A/d"
+    },
+    {
+      "id": "qb-es-4",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "medium",
+      "question": "Electric field inside conductor at equilibrium:",
+      "options": [
+        "maximum",
+        "minimum",
+        "zero",
+        "depends on shape"
+      ],
+      "correctAnswer": "zero",
+      "correctIndex": 2,
+      "explanation": "E=0 inside conductor at equilibrium"
+    },
+    {
+      "id": "es1",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Force between two 1μC charges 1m apart in vacuum?",
+      "options": [
+        "9×10⁻³ N",
+        "9×10³ N",
+        "9 N",
+        "9×10⁻⁶ N"
+      ],
+      "correctAnswer": "9×10⁻³ N",
+      "correctIndex": 0,
+      "explanation": "F=kq₁q₂/r²=9×10⁹×10⁻¹²=9×10⁻³ N"
+    },
+    {
+      "id": "es4",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Gauss's law relates flux through closed surface to:",
+      "options": [
+        "Enclosed charge",
+        "Total charge",
+        "External charge",
+        "Surface area"
+      ],
+      "correctAnswer": "Enclosed charge",
+      "correctIndex": 0,
+      "explanation": "Φ=q_enclosed/ε₀"
+    },
+    {
+      "id": "es5",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Electric potential at a point is defined as:",
+      "options": [
+        "Work done per unit charge",
+        "Force per unit charge",
+        "Energy per unit volume",
+        "Charge per unit area"
+      ],
+      "correctAnswer": "Work done per unit charge",
+      "correctIndex": 0,
+      "explanation": "V=W/q"
+    },
+    {
+      "id": "es6",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Capacitance of parallel plate with area A, separation d:",
+      "options": [
+        "ε₀A/d",
+        "ε₀d/A",
+        "A/ε₀d",
+        "ε₀Ad"
+      ],
+      "correctAnswer": "ε₀A/d",
+      "correctIndex": 0,
+      "explanation": "C=ε₀A/d"
+    },
+    {
+      "id": "es7",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "medium",
+      "question": "Energy in 10μF capacitor charged to 100V:",
+      "options": [
+        "0.05 J",
+        "0.5 J",
+        "5 J",
+        "50 J"
+      ],
+      "correctAnswer": "0.05 J",
+      "correctIndex": 0,
+      "explanation": "E=½CV²=½×10⁻⁵×10⁴=0.05 J"
+    },
+    {
+      "id": "es9",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Dielectric of constant K inserted, capacitance becomes:",
+      "options": [
+        "KC",
+        "C/K",
+        "K²C",
+        "C"
+      ],
+      "correctAnswer": "KC",
+      "correctIndex": 0,
+      "explanation": "C'=KC"
+    },
+    {
+      "id": "es12",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "medium",
+      "question": "Three 2μF capacitors in series. Equivalent?",
+      "options": [
+        "2/3 μF",
+        "6 μF",
+        "2 μF",
+        "3 μF"
+      ],
+      "correctAnswer": "2/3 μF",
+      "correctIndex": 0,
+      "explanation": "1/C=3/2, C=2/3 μF"
+    },
+    {
+      "id": "es15",
+      "subject": "physics",
+      "topic": "electrostatics",
+      "difficulty": "easy",
+      "question": "Work done moving charge along equipotential surface:",
+      "options": [
+        "Zero",
+        "Positive",
+        "Negative",
+        "Maximum"
+      ],
+      "correctAnswer": "Zero",
+      "correctIndex": 0,
+      "explanation": "ΔV=0 → W=qΔV=0"
+    },
+    {
+      "id": "qb-oc-1",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "IUPAC name of CH₃-CH=CH₂:",
+      "options": [
+        "propane",
+        "propene",
+        "propyne",
+        "ethene"
+      ],
+      "correctAnswer": "propene",
+      "correctIndex": 1,
+      "explanation": "3-carbon + double bond = propene"
+    },
+    {
+      "id": "qb-oc-2",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "Markovnikov rule applies to HX addition to:",
+      "options": [
+        "alkanes",
+        "symmetrical alkenes",
+        "unsymmetrical alkenes",
+        "alkynes only"
+      ],
+      "correctAnswer": "unsymmetrical alkenes",
+      "correctIndex": 2,
+      "explanation": "Predicts major product for unsymmetrical alkenes"
+    },
+    {
+      "id": "qb-oc-3",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "hard",
+      "question": "SN1 reaction rate depends on:",
+      "options": [
+        "nucleophile concentration",
+        "substrate concentration",
+        "both equally",
+        "temperature only"
+      ],
+      "correctAnswer": "substrate concentration",
+      "correctIndex": 1,
+      "explanation": "SN1 is unimolecular"
+    },
+    {
+      "id": "oc4",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "Number of sigma bonds in ethylene (C₂H₄):",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correctAnswer": "5",
+      "correctIndex": 0,
+      "explanation": "4 C-H + 1 C-C σ = 5 sigma bonds"
+    },
+    {
+      "id": "oc5",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "Which is electrophilic addition?",
+      "options": [
+        "HBr + CH₂=CH₂",
+        "CH₄ + Cl₂",
+        "CH₃OH + Na",
+        "C₂H₆ → C₂H₄"
+      ],
+      "correctAnswer": "HBr + CH₂=CH₂",
+      "correctIndex": 0,
+      "explanation": "HBr adds across double bond electrophilically"
+    },
+    {
+      "id": "oc6",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "Benzene undergoes primarily:",
+      "options": [
+        "Substitution",
+        "Addition",
+        "Elimination",
+        "Oxidation"
+      ],
+      "correctAnswer": "Substitution",
+      "correctIndex": 0,
+      "explanation": "Aromaticity favors substitution"
+    },
+    {
+      "id": "oc7",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "Hybridization of carbon in methane:",
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "sp³d"
+      ],
+      "correctAnswer": "sp³",
+      "correctIndex": 0,
+      "explanation": "4 σ bonds → sp³ → tetrahedral"
+    },
+    {
+      "id": "oc8",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "Functional group in carboxylic acids:",
+      "options": [
+        "-COOH",
+        "-OH",
+        "-CHO",
+        "-CO-"
+      ],
+      "correctAnswer": "-COOH",
+      "correctIndex": 0,
+      "explanation": "Carboxylic acids have -COOH"
+    },
+    {
+      "id": "oc10",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "SN1 rate depends on:",
+      "options": [
+        "Substrate only",
+        "Nucleophile only",
+        "Both",
+        "Neither"
+      ],
+      "correctAnswer": "Substrate only",
+      "correctIndex": 0,
+      "explanation": "SN1 unimolecular: rate=k[substrate]"
+    },
+    {
+      "id": "oc11",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "Which alcohol gives fastest Lucas test?",
+      "options": [
+        "Tertiary",
+        "Primary",
+        "Secondary",
+        "Methanol"
+      ],
+      "correctAnswer": "Tertiary",
+      "correctIndex": 0,
+      "explanation": "Tertiary = stable carbocation = instant"
+    },
+    {
+      "id": "oc13",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "easy",
+      "question": "Dehydration of ethanol gives:",
+      "options": [
+        "Ethene",
+        "Methane",
+        "Ethanal",
+        "Ethane"
+      ],
+      "correctAnswer": "Ethene",
+      "correctIndex": 0,
+      "explanation": "C₂H₅OH → C₂H₄ + H₂O"
+    },
+    {
+      "id": "oc14",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "Wurtz reaction prepares:",
+      "options": [
+        "Higher alkanes",
+        "Alkenes",
+        "Alcohols",
+        "Ethers"
+      ],
+      "correctAnswer": "Higher alkanes",
+      "correctIndex": 0,
+      "explanation": "2RX+2Na → R-R+2NaX"
+    },
+    {
+      "id": "oc15",
+      "subject": "chemistry",
+      "topic": "organic chemistry",
+      "difficulty": "medium",
+      "question": "Isomerism of CH₃OCH₃ and C₂H₅OH:",
+      "options": [
+        "Functional group",
+        "Chain",
+        "Position",
+        "Tautomerism"
+      ],
+      "correctAnswer": "Functional group",
+      "correctIndex": 0,
+      "explanation": "Same formula, different functional groups"
+    },
+    {
+      "id": "qb-cb-1",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Bond angle in H₂O is approximately:",
+      "options": [
+        "90°",
+        "104.5°",
+        "109.5°",
+        "120°"
+      ],
+      "correctAnswer": "104.5°",
+      "correctIndex": 1,
+      "explanation": "Lone pair repulsion reduces to ~104.5°"
+    },
+    {
+      "id": "qb-cb-2",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Hybridization in BF₃:",
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "sp³d"
+      ],
+      "correctAnswer": "sp²",
+      "correctIndex": 1,
+      "explanation": "Trigonal planar = sp²"
+    },
+    {
+      "id": "qb-cb-3",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "medium",
+      "question": "Molecule with zero dipole moment:",
+      "options": [
+        "H₂O",
+        "NH₃",
+        "CO₂",
+        "HCl"
+      ],
+      "correctAnswer": "CO₂",
+      "correctIndex": 2,
+      "explanation": "CO₂ linear + symmetric → dipoles cancel"
+    },
+    {
+      "id": "cb2",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "medium",
+      "question": "Which has highest bond energy?",
+      "options": [
+        "N≡N",
+        "O=O",
+        "F-F",
+        "Cl-Cl"
+      ],
+      "correctAnswer": "N≡N",
+      "correctIndex": 0,
+      "explanation": "Triple bond in N₂ (945 kJ/mol)"
+    },
+    {
+      "id": "cb4",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Ionic bond formed between:",
+      "options": [
+        "Metal and non-metal",
+        "Two metals",
+        "Two non-metals",
+        "Noble gases"
+      ],
+      "correctAnswer": "Metal and non-metal",
+      "correctIndex": 0,
+      "explanation": "Metals lose e⁻, non-metals gain e⁻"
+    },
+    {
+      "id": "cb5",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Hydrogen bonding strongest in:",
+      "options": [
+        "HF",
+        "HCl",
+        "HBr",
+        "HI"
+      ],
+      "correctAnswer": "HF",
+      "correctIndex": 0,
+      "explanation": "F most electronegative → strongest H-bond"
+    },
+    {
+      "id": "cb6",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "medium",
+      "question": "Shape of SF₆:",
+      "options": [
+        "Octahedral",
+        "Tetrahedral",
+        "Trigonal bipyramidal",
+        "Square planar"
+      ],
+      "correctAnswer": "Octahedral",
+      "correctIndex": 0,
+      "explanation": "6 bond pairs → sp³d² → octahedral"
+    },
+    {
+      "id": "cb7",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Sigma bond formed by:",
+      "options": [
+        "Head-on overlap",
+        "Lateral overlap",
+        "No overlap",
+        "π overlap"
+      ],
+      "correctAnswer": "Head-on overlap",
+      "correctIndex": 0,
+      "explanation": "Sigma = head-on (axial) overlap"
+    },
+    {
+      "id": "cb8",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Molecule with zero dipole moment:",
+      "options": [
+        "CO₂",
+        "H₂O",
+        "NH₃",
+        "HCl"
+      ],
+      "correctAnswer": "CO₂",
+      "correctIndex": 0,
+      "explanation": "CO₂ linear and symmetric"
+    },
+    {
+      "id": "cb9",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "medium",
+      "question": "Bond order of O₂ by MOT:",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "1.5"
+      ],
+      "correctAnswer": "2",
+      "correctIndex": 0,
+      "explanation": "(10-6)/2 = 2"
+    },
+    {
+      "id": "cb12",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "easy",
+      "question": "Metallic bonding characterized by:",
+      "options": [
+        "Sea of delocalized electrons",
+        "Shared electron pairs",
+        "Transfer of electrons",
+        "Van der Waals"
+      ],
+      "correctAnswer": "Sea of delocalized electrons",
+      "correctIndex": 0,
+      "explanation": "Metal cations in electron 'sea'"
+    },
+    {
+      "id": "cb14",
+      "subject": "chemistry",
+      "topic": "chemical bonding",
+      "difficulty": "hard",
+      "question": "Shape of XeF₄:",
+      "options": [
+        "Square planar",
+        "Tetrahedral",
+        "Octahedral",
+        "See-saw"
+      ],
+      "correctAnswer": "Square planar",
+      "correctIndex": 0,
+      "explanation": "4 BP + 2 LP → sp³d² → square planar"
+    },
+    {
+      "id": "qb-cal-1",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "Derivative of x³:",
+      "options": [
+        "x²",
+        "2x²",
+        "3x²",
+        "3x"
+      ],
+      "correctAnswer": "3x²",
+      "correctIndex": 2,
+      "explanation": "d/dx x³ = 3x²"
+    },
+    {
+      "id": "qb-cal-2",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "∫x² dx:",
+      "options": [
+        "x²/2+C",
+        "x³/3+C",
+        "2x+C",
+        "x³+C"
+      ],
+      "correctAnswer": "x³/3+C",
+      "correctIndex": 1,
+      "explanation": "∫xⁿ dx = xⁿ⁺¹/(n+1) + C"
+    },
+    {
+      "id": "qb-cal-3",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "For f(x)=x²+3x, f'(2) is:",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correctAnswer": "7",
+      "correctIndex": 2,
+      "explanation": "f'(x)=2x+3, f'(2)=7"
+    },
+    {
+      "id": "qb-cal-4",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "lim x→0 (sin x)/x equals:",
+      "options": [
+        "0",
+        "1",
+        "∞",
+        "does not exist"
+      ],
+      "correctAnswer": "1",
+      "correctIndex": 1,
+      "explanation": "Standard limit = 1"
+    },
+    {
+      "id": "ca3",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "d/dx(sin x) = ?",
+      "options": [
+        "cos x",
+        "-cos x",
+        "sin x",
+        "-sin x"
+      ],
+      "correctAnswer": "cos x",
+      "correctIndex": 0,
+      "explanation": "Derivative of sin x is cos x"
+    },
+    {
+      "id": "ca5",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "∫₀^π sin(x) dx:",
+      "options": [
+        "2",
+        "0",
+        "π",
+        "1"
+      ],
+      "correctAnswer": "2",
+      "correctIndex": 0,
+      "explanation": "[-cos x]₀^π = 1+1 = 2"
+    },
+    {
+      "id": "ca6",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "d/dx(eˣ):",
+      "options": [
+        "eˣ",
+        "xeˣ⁻¹",
+        "eˣ/x",
+        "ln x"
+      ],
+      "correctAnswer": "eˣ",
+      "correctIndex": 0,
+      "explanation": "eˣ is its own derivative"
+    },
+    {
+      "id": "ca7",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "d/dx(ln x):",
+      "options": [
+        "1/x",
+        "ln x",
+        "x",
+        "eˣ"
+      ],
+      "correctAnswer": "1/x",
+      "correctIndex": 0,
+      "explanation": "Derivative of ln x is 1/x"
+    },
+    {
+      "id": "ca9",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "∫ 1/x dx:",
+      "options": [
+        "ln|x|+C",
+        "x⁻¹+C",
+        "1/x²+C",
+        "-1/x+C"
+      ],
+      "correctAnswer": "ln|x|+C",
+      "correctIndex": 0,
+      "explanation": "∫1/x dx = ln|x| + C"
+    },
+    {
+      "id": "ca10",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "Chain rule: d/dx[f(g(x))] = ?",
+      "options": [
+        "f'(g(x))·g'(x)",
+        "f'(x)·g'(x)",
+        "f(g'(x))",
+        "f'(g(x))"
+      ],
+      "correctAnswer": "f'(g(x))·g'(x)",
+      "correctIndex": 0,
+      "explanation": "Outer derivative × inner derivative"
+    },
+    {
+      "id": "ca11",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "d/dx(tan x):",
+      "options": [
+        "sec²x",
+        "cosec²x",
+        "cos x",
+        "-sin x"
+      ],
+      "correctAnswer": "sec²x",
+      "correctIndex": 0,
+      "explanation": "d/dx tan x = sec²x"
+    },
+    {
+      "id": "ca12",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "easy",
+      "question": "∫ eˣ dx:",
+      "options": [
+        "eˣ+C",
+        "xeˣ+C",
+        "eˣ/x+C",
+        "ln(eˣ)+C"
+      ],
+      "correctAnswer": "eˣ+C",
+      "correctIndex": 0,
+      "explanation": "∫eˣ dx = eˣ + C"
+    },
+    {
+      "id": "ca13",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "Maxima of f(x)=-x²+4x occurs at x=?",
+      "options": [
+        "2",
+        "4",
+        "0",
+        "-2"
+      ],
+      "correctAnswer": "2",
+      "correctIndex": 0,
+      "explanation": "f'(x)=-2x+4=0 → x=2"
+    },
+    {
+      "id": "ca15",
+      "subject": "math",
+      "topic": "calculus",
+      "difficulty": "medium",
+      "question": "d/dx(x·eˣ) using product rule:",
+      "options": [
+        "eˣ(1+x)",
+        "xeˣ",
+        "eˣ",
+        "x+eˣ"
+      ],
+      "correctAnswer": "eˣ(1+x)",
+      "correctIndex": 0,
+      "explanation": "eˣ·1 + x·eˣ = eˣ(1+x)"
+    },
+    {
+      "id": "qb-prob-1",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "Fair coin probability of head:",
+      "options": [
+        "0",
+        "1/4",
+        "1/2",
+        "1"
+      ],
+      "correctAnswer": "1/2",
+      "correctIndex": 2,
+      "explanation": "P(H)=1/2"
+    },
+    {
+      "id": "qb-prob-2",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "P(A)=0.3, P(B)=0.4, P(A∩B)=0.1. P(A∪B)?",
+      "options": [
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7"
+      ],
+      "correctAnswer": "0.6",
+      "correctIndex": 2,
+      "explanation": "P(A∪B)=0.3+0.4-0.1=0.6"
+    },
+    {
+      "id": "qb-prob-3",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "Expected value of fair die:",
+      "options": [
+        "3",
+        "3.5",
+        "4",
+        "4.5"
+      ],
+      "correctAnswer": "3.5",
+      "correctIndex": 1,
+      "explanation": "Mean of 1..6 = 3.5"
+    },
+    {
+      "id": "pr4",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "5 books on shelf — number of arrangements:",
+      "options": [
+        "120",
+        "25",
+        "5",
+        "60"
+      ],
+      "correctAnswer": "120",
+      "correctIndex": 0,
+      "explanation": "5! = 120"
+    },
+    {
+      "id": "pr5",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "C(10,3) = ?",
+      "options": [
+        "120",
+        "30",
+        "1000",
+        "720"
+      ],
+      "correctAnswer": "120",
+      "correctIndex": 0,
+      "explanation": "10!/(3!7!) = 120"
+    },
+    {
+      "id": "pr6",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "Mutually exclusive: P(A∩B) = ?",
+      "options": [
+        "0",
+        "P(A)·P(B)",
+        "P(A)+P(B)",
+        "1"
+      ],
+      "correctAnswer": "0",
+      "correctIndex": 0,
+      "explanation": "Cannot occur together"
+    },
+    {
+      "id": "pr7",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "Bayes' theorem finds:",
+      "options": [
+        "Posterior probability",
+        "Sample space",
+        "Mean",
+        "Variance"
+      ],
+      "correctAnswer": "Posterior probability",
+      "correctIndex": 0,
+      "explanation": "Posterior given prior + evidence"
+    },
+    {
+      "id": "pr9",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "Variance of binomial B(n,p):",
+      "options": [
+        "npq",
+        "np",
+        "nq",
+        "np²"
+      ],
+      "correctAnswer": "npq",
+      "correctIndex": 0,
+      "explanation": "Var = npq, q=1-p"
+    },
+    {
+      "id": "pr10",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "Card from deck. P(King)?",
+      "options": [
+        "1/13",
+        "4/13",
+        "1/52",
+        "1/4"
+      ],
+      "correctAnswer": "1/13",
+      "correctIndex": 0,
+      "explanation": "4/52 = 1/13"
+    },
+    {
+      "id": "pr11",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "Independent A,B: P(A∩B) = ?",
+      "options": [
+        "P(A)·P(B)",
+        "P(A)+P(B)",
+        "0",
+        "P(A|B)"
+      ],
+      "correctAnswer": "P(A)·P(B)",
+      "correctIndex": 0,
+      "explanation": "Independence: P(A∩B)=P(A)P(B)"
+    },
+    {
+      "id": "pr12",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "Committee of 3 from 8 people:",
+      "options": [
+        "56",
+        "24",
+        "336",
+        "8"
+      ],
+      "correctAnswer": "56",
+      "correctIndex": 0,
+      "explanation": "C(8,3) = 56"
+    },
+    {
+      "id": "pr13",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "easy",
+      "question": "P(A')=? if P(A)=0.7:",
+      "options": [
+        "0.3",
+        "0.7",
+        "1",
+        "0"
+      ],
+      "correctAnswer": "0.3",
+      "correctIndex": 0,
+      "explanation": "P(A')=1-0.7=0.3"
+    },
+    {
+      "id": "pr15",
+      "subject": "math",
+      "topic": "probability",
+      "difficulty": "medium",
+      "question": "P(A|B) = ?",
+      "options": [
+        "P(A∩B)/P(B)",
+        "P(A)/P(B)",
+        "P(B|A)",
+        "P(A∪B)/P(B)"
+      ],
+      "correctAnswer": "P(A∩B)/P(B)",
+      "correctIndex": 0,
+      "explanation": "Conditional probability definition"
+    }
+  ],
+  "meta": {
+    "qb-kin-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-kin-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "k15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-lom-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "lm15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "we15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-thermo-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-es-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "es15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-oc-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "oc15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cb-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb8": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "cb14": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-cal-4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "ca15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-1": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-2": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "qb-prob-3": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr4": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr5": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr6": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr7": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr9": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr10": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr11": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr12": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr13": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    },
+    "pr15": {
+      "usageCount": 0,
+      "successRate": 0,
+      "avgTime": 0,
+      "lastUsed": null
+    }
+  }
+}

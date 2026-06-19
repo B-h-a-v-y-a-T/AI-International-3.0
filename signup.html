@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - AdaptEd Ai</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&family=Outfit:wght@400;600;700;800&display=swap" />
+    <style>
+        :root {
+            --page-bg: #ece9f6;
+            --card-bg: rgba(255, 255, 255, 0.28);
+            --card-border: rgba(117, 105, 167, 0.15);
+            --ink-900: #1a1242;
+            --ink-600: #666081;
+            --ink-500: #7f7897;
+            --field-bg: rgba(236, 233, 246, 0.86);
+            --field-border: rgba(130, 118, 171, 0.2);
+            --brand-violet: #6f56f2;
+            --brand-violet-2: #5d46e1;
+            --cta-shadow: 0 14px 30px rgba(111, 86, 242, 0.28);
+            --shadow-soft: 0 24px 60px rgba(42, 25, 95, 0.14);
+            --danger: #d1456f;
+            --focus-ring: rgba(111, 86, 242, 0.28);
+            --accent-start: #6f56f2;
+            --accent-end: #5d46e1;
+            --accent-link: #6b5be5;
+            --accent-shadow: 0 14px 30px rgba(111, 86, 242, 0.28);
+            --accent-shadow-hover: 0 20px 34px rgba(96, 75, 214, 0.34);
+            --card-grad-start: rgba(255, 255, 255, 0.66);
+            --card-grad-end: rgba(241, 236, 255, 0.72);
+            --field-grad-start: rgba(241, 236, 255, 0.95);
+            --field-grad-end: rgba(231, 225, 248, 0.95);
+            --switch-grad-start: rgba(255, 255, 255, 0.92);
+            --switch-grad-end: rgba(239, 234, 252, 0.92);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Outfit, sans-serif;
+            background:
+                radial-gradient(circle at 14% 16%, rgba(255, 255, 255, 0.88) 0 13%, transparent 44%),
+                radial-gradient(circle at 82% 11%, rgba(205, 196, 245, 0.46) 0 15%, transparent 52%),
+                linear-gradient(175deg, #f0edfa 0%, #e6e0f3 100%);
+            color: var(--ink-900);
+            display: grid;
+            place-items: center;
+            padding: 28px 16px;
+        }
+
+        body[data-role="admin"] {
+            --focus-ring: rgba(255, 123, 18, 0.24);
+            --accent-start: #ff7b12;
+            --accent-end: #ff9a2f;
+            --accent-link: #f06d10;
+            --accent-shadow: 0 14px 30px rgba(255, 126, 21, 0.26);
+            --accent-shadow-hover: 0 20px 34px rgba(255, 126, 21, 0.33);
+            --card-grad-start: rgba(255, 255, 255, 0.68);
+            --card-grad-end: rgba(255, 239, 227, 0.76);
+            --field-grad-start: rgba(255, 245, 233, 0.96);
+            --field-grad-end: rgba(245, 232, 218, 0.96);
+            --switch-grad-start: rgba(255, 252, 248, 0.95);
+            --switch-grad-end: rgba(255, 239, 224, 0.95);
+        }
+
+        .auth-wrap {
+            width: min(460px, 100%);
+            background: linear-gradient(160deg, var(--card-grad-start) 0%, var(--card-grad-end) 100%);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            border-radius: 34px;
+            box-shadow: 2px 2px 0px var(--border);
+            padding: 30px 26px 26px;
+            animation: floatIn 560ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+        }
+
+        .mascot-area {
+            width: 102px;
+            height: 60px;
+            margin: 0 auto 10px;
+            position: relative;
+            animation: mascotBreathe 4.2s ease-in-out infinite;
+            transform-origin: center bottom;
+        }
+
+        .mascot-shadow {
+            position: absolute;
+            width: 64px;
+            height: 12px;
+            left: 50%;
+            bottom: 2px;
+            transform: translateX(-50%);
+            background: rgba(53, 38, 107, 0.2);
+            filter: blur(0.4px);
+            border-radius: 999px;
+            animation: shadowPulse 4.2s ease-in-out infinite;
+        }
+
+        .mascot-flame {
+            position: absolute;
+            left: 50%;
+            top: -1px;
+            width: 28px;
+            height: 26px;
+            transform: translateX(-50%) rotate(-4deg);
+            border-radius: 60% 44% 68% 42%;
+            background: linear-gradient(180deg, #ff9f3a 0%, #ff6f19 100%);
+            animation: flameWiggle 1.2s ease-in-out infinite;
+        }
+
+        .mascot-body {
+            position: absolute;
+            width: 74px;
+            height: 64px;
+            border-radius: 30px 30px 22px 22px;
+            background: linear-gradient(180deg, #ff8f2e 0%, #ff6f11 100%);
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+        }
+
+        .mascot-face {
+            position: absolute;
+            width: 52px;
+            height: 38px;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            border-radius: 16px;
+            background: #1f1a35;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ear {
+            position: absolute;
+            width: 12px;
+            height: 18px;
+            top: 34px;
+            border-radius: 999px;
+            background: #ff781b;
+            border: 2px solid #55447a;
+        }
+
+        .ear.left {
+            left: 16px;
+        }
+
+        .ear.right {
+            right: 16px;
+        }
+
+        .eye {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            top: 44px;
+            border-radius: 50%;
+            background: #fff;
+            animation: eyeBlink 5s infinite;
+        }
+
+        .eye.left {
+            left: 40px;
+        }
+
+        .eye.right {
+            right: 40px;
+        }
+
+        .arm {
+            position: absolute;
+            width: 12px;
+            height: 14px;
+            background: #ff771a;
+            top: 58px;
+            border-radius: 8px;
+        }
+
+        .arm.left {
+            left: 13px;
+            transform: rotate(18deg);
+        }
+
+        .arm.right {
+            right: 13px;
+            transform: rotate(-18deg);
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 4px;
+            font-family: Nunito, sans-serif;
+            font-size: clamp(2rem, 1.8rem + 0.9vw, 2.5rem);
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .subheading {
+            text-align: center;
+            color: var(--ink-600);
+            font-size: 1.04rem;
+            margin-bottom: 22px;
+        }
+
+        .role-switch {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 999px;
+            background: linear-gradient(140deg, var(--switch-grad-start) 0%, var(--switch-grad-end) 100%);
+            border: 1px solid rgba(121, 108, 163, 0.14);
+            margin-bottom: 18px;
+            padding: 4px;
+            overflow: hidden;
+        }
+
+        .role-pill {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            height: calc(100% - 8px);
+            border-radius: 999px;
+            background: linear-gradient(130deg, var(--brand-violet) 0%, var(--brand-violet-2) 100%);
+            box-shadow: 2px 2px 0px var(--border);
+            transition: transform 260ms ease;
+            pointer-events: none;
+        }
+
+        .role-switch button {
+            height: 54px;
+            border: 2px solid var(--border);
+            border-radius: 999px;
+            background: transparent;
+            font-family: Nunito, sans-serif;
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--ink-600);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transition: color 240ms ease;
+        }
+
+        .role-switch button .icon {
+            width: 17px;
+            height: 17px;
+        }
+
+        .role-switch[data-mode="admin"] .role-pill {
+            transform: translateX(100%);
+            background: linear-gradient(130deg, #ff870a 0%, #ff6e04 100%);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .role-switch[data-mode="student"] #studentBtn,
+        .role-switch[data-mode="admin"] #adminBtn {
+            color: #fff;
+        }
+
+        .fields {
+            display: grid;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .field {
+            position: relative;
+        }
+
+        .field input {
+            width: 100%;
+            height: 64px;
+            border-radius: 19px;
+            border: 1.6px solid var(--field-border);
+            background: linear-gradient(140deg, var(--field-grad-start) 0%, var(--field-grad-end) 100%);
+            color: var(--ink-900);
+            font-size: 1.03rem;
+            padding: 0 50px;
+            transition: border-color 210ms ease, box-shadow 210ms ease, transform 210ms ease;
+        }
+
+        .field input::placeholder {
+            color: var(--ink-500);
+        }
+
+        .field input:focus {
+            border-color: var(--accent-start);
+            box-shadow: 2px 2px 0px var(--border);
+            transform: translateY(-1px);
+        }
+
+        .field-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            color: #928ba9;
+            transform: translateY(-50%);
+        }
+
+        .toggle-pass {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            color: #928ba9;
+            transform: translateY(-50%);
+            border: 2px solid var(--border);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .forgot-row {
+            margin-top: 2px;
+            text-align: right;
+        }
+
+        .forgot-row a {
+            color: var(--accent-link);
+            font-size: 1.05rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-btn {
+            margin-top: 10px;
+            width: 100%;
+            height: 72px;
+            border: 2px solid var(--border);
+            border-radius: 999px;
+            background: linear-gradient(115deg, var(--accent-start) 0%, var(--accent-end) 100%);
+            color: #fff;
+            font-family: Nunito, sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px var(--border);
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .auth-btn:active {
+            transform: translateY(0) scale(0.998);
+        }
+
+        .foot-note {
+            margin-top: 22px;
+            text-align: center;
+            color: var(--ink-600);
+            font-size: 1.04rem;
+        }
+
+        .foot-note a {
+            color: var(--accent-link);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .error {
+            display: none;
+            margin-top: 12px;
+            margin-bottom: 2px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(209, 69, 111, 0.11);
+            border: 1px solid rgba(209, 69, 111, 0.24);
+            color: #9c2d52;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @keyframes mascotBreathe {
+            0%, 100% { transform: translateY(0) scale(0.65); }
+            50% { transform: translateY(-5px) scale(0.65); }
+        }
+
+        @keyframes shadowPulse {
+            0%,
+            100% {
+                transform: translateX(-50%) scaleX(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateX(-50%) scaleX(0.86);
+                opacity: 0.22;
+            }
+        }
+
+        @keyframes flameWiggle {
+            0%,
+            100% {
+                transform: translateX(-50%) rotate(-4deg) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) rotate(4deg) scale(1.08, 0.95);
+            }
+        }
+
+        @keyframes eyeBlink {
+            0%,
+            46%,
+            50%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            48% {
+                transform: scaleY(0.1);
+            }
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .auth-wrap {
+                border-radius: 30px;
+                padding: 26px 18px 22px;
+            }
+
+            .heading {
+                font-size: clamp(2.1rem, 8vw, 2.5rem);
+            }
+
+            .subheading {
+                font-size: 1rem;
+            }
+
+            .role-switch button {
+                height: 50px;
+                font-size: 1rem;
+            }
+
+            .field input {
+                height: 60px;
+                font-size: 1rem;
+            }
+
+            .auth-btn {
+                height: 68px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ===== Modern Google Sign-In ===== */
+        .google-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 22px 0 16px;
+        }
+        .google-divider::before,
+        .google-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(130,118,171,0.3), transparent);
+        }
+        .google-divider span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink-500);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .google-btn-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 4px;
+            background: linear-gradient(140deg, rgba(255,255,255,0.92) 0%, rgba(245,242,255,0.88) 100%);
+            border: 1.6px solid rgba(130,118,171,0.18);
+            box-shadow: 2px 2px 0px var(--border);
+            transition: all 240ms ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .google-btn-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(66,133,244,0.06), rgba(234,67,53,0.04), rgba(251,188,5,0.04), rgba(52,168,83,0.06));
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+        .google-btn-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 2px 2px 0px var(--border);
+            border-color: rgba(66,133,244,0.3);
+        }
+        .google-btn-wrapper:hover::before {
+            opacity: 1;
+        }
+        .google-btn-wrapper .g_id_signin {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <main class="auth-wrap">
+                <div class="mascot-area" aria-hidden="true"><span class="mascot-shadow"></span><span class="mascot-flame"></span><span class="mascot-body"></span><span class="mascot-face"><svg viewBox="0 0 52 38" style="position: absolute; top:0; left:0; width:100%; height:100%;"><path d="M 28 3 L 25 10 L 29 10 L 26 16" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" /></svg></span><span class="ear left"></span><span class="ear right"></span><span class="eye left"></span><span class="eye right"></span><span class="arm left"></span><span class="arm right"></span></div>
+
+        <h1 class="heading">Create Account</h1>
+        <p class="subheading">Start your learning journey</p>
+
+        <div class="role-switch" id="roleSwitch" data-mode="student">
+            <div class="role-pill"></div>
+            <button id="studentBtn" type="button">
+                <i data-lucide="user-round" class="icon"></i>
+                Student
+            </button>
+            <button id="adminBtn" type="button">
+                <i data-lucide="user-cog" class="icon"></i>
+                Admin
+            </button>
+        </div>
+
+        <div id="errorMsg" class="error"></div>
+
+        <form id="signupForm" novalidate>
+            <div class="fields">
+                <label class="field">
+                    <i data-lucide="user" class="field-icon"></i>
+                    <input id="signupName" type="text" autocomplete="name" placeholder="Full Name" required />
+                </label>
+            
+                <label class="field">
+                    <i data-lucide="mail" class="field-icon"></i>
+                    <input id="signupEmail" type="email" autocomplete="email" placeholder="Email address" required />
+                </label>
+
+                <label class="field">
+                    <i data-lucide="lock" class="field-icon"></i>
+                    <input id="signupPass" type="password" autocomplete="new-password" placeholder="Password (6+ chars)" required />
+                    <button type="button" class="toggle-pass" id="togglePass" aria-label="Show password">
+                        <i data-lucide="eye"></i>
+                    </button>
+                </label>
+
+                <label class="field" id="examField">
+                    <i data-lucide="book-open" class="field-icon"></i>
+                    <select id="signupExam" required style="width: 100%; height: 64px; border-radius: 19px; border: 1.6px solid var(--field-border); background: linear-gradient(140deg, var(--field-grad-start) 0%, var(--field-grad-end) 100%); color: var(--ink-900); font-size: 1.03rem; padding: 0 50px; font-family: Outfit, sans-serif; transition: border-color 210ms ease, box-shadow 210ms ease, transform 210ms ease; -webkit-appearance: none; appearance: none; cursor: pointer;">
+                        <option value="" disabled selected hidden style="color: var(--ink-500);">Target Exam</option>
+                        <option>JEE Main / Advanced</option>
+                        <option>NEET</option>
+                        <option>CAT</option>
+                        <option>UPSC</option>
+                        <option>MHT CET</option>
+                        <option>12th Boards</option>
+                        <option>GATE</option>
+                    </select>
+                </label>
+            </div>
+
+            <button class="auth-btn" type="submit" style="margin-top:20px;">
+                Register
+                <i data-lucide="arrow-right" style="width:30px;height:30px"></i>
+            </button>
+        </form>
+
+          <div class="google-divider"><span>or continue with</span></div>
+          <div id="g_id_onload"
+               data-client_id="186299576876-htp2d7p6vstk8q5hqe4lahg6q6bgdpr0.apps.googleusercontent.com"
+               data-callback="handleCredentialResponse">
+          </div>
+          <div class="google-btn-wrapper">
+              <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signup_with" data-size="large" data-logo_alignment="left" data-width="400"></div>
+          </div>
+
+
+        <p class="foot-note">
+            Already have an account?
+            <a href="login.html">Log In</a>
+        </p>
+    </main>
+
+    <script>
+const API = '';
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function clearError() {
+            const el = document.getElementById('errorMsg');
+            el.style.display = 'none';
+            el.textContent = '';
+        }
+
+        async function handleSignup() {
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPass').value;
+            const examSelect = document.getElementById('signupExam');
+            const exam = examSelect.value;
+            
+            const role = document.getElementById('roleSwitch').dataset.mode;
+
+            clearError();
+            if (!name || !email || !password) {
+                showError('Please fill in Name, Email and Password');
+                return;
+            }
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return;
+            }
+            if (role === 'student' && !exam) {
+                showError('Please select a target exam');
+                return;
+            }
+
+            try {
+                const res = await fetch(API + '/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, exam: role === 'admin' ? 'Admin' : exam })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Signup failed');
+
+                localStorage.setItem('ls-token', data.token);
+                localStorage.setItem('ls-user', JSON.stringify(data.user));
+                const roleMode = document.getElementById('roleSwitch')?.dataset.mode; window.location.href = roleMode === 'admin' ? 'admin/index.html' : 'dashboard.html';
+            } catch (err) {
+                showError(err.message || 'Unable to signup right now');
+            }
+        }
+
+        function bindRoleSwitch() {
+            const switcher = document.getElementById('roleSwitch');
+            const examField = document.getElementById('examField');
+            const applyRoleTheme = (mode) => {
+                document.body.setAttribute('data-role', mode);
+                switcher.dataset.mode = mode;
+                if (mode === 'admin') {
+                    examField.style.display = 'none';
+                } else {
+                    examField.style.display = 'block';
+                }
+            };
+
+            document.getElementById('studentBtn').addEventListener('click', () => {
+                applyRoleTheme('student');
+            });
+            document.getElementById('adminBtn').addEventListener('click', () => {
+                applyRoleTheme('admin');
+            });
+
+            applyRoleTheme('student');
+        }
+
+        function bindPasswordToggle() {
+            const input = document.getElementById('signupPass');
+            const btn = document.getElementById('togglePass');
+            btn.addEventListener('click', () => {
+                const shown = input.type === 'text';
+                input.type = shown ? 'password' : 'text';
+                btn.innerHTML = shown ? '<i data-lucide="eye"></i>' : '<i data-lucide="eye-off"></i>';
+                lucide.createIcons();
+            });
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleSignup();
+        });
+
+        document.querySelectorAll('input, select').forEach((el) => {
+            el.addEventListener('input', clearError);
+            el.addEventListener('change', clearError);
+        });
+
+        bindRoleSwitch();
+        bindPasswordToggle();
+        lucide.createIcons();
+    </script>
+
+      <script>
+      async function handleCredentialResponse(response) {
+          const credential = response.credential;
+          try {
+                const backendResponse = await fetch(API + "/api/auth/google/signup", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ credential }),
+              });
+              const data = await backendResponse.json();
+              if (backendResponse.ok) {
+                  localStorage.setItem("token", data.token);
+                  if (data.user) {
+                      localStorage.setItem("user_name", data.user.name);
+                      localStorage.setItem("user_email", data.user.email);
+                  }
+                  const roleMode = document.getElementById("roleSwitch")?.dataset.mode; window.location.href = roleMode === "admin" ? "admin/index.html" : "dashboard.html";
+              } else {
+                  document.getElementById("errorMsg").textContent = data.error || "Google Auth Failed";
+                  document.getElementById("errorMsg").style.display = "block";
+              }
+          } catch (error) {
+              console.error("Network error:", error);
+              document.getElementById("errorMsg").textContent = "Server unreachable.";
+              document.getElementById("errorMsg").style.display = "block";
+          }
+      }
+      </script>
+</body>
+</html>

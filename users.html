@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users - AdaptEd Admin</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body data-module="users">
+  <div class="admin-layout">
+    <aside class="sidebar"><div class="brand"><div class="brand-icon">A</div><div><h1>AdaptEd Admin</h1><p>Control Center</p></div></div><nav id="adminNav" class="nav-list"></nav></aside>
+    <main class="main">
+      <div class="topbar"><div><h2 id="pageTitle" class="page-title"></h2><p class="muted">Search, filter, role assignment and account controls.</p></div><div class="row"><span id="adminIdentity" class="badge"></span><button id="logoutBtn">Logout</button></div></div>
+
+      <section class="card">
+        <div class="row">
+          <input id="userSearch" placeholder="Search users..." />
+          <select id="userRoleFilter" style="max-width:180px"><option>All</option><option>Student</option><option>Premium</option><option>Admin</option></select>
+        </div>
+        <table style="margin-top:10px"><thead><tr><th>User</th><th>Role</th><th>Uploads</th><th>Summaries</th><th>Status</th><th>Action</th></tr></thead><tbody id="userRows"></tbody></table>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

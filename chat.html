@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI Tutor – AdaptEd Ai</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        /* Chat-specific layout */
+        .chat-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--grad-lavender);
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .chat-header h2 {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .chat-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .chat-footer {
+            padding: 12px 18px 18px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-card);
+            flex-shrink: 0;
+        }
+
+        .emotion-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .emotion-pill {
+            padding: 5px 13px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .emotion-pill:hover {
+            transform: translateY(-1px);
+        }
+
+        .ep-confident {
+            color: #10B981;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .ep-confident.active {
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .ep-confused {
+            color: #D97706;
+            border-color: rgba(217, 119, 6, 0.4);
+        }
+
+        .ep-confused.active {
+            background: rgba(217, 119, 6, 0.12);
+        }
+
+        .ep-frustrated {
+            color: #EF4444;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .ep-frustrated.active {
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .ep-anxious {
+            color: #7C3AED;
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        .ep-anxious.active {
+            background: rgba(124, 58, 237, 0.12);
+        }
+
+        .ep-neutral {
+            color: #64748B;
+            border-color: rgba(100, 116, 139, 0.4);
+        }
+
+        .ep-neutral.active {
+            background: rgba(100, 116, 139, 0.12);
+        }
+
+        .chat-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 13px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            background: var(--bg-input);
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: var(--transition);
+            resize: none;
+            height: 48px;
+            line-height: 22px;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+            background: var(--bg-card);
+            
+            outline: none;
+        }
+
+        .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--grad-primary);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: white;
+            font-size: 18px;
+            
+        }
+
+        .send-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .lang-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            cursor: pointer;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+        }
+
+        .bubble-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bubble-wrapper.user {
+            align-items: flex-end;
+        }
+
+        .bubble-wrapper.ai {
+            align-items: flex-start;
+        }
+
+        /* Video Recommendations */
+        .video-recommendations {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 100%;
+        }
+
+        .video-rec-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .video-rec-card {
+            display: flex;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            max-width: 500px;
+        }
+
+        .video-rec-card:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+            
+        }
+
+        .video-rec-thumb {
+            width: 120px;
+            height: 68px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .video-rec-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-rec-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .video-rec-play svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .video-rec-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .video-rec-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-rec-channel {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    
+        /* New Chat Aesthetics */
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            flex: 1;
+            margin-left: 0;
+            background: 
+                radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FFFFFF 20%, transparent 60%),
+                radial-gradient(circle at 100% 60%, rgba(124, 58, 237, 0.4) 0%, transparent 70%),
+                radial-gradient(circle at 0% 100%, rgba(249, 115, 22, 0.45) 0%, transparent 70%),
+                #F8FAFC;
+            background-size: cover;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        @media(max-width: 900px) {
+            .chat-main { margin-left: 0; }
+        }
+
+        .chat-hero {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+            padding: 0 20px;
+        }
+
+        .chat-hero.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -60%);
+        }
+
+        .chat-hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1E293B;
+            margin-bottom: 28px;
+            text-align: center;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+        }
+
+        .chat-input-container {
+            width: 100%;
+            max-width: 640px;
+            background: #F4F0E8;
+            border-radius: 30px;
+            border: 2px solid var(--border);
+            box-shadow: 2px 2px 0px var(--border);
+            padding: 12px 18px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .chat-input-container.docked {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            background: rgba(244, 240, 232, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-input-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .chat-input-row button.icon-btn {
+            background: none;
+            border: none;
+            color: #64748B;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chat-input-row button.icon-btn:hover {
+            background: rgba(0,0,0,0.05);
+            color: #1E293B;
+        }
+
+        .chat-input-row input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            color: #1E293B;
+            padding: 8px 0;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .chat-input-row input::placeholder {
+            color: #94A3B8;
+        }
+
+        .chat-input-row .send-pill {
+            background: #94A3B8;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-input-row input:not(:placeholder-shown) ~ div .send-pill {
+            background: #3B82F6;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 80px max(10%, 20px) 120px; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .chat-messages.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .bubble-wrapper { display: flex; flex-direction: column; }
+        .bubble-wrapper.user { align-items: flex-end; }
+        .bubble-wrapper.ai { align-items: flex-start; }
+        .bubble-wrapper.ai.with-mascot {
+            flex-direction: row;
+            align-items: flex-end;
+            gap: 10px;
+            max-width: 92%;
+            animation: aiBubbleIn 260ms ease-out;
+            transform-origin: left bottom;
+        }
+
+        .ai-mascot-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(241,245,249,0.94));
+            border: 1px solid rgba(148,163,184,0.32);
+            box-shadow: 0 4px 12px rgba(15,23,42,0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .ai-mascot-avatar svg {
+            width: 30px;
+            height: 30px;
+            filter: drop-shadow(0 2px 4px rgba(255,122,31,0.2));
+        }
+
+        .bubble-wrapper.ai.with-mascot .chat-bubble.ai {
+            max-width: min(78ch, calc(100% - 56px));
+        }
+
+        @keyframes aiBubbleIn {
+            0% { opacity: 0; transform: translateY(8px) scale(0.985); }
+            70% { opacity: 1; transform: translateY(-1px) scale(1.01); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .chat-bubble {
+            max-width: 80%;
+            padding: 16px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            line-height: 1.5;
+            
+            position: relative;
+        }
+        
+        .chat-bubble.user {
+            background: #F3F4F6;
+            color: #1E293B;
+            border-bottom-right-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .chat-bubble.ai {
+            background: white;
+            color: #1E293B;
+            border-bottom-left-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .top-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 32px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 30;
+            pointer-events: none;
+        }
+        .top-nav > * { pointer-events: auto; }
+        
+        .video-rec-card { background: white !important; }
+
+    </style>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar (collapsed for this page – same sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 20px; height: 20px; display: block;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"/>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"/>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"/>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"/>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B" />
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"/>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"/>
+</svg></div>
+                <div>
+                    <div class="logo-text">AdaptEd Ai</div>
+                    <div class="logo-sub" data-i18n="sidebar.tagline">Emotion-Aware Study Companion</div>
+                </div>
+            </div>
+            <div class="sidebar-user">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="avatar" style="padding:0; background:transparent; width:36px; height:36px; display:inline-block; overflow:hidden; border-radius:50%;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;">
+    <g transform="translate(0, 5)">
+        <path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"/>
+        <path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"/>
+        <path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"/>
+        <path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+        <path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"/>
+        <ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"/>
+        <path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+    </g>
+</svg></div>
+                    <div>
+                        <div class="user-name" data-i18n="sidebar.welcome">Welcome back, Vedant!</div>
+                        <div class="user-streak"><i data-lucide="flame"
+                                style="width:13px;height:13px;display:inline;vertical-align:middle;color:#22C55E"></i>
+                            12 Day Streak</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-exam">
+                <select>
+                    <option>JEE</option>
+                    <option>NEET</option>
+                    <option>CAT</option>
+                    <option>UPSC</option>
+                    <option>MHT CET</option>
+                    <option>12th Boards</option>
+                    <option>GATE</option>
+                </select>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="nav-item" data-page="dashboard.html" href="dashboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                    </svg>
+                    <span data-i18n="nav.dashboard">Home</span>
+                </a>
+                <a class="nav-item" data-page="learning.html" href="learning.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg><span data-i18n="nav.learning">Learning Path</span></a>
+                <a class="nav-item active" data-page="chat.html" href="chat.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <span data-i18n="nav.ai_tutor">AI Tutor</span>
+                </a>
+                <a class="nav-item" data-page="leaderboard.html" href="leaderboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                    <span data-i18n="nav.leaderboard">Leaderboard</span>
+                </a>
+                <a class="nav-item" data-page="quiz.html" href="quiz.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                    </svg>
+                    <span data-i18n="nav.daily_quiz">Daily Quiz</span>
+                </a>
+                <a class="nav-item" data-page="revision.html" href="revision.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span data-i18n="nav.revision">Revision Notes</span>
+                </a>
+                <a class="nav-item" data-page="exam.html" href="exam.html"><svg class="nav-icon" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg><span>Exam Mode</span></a>
+                <a class="nav-item" data-page="videos.html" href="videos.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7" />
+                        <rect x="1" y="5" width="15" height="14" rx="2" />
+                    </svg>
+                    <span data-i18n="nav.videos">Videos</span>
+                </a>
+                                <a class="nav-item" data-page="focus.html" href="focus.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Focus Mode</span></a>
+                <a class="nav-item" data-page="profile.html" href="profile.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span data-i18n="nav.profile">Profile</span>
+                </a>
+            </nav>
+            <div class="sidebar-lang">
+                <select id="langSwitcher" onchange="I18n.setLang(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="mr">🇮🇳 मराठी</option>
+                    <option value="gu">🇮🇳 ગુજરાતી</option>
+                </select>
+            </div>
+        </aside>
+
+        
+        <div class="chat-main" id="chatMain">
+            <div class="top-nav">
+                <div class="emotion-tag" id="emotionTag" style="color:#1E293B; font-weight:600; font-size:13px; display:flex; align-items:center; gap:6px;">
+                        <i data-lucide="meh" style="width:16px;height:16px;"></i>
+                        Neutral
+                      </div>
+            </div>
+
+            <div class="chat-hero" id="chatHero">
+                <h1 id="chatGreeting">What should we learn today?</h1>
+                
+                <div class="chat-input-container" id="heroInputContainer">
+                    <div class="chat-input-row">
+                        <button class="icon-btn" title="Add context">
+                            <i data-lucide="plus" style="width:20px;height:20px"></i>
+                        </button>
+                        <input type="text" id="chatInputHero" placeholder="Ask AI Tutor to create a study plan..." onkeypress="handleKeyHero(event)" />
+                        <div style="display:flex; gap:4px; align-items:center;">
+                            <button class="icon-btn" onclick="toggleSpeaker()" title="Toggle voice">
+                                <i data-lucide="volume-2" class="speaker-icon" style="width:18px;height:18px; color:#3B82F6;"></i>
+                            </button>
+                            <button class="icon-btn" title="Map relative">
+                                <i data-lucide="map" style="width:18px;height:18px"></i>
+                            </button>
+                            <button class="icon-btn" id="micBtnHero" onclick="toggleMicHero()" title="Voice input">
+                                <i data-lucide="mic" style="width:18px;height:18px"></i>
+                            </button>
+                            <button class="send-pill" onclick="sendMessageHero()" title="Send message">
+                                <i data-lucide="arrow-up" style="width:18px;height:18px"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Chat messages container -->
+            </div>
+            
+            <div class="chat-input-container docked" id="dockedInputContainer" style="opacity: 0; pointer-events: none;">
+                <div class="chat-input-row">
+                    <button class="icon-btn" title="Add context">
+                        <i data-lucide="plus" style="width:20px;height:20px"></i>
+                    </button>
+                    <input type="text" id="chatInputDocked" placeholder="Ask AI Tutor to create a study plan..." onkeypress="handleKeyDocked(event)" />
+                    <div style="display:flex; gap:4px; align-items:center;">
+                        <button class="icon-btn" onclick="toggleSpeaker()" title="Toggle voice">
+                            <i data-lucide="volume-2" class="speaker-icon" style="width:18px;height:18px; color:#3B82F6;"></i>
+                        </button>
+                        <button class="icon-btn" title="Map relative">
+                            <i data-lucide="map" style="width:18px;height:18px"></i>
+                        </button>
+                        <button class="icon-btn" id="micBtnDocked" onclick="toggleMicDocked()" title="Voice input">
+                            <i data-lucide="mic" style="width:18px;height:18px"></i>
+                        </button>
+                        <button class="send-pill" onclick="sendMessageDocked()" title="Send message">
+                            <i data-lucide="arrow-up" style="width:18px;height:18px"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="i18n.js"></script>
+    <script src="data-agent.js"></script>
+    <script src="feature-agents.js"></script>
+    <script src="app.js"></script>
+    <script src="multilingual-chat.js"></script>
+    <script src="question-bank.js"></script>
+    <script src="agent-client.js"></script>
+    <script>
+        const API = '';  // Use relative URLs
+        let currentEmotion = 'Neutral';
+        let isMicActive = false;
+        let chatHistory = [];
+        let isSending = false;
+
+        function selectEmotion(name, btn) {
+            currentEmotion = name;
+            document.querySelectorAll('.emotion-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            setEmotion(name);
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+        }
+
+        
+        function updateDynamicHeaderBadges(emoBadge, riskLevel, reasonStr) {
+            let hdr = document.querySelector('.chat-header p');
+            if(!hdr) return;
+            
+            let rColor = "#10B981"; // Low = green
+            if(riskLevel === "MEDIUM") rColor = "#F59E0B"; 
+            if(riskLevel === "HIGH") rColor = "#EF4444"; 
+
+            hdr.innerHTML = `Emotion: <span style="font-weight:bold;margin-right:10px">${emoBadge}</span> Risk: <span style="font-weight:bold;color:${rColor};cursor:help" title="${reasonStr}">${riskLevel}</span>`;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg || isSending) return;
+            isSending = true;
+
+            appendBubble(msg, 'user');
+            chatHistory.push({ role: 'user', text: msg });
+            input.value = '';
+            showTyping();
+
+                        try {
+                // Check if user is asking for a study plan
+                if (window.AgentTutor && AgentTutor.isStudyPlanRequest(msg)) {
+                    const agentDecision = await AgentTutor.getDecision('chat');
+                    removeTyping();
+                    const planText = AgentTutor.formatStudyPlan(agentDecision);
+                    appendBubble(planText, 'ai');
+                    chatHistory.push({ role: 'assistant', text: planText });
+                    playVoice(planText);
+                    isSending = false;
+                    return;
+                }
+                // Call dynamic ai backend
+                const analyzeRes = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: msg, language: window.I18n ? I18n.getGeminiLang() : 'English' })
+                });
+                if (!analyzeRes.ok) throw new Error('Analyze API error');
+                const data = await analyzeRes.json();
+                
+                removeTyping();
+
+                const aiResponseText = data.reply || 'Got it!';
+                appendBubble(aiResponseText, 'ai');
+                chatHistory.push({ role: 'assistant', text: aiResponseText });
+                playVoice(aiResponseText);
+
+                
+            } catch (err) {
+                removeTyping();
+                appendBubble('Sorry, I couldn\'t connect right now. Please check if the backend server is running.', 'ai');
+                console.error(err);
+            } finally {
+                isSending = false;
+            }
+        }
+
+        function appendBubble(text, who) {
+            const msgs = document.getElementById('chatMessages');
+            const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const wrapper = document.createElement('div');
+            wrapper.className = `bubble-wrapper ${who}`;
+            wrapper.innerHTML = `<div class="chat-bubble ${who}">${formatText(text)}<div class="bubble-time">${now}</div></div>`;
+            msgs.appendChild(wrapper);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        function formatText(t) {
+            return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        }
+
+        function appendVideos(videos, introText = '') {
+            const msgs = document.getElementById('chatMessages');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'bubble-wrapper ai';
+            wrapper.innerHTML = `
+                <div class="video-recommendations">
+                    <div class="video-rec-header">
+                        <i data-lucide="video" style="width:14px;height:14px"></i>
+                        Recommended Videos
+                    </div>
+                    ${introText ? `<div style="font-size:12px;line-height:1.45;color:var(--text-secondary);margin-bottom:10px;">${formatText(introText)}</div>` : ''}
+                    ${videos.map(v => `
+                        <div class="video-rec-card" onclick="openChatVideoModal('${v.videoUrl}', '${v.title.replace(/'/g, "&#39;").replace(/"/g, "&quot;")}')">
+                            <div class="video-rec-thumb">
+                                <img src="${v.thumbnail}" alt="${v.title}">
+                                <div class="video-rec-play">
+                                    <svg viewBox="0 0 24 24" fill="white" stroke="none">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="video-rec-info">
+                                <div class="video-rec-title">${v.title}</div>
+                                <div class="video-rec-channel">
+                                    <i data-lucide="user" style="width:10px;height:10px"></i>
+                                    ${v.channel}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            msgs.appendChild(wrapper);
+            msgs.scrollTop = msgs.scrollHeight;
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function openChatVideoModal(videoUrl, title) {
+            let videoId = null;
+            try {
+                const parsedUrl = new URL(videoUrl);
+                if (parsedUrl.hostname.includes('youtu.be')) {
+                    videoId = parsedUrl.pathname.replace(/^\//, '').trim();
+                } else {
+                    videoId = parsedUrl.searchParams.get('v');
+                }
+            } catch (err) {
+                videoId = null;
+            }
+
+            // Fallback cards may point to a YouTube search URL instead of a direct watch URL.
+            if (!videoId) {
+                window.open(videoUrl, '_blank', 'noopener,noreferrer');
+                return;
+            }
+
+            const modal = document.createElement('div');
+            modal.id = 'chatVideoModal';
+            modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.2s ease';
+            modal.innerHTML = `
+                <div style="background:var(--bg-card);border-radius:var(--radius-xl);width:100%;max-width:1000px;max-height:90vh;overflow:hidden;box-shadow: 2px 2px 0px var(--border);animation:scaleIn 0.3s ease">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)">
+                        <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0;flex:1;padding-right:16px">${title}</h3>
+                        <button onclick="document.getElementById('chatVideoModal').remove()" style="width:32px;height:32px;border-radius:50%;background:var(--bg-secondary);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition)">
+                            <i data-lucide="x" style="width:18px;height:18px"></i>
+                        </button>
+                    </div>
+                    <div style="padding:0;position:relative;padding-bottom:56.25%;height:0;overflow:hidden">
+                        <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"></iframe>
+                    </div>
+                </div>
+            `;
+            modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) lucide.createIcons();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('chatVideoModal')) {
+                document.getElementById('chatVideoModal').remove();
+                document.body.style.overflow = '';
+            }
+        });
+
+        function showTyping() {
+            const msgs = document.getElementById('chatMessages');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'bubble-wrapper ai';
+            wrapper.id = 'typingWrapper';
+            wrapper.innerHTML = `<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+            msgs.appendChild(wrapper);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+        function removeTyping() {
+            document.getElementById('typingWrapper')?.remove();
+        }
+
+        function toggleMic() {
+            const btn = document.getElementById('micBtn');
+            isMicActive = !isMicActive;
+            btn.classList.toggle('recording', isMicActive);
+            if (isMicActive) {
+                // Use Web Speech API if available
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    const recognition = new SpeechRecognition();
+                    recognition.lang = (typeof I18n !== 'undefined') ? ({ en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN', gu: 'gu-IN' }[I18n.currentLang] || 'en-IN') : 'en-IN';
+                    recognition.interimResults = false;
+                    recognition.onresult = (e) => {
+                        const text = e.results[0][0].transcript;
+                        document.getElementById('chatInput').value = text;
+                        Toast.show(typeof I18n !== 'undefined' ? I18n.t('chat.voice_got_it') : 'Got it! Tap send to ask.', 'success');
+                        btn.classList.remove('recording');
+                        isMicActive = false;
+                    };
+                    recognition.onerror = () => {
+                        Toast.show(typeof I18n !== 'undefined' ? I18n.t('chat.voice_error') : 'Could not hear you. Try again.', 'error');
+                        btn.classList.remove('recording');
+                        isMicActive = false;
+                    };
+                    recognition.onend = () => {
+                        btn.classList.remove('recording');
+                        isMicActive = false;
+                    };
+                    recognition.start();
+                    Toast.show(typeof I18n !== 'undefined' ? I18n.t('chat.voice_on') : 'Listening... 🎤 Speak now!', 'info');
+                } else {
+                    Toast.show(typeof I18n !== 'undefined' ? I18n.t('chat.voice_unsupported') : 'Voice not supported in this browser', 'error');
+                    btn.classList.remove('recording');
+                    isMicActive = false;
+                }
+            }
+        }
+    </script>
+    <script>if (window.lucide) lucide.createIcons();</script>
+
+    <script>
+        // --- NEW CHAT LOGIC UI OVERRIDES ---
+        let hasStartedChat = false;
+
+        async function hydrateChatHistory() {
+            if (!window.ChatbotAgent || typeof window.ChatbotAgent.getRecentHistory !== 'function') return;
+            try {
+                const recent = await window.ChatbotAgent.getRecentHistory(20);
+                if (Array.isArray(recent) && recent.length) {
+                    chatHistory = recent;
+                }
+            } catch (e) {
+                console.warn('[Chat] Failed to hydrate chat history from Data Agent:', e);
+            }
+        }
+        
+        function initChatHero() {
+            // Text animation is handled centrally by multilingual-chat.js
+            
+            // Sync typing in hero input to activate send button
+            let heroInp = document.getElementById('chatInputHero');
+            let dockedInp = document.getElementById('chatInputDocked');
+            
+            if(heroInp && dockedInp) {
+                heroInp.addEventListener('input', (e) => {
+                    const btn = heroInp.parentElement.querySelector('.send-pill');
+                    if(e.target.value.trim().length > 0) btn.style.background = '#3B82F6';
+                    else btn.style.background = '#94A3B8';
+                });
+                dockedInp.addEventListener('input', (e) => {
+                    const btn = dockedInp.parentElement.querySelector('.send-pill');
+                    if(e.target.value.trim().length > 0) btn.style.background = '#3B82F6';
+                    else btn.style.background = '#94A3B8';
+                });
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', async () => {
+            initChatHero();
+            await hydrateChatHistory();
+        });
+
+        // --- MOOD DYNAMIC BACKGROUND ---
+        function updateChatBackground(mood) {
+            const chatMain = document.getElementById('chatMain');
+            if(!chatMain) return;
+            const m = (mood || '').toLowerCase();
+            
+            if (m.includes('angry') || m.includes('frustrated')) {
+                // Blue tone for angry
+                chatMain.style.background = 'radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FFFFFF 30%, transparent 80%), radial-gradient(circle at 100% 60%, rgba(59, 130, 246, 0.25) 0%, transparent 60%), radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.2) 0%, transparent 60%), #eff6ff';
+            } else if (m.includes('sad') || m.includes('anxious') || m.includes('depressed')) {
+                // Green tone for sad
+                chatMain.style.background = 'radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FFFFFF 30%, transparent 80%), radial-gradient(circle at 100% 60%, rgba(34, 197, 94, 0.2) 0%, transparent 60%), radial-gradient(circle at 0% 100%, rgba(22, 163, 74, 0.2) 0%, transparent 60%), #f0fdf4';
+            } else {
+                // Default / happy / neutral
+                if (hasStartedChat) {
+                    chatMain.style.background = 'radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FFFFFF 30%, transparent 80%), radial-gradient(circle at 100% 60%, rgba(124, 58, 237, 0.2) 0%, transparent 60%), radial-gradient(circle at 0% 100%, rgba(249, 115, 22, 0.2) 0%, transparent 60%), #F8FAFC';
+                } else {
+                    chatMain.style.background = 'radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FFFFFF 20%, transparent 60%), radial-gradient(circle at 100% 60%, rgba(124, 58, 237, 0.4) 0%, transparent 70%), radial-gradient(circle at 0% 100%, rgba(249, 115, 22, 0.45) 0%, transparent 70%), #F8FAFC';
+                }
+            }
+        }
+
+        function transitionToChat() {
+            if(hasStartedChat) return;
+            hasStartedChat = true;
+            document.getElementById('chatHero').classList.add('hidden');
+            document.getElementById('chatMessages').classList.add('visible');
+            
+            document.getElementById('dockedInputContainer').style.opacity = '1';
+            document.getElementById('dockedInputContainer').style.pointerEvents = 'auto';
+            
+            // Initial background based on current emotion
+            updateChatBackground(currentEmotion);
+            
+            document.getElementById('chatInputDocked').focus();
+        }
+
+        function handleKeyHero(e) { if (e.key === 'Enter') sendMessageHero(); }
+        function handleKeyDocked(e) { if (e.key === 'Enter') sendMessageDocked(); }
+
+        async function sendMessageHero() {
+            const val = document.getElementById('chatInputHero').value.trim();
+            if(!val) return;
+            document.getElementById('chatInputDocked').value = val;
+            transitionToChat();
+            await processSendProxy(val);
+        }
+        
+        async function sendMessageDocked() {
+            const val = document.getElementById('chatInputDocked').value.trim();
+            if(!val) return;
+            await processSendProxy(val);
+        }
+
+        async function processSendProxy(msg) {
+            if(isSending) return;
+            isSending = true;
+            
+            let btn = document.getElementById('chatInputDocked').parentElement.querySelector('.send-pill');
+            btn.style.background = '#94A3B8';
+            
+            document.getElementById('chatInputDocked').value = '';
+            document.getElementById('chatInputHero').value = '';
+            
+            appendBubble(msg, 'user');
+            chatHistory.push({ role: 'user', text: msg });
+
+            if (window.ChatbotAgent && typeof window.ChatbotAgent.recordUserMessage === 'function') {
+                await window.ChatbotAgent.recordUserMessage(msg, { emotion: currentEmotion });
+            }
+
+            showTyping();
+
+            try {
+                // Check if user is asking for a study plan (agent integration)
+                if (window.AgentTutor && AgentTutor.isStudyPlanRequest(msg)) {
+                    const agentDecision = await AgentTutor.getDecision('chat');
+                    removeTyping();
+                    const planText = AgentTutor.formatStudyPlan(agentDecision);
+                    appendBubble(planText, 'ai');
+                    chatHistory.push({ role: 'assistant', text: planText });
+                    playVoice(planText);
+                    isSending = false;
+                    return;
+                }
+
+                // Extract user state for personalization
+                let userState = null;
+                if (window.AgentTutor) {
+                    userState = AgentTutor.getUserState();
+                }
+
+                // Extract VectorDB RAG context
+                let ragContext = null;
+                if (window.VectorDB) {
+                    try {
+                        const similarQs = VectorDB.getQuestionsForTopic(msg, 2);
+                        if (similarQs && similarQs.length > 0) {
+                            ragContext = similarQs.map(q => q.question + " (Topic: " + q.topic + ")").join(' | ');
+                        }
+                    } catch(e) { console.error('VectorDB error:', e); }
+                }
+
+                const basePayload = {
+                    language: window.I18n ? I18n.getGeminiLang() : 'English',
+                    history: chatHistory.slice(-10),
+                    userState: userState,
+                    ragContext: ragContext
+                };
+
+                const requestPayload = (window.ChatbotAgent && typeof window.ChatbotAgent.buildPayload === 'function')
+                    ? await window.ChatbotAgent.buildPayload(msg, basePayload)
+                    : { message: msg, ...basePayload };
+
+                const analyzeRes = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestPayload)
+                });
+                if (!analyzeRes.ok) throw new Error('API error: ' + analyzeRes.status);
+                const data = await analyzeRes.json();
+                
+                removeTyping();
+
+                const aiResponseText = data.reply || 'Got it!';
+                appendBubble(aiResponseText, 'ai');
+                chatHistory.push({ role: 'assistant', text: aiResponseText });
+                playVoice(aiResponseText);
+
+                if (window.ChatbotAgent && typeof window.ChatbotAgent.recordExchange === 'function') {
+                    await window.ChatbotAgent.recordExchange(msg, aiResponseText, {
+                        emotion: data.emotion || (data.debug && data.debug.mood) || currentEmotion,
+                        weakConcepts: (data.debug && data.debug.weak_concepts) || []
+                    });
+                }
+
+                // Show debug info as collapsible detail card
+                if (data.debug) {
+                    const d = data.debug;
+                    const debugHtml = '<details style="font-size:12px; opacity:0.7; cursor:pointer; margin-top:4px;">' +
+                        '<summary style="font-weight:600; color:#6366F1;">🔍 Tutor Details</summary>' +
+                        '<div style="margin-top:6px; padding:8px 12px; background:rgba(99,102,241,0.06); border-radius:10px; font-size:11px; line-height:1.6;">' +
+                        '<b>Intent:</b> ' + (d.intent || 'N/A') + ' &nbsp;|&nbsp; <b>Action:</b> ' + (d.decided_action || d.selected_action) + ' &nbsp;|&nbsp; <b>Variation:</b> ' + (d.variation || 'N/A') + '<br>' +
+                        '<b>Mood:</b> ' + d.mood + ' (conf=' + (d.mood_confidence || 0).toFixed(3) + ', raw=' + (d.mood_raw_label || 'N/A') + ') &nbsp;|&nbsp; <b>Videos:</b> ' + (d.allow_videos ? '✅' : '🚫') + '<br>' +
+                        '<b>Reward:</b> ' + d.reward + ' &nbsp;|&nbsp; <b>Difficulty:</b> ' + d.difficulty + ' &nbsp;|&nbsp; <b>Topic:</b> ' + (d.target_concept || 'N/A') + '<br>' +
+                        '<b>Weak concepts:</b> ' + ((d.weak_concepts || []).join(', ') || 'None') + '<br>' +
+                        (d.mood_reason ? '<b>Mood reason:</b> ' + d.mood_reason + '<br>' : '') +
+                        (d.reasoning ? '<b>Reasoning:</b> ' + d.reasoning : '') +
+                        '</div></details>';
+                    const msgs = document.getElementById('chatMessages');
+                    const dw = document.createElement('div');
+                    dw.className = 'bubble-wrapper ai';
+                    dw.innerHTML = '<div style="max-width:80%;">' + debugHtml + '</div>';
+                    msgs.appendChild(dw);
+                    msgs.scrollTop = msgs.scrollHeight;
+                }
+
+                // Update emotion badge and background
+                let em = data.emotion;
+                if (!em && data.debug && data.debug.mood) {
+                    em = data.debug.mood;
+                }
+                if (em && typeof setEmotion === 'function') {
+                    currentEmotion = em;
+                    setEmotion(em);
+                    updateChatBackground(em);
+                }
+
+                // Show video recommendations (limit to 3)
+                if (data.videos && data.videos.length > 0) {
+                    const limitedVideos = data.videos.slice(0, 3);
+                    appendVideos(limitedVideos, data.videoIntro || '');
+                }
+
+            } catch (err) {
+                removeTyping();
+                appendBubble('Sorry, I couldn\'t connect right now. Please check if the backend server is running.', 'ai');
+                console.error('Chat error:', err);
+            } finally {
+                isSending = false;
+            }
+        }
+        
+        // Ensure appendBubble uses new style
+        function getTutorMascotAvatarMarkup() {
+            return `<div class="ai-mascot-avatar" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" focusable="false">
+                    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"/>
+                    <circle cx="21" cy="72" r="8" fill="#FF7A1F"/>
+                    <circle cx="79" cy="72" r="8" fill="#FF7A1F"/>
+                    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"/>
+                    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+                    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+                    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"/>
+                    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"/>
+                    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"/>
+                    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"/>
+                </svg>
+            </div>`;
+        }
+
+        function appendBubble(text, who) {
+            const msgs = document.getElementById('chatMessages');
+            const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const wrapper = document.createElement('div');
+            wrapper.className = `bubble-wrapper ${who}`;
+            const safeText = (typeof formatText === 'function') ? formatText(text) : text;
+
+            if (who === 'ai') {
+                wrapper.classList.add('with-mascot');
+                wrapper.innerHTML = `${getTutorMascotAvatarMarkup()}<div class="chat-bubble ${who}">${safeText}<div class="bubble-time" style="font-size:11px; opacity:0.6; margin-top:8px; text-align:right;">${now}</div></div>`;
+            } else {
+                wrapper.innerHTML = `<div class="chat-bubble ${who}">${safeText}<div class="bubble-time" style="font-size:11px; opacity:0.6; margin-top:8px; text-align:right;">${now}</div></div>`;
+            }
+
+            msgs.appendChild(wrapper);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        // VOICE CAPABILITIES
+        let isVoiceEnabled = true;
+        let synth = window.speechSynthesis;
+        let activeRecognition = null;
+        let isListening = false;
+
+        function toggleSpeaker() {
+            isVoiceEnabled = !isVoiceEnabled;
+            const icons = document.querySelectorAll('.speaker-icon');
+            icons.forEach(icon => {
+                if(isVoiceEnabled) {
+                    icon.setAttribute('data-lucide', 'volume-2');
+                    icon.style.color = '#3B82F6';
+                } else {
+                    icon.setAttribute('data-lucide', 'volume-x');
+                    icon.style.color = '#64748B';
+                }
+            });
+            if(window.lucide) lucide.createIcons();
+            if(!isVoiceEnabled && synth) {
+                synth.cancel();
+            }
+        }
+
+        function playVoice(text) {
+            if(!isVoiceEnabled || !synth) return;
+            synth.cancel(); // Stop ongoing speech
+            
+            // Clean markdown and HTML for speech
+            const cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1')
+                                  .replace(/\*(.*?)\*/g, '$1')
+                                  .replace(/<[^>]*>?/gm, '');
+            
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            // utterance.lang = 'en-US'; // Use system default optionally
+            synth.speak(utterance);
+        }
+
+        function toggleRealMic(inputId, btnId) {
+            const input = document.getElementById(inputId);
+            const btn = document.getElementById(btnId);
+
+            if (isListening && activeRecognition) {
+                activeRecognition.stop();
+                return;
+            }
+
+            if(synth) synth.cancel(); // Stop AI speaking when user starts mic
+
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("Your browser doesn't support the Web Speech API");
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            activeRecognition = new SpeechRecognition();
+            activeRecognition.interimResults = true;
+
+            activeRecognition.onstart = () => {
+                isListening = true;
+                btn.style.color = '#EF4444'; // Red active mic
+                input.dataset.originalPlaceholder = input.placeholder;
+                input.placeholder = "Listening...";
+                input.value = "";
+            };
+
+            activeRecognition.onresult = (e) => {
+                let transcript = '';
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    transcript += e.results[i][0].transcript;
+                }
+                input.value = transcript;
+                
+                if(transcript.trim().length > 0) {
+                    const sendBtn = input.parentElement.querySelector('.send-pill');
+                    if(sendBtn) sendBtn.style.background = '#3B82F6';
+                }
+            };
+
+            activeRecognition.onend = () => {
+                isListening = false;
+                btn.style.color = '';
+                if(input.dataset.originalPlaceholder) {
+                    input.placeholder = input.dataset.originalPlaceholder;
+                }
+                activeRecognition = null;
+            };
+
+            activeRecognition.onerror = (e) => {
+                console.error("Speech reco error", e);
+                isListening = false;
+                btn.style.color = '';
+                if(input.dataset.originalPlaceholder) {
+                    input.placeholder = input.dataset.originalPlaceholder;
+                }
+            };
+
+            activeRecognition.start();
+        }
+
+        function toggleMicHero() { toggleRealMic('chatInputHero', 'micBtnHero'); }
+        function toggleMicDocked() { toggleRealMic('chatInputDocked', 'micBtnDocked'); }
+    </script>
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav chat-nav-vertical">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item active" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+
+</html>

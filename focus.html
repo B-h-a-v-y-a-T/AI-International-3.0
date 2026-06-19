@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Focus Mode</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="focus-games.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body, html { width: 100%; height: 100%; background: linear-gradient(180deg, #F0E6FA 0%, #FFE0EC 100%); overflow: hidden; display: flex; align-items: center; justify-content: center; color: #1E1B4B; }
+        body.focus-page-leaving { opacity: 0.9; transform: scale(0.997); transition: opacity 0.14s ease, transform 0.14s ease; }
+        
+        /* Top Navigation */
+        .top-nav { position: absolute; top: 32px; right: 32px; display: flex; gap: 16px; }
+        .icon-btn { width: 44px; height: 44px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid var(--border); box-shadow: 2px 2px 0px var(--border); color: #6B7280; transition: all 0.2s; }
+        .icon-btn:hover { transform: scale(1.05); color: #3B82F6; }
+        
+        .focus-container { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: -40px; }
+        
+        /* Mascot */
+        .mascot-wrapper { width: 88px; height: 88px; margin-bottom: 24px; position: relative; }
+        .mascot-wrapper svg { width: 100%; height: 100%; filter: drop-shadow(0 6px 12px rgba(255,122,31,0.25)); transform-origin: bottom center; animation: float 3.5s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        
+        .speech-bubble { position: absolute; top: -40px; left: 50%; transform: translateX(-50%); background: white; padding: 6px 14px; border-radius: 12px; font-size: 14px; font-weight: 700; color: #8B5CF6; box-shadow: 2px 2px 0px var(--border); white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); filter: blur(4px) scale(0.9); }
+        .speech-bubble.show { opacity: 1; filter: blur(0) scale(1); }
+        .speech-bubble::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border-width: 6px 6px 0; border-style: solid; border-color: white transparent transparent; }
+
+        .focus-badge { display: inline-flex; align-items: center; gap: 8px; background: white; padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 700; color: #8B5CF6; margin-bottom: 56px; box-shadow: 2px 2px 0px var(--border); }
+        
+        /* Timer Circle */
+        .timer-circle { width: 340px; height: 340px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; margin-bottom: 48px; background: rgba(255, 255, 255, 0.4); box-shadow: 2px 2px 0px var(--border); transition: all 0.5s ease; backdrop-filter: blur(10px); }
+        .timer-circle.active { box-shadow: 2px 2px 0px var(--border); transform: scale(1.02); }
+        
+        .time-display { font-size: 84px; font-weight: 800; color: #1E1B4B; line-height: 1; margin-bottom: 8px; font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+        .time-subtext { font-size: 16px; font-weight: 600; color: #6B7280; transition: color 0.3s; }
+        .timer-circle.active .time-subtext { color: #8B5CF6; }
+        
+        /* Duration options */
+        .duration-options { display: flex; gap: 14px; margin-bottom: 40px; }
+        .duration-btn { background: white; border: 2px solid var(--border); padding: 12px 24px; border-radius: 30px; font-size: 15px; font-weight: 700; color: #6B7280; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 2px 2px 0px var(--border); }
+        .duration-btn.active { background: #8B5CF6; color: white; box-shadow: 2px 2px 0px var(--border); transform: translateY(-2px); }
+        .duration-btn:hover:not(.active) { background: #F3F4F6; transform: translateY(-1px); }
+
+        /* Controls */
+        .controls { display: flex; align-items: center; gap: 28px; }
+        .ctrl-btn { border: 2px solid var(--border); background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); color: #6B7280; box-shadow: 2px 2px 0px var(--border); }
+        .ctrl-btn.side { width: 56px; height: 56px; }
+        .ctrl-btn.side:hover { transform: scale(1.1); color: #1E1B4B; box-shadow: 2px 2px 0px var(--border); }
+        
+        .ctrl-btn.main { width: 88px; height: 88px; background: #8B5CF6; color: white; position: relative; box-shadow: 2px 2px 0px var(--border); }
+        .ctrl-btn.main::before { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: rgba(139, 92, 246, 0.2); z-index: -1; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .ctrl-btn.main:hover { transform: translateY(-2px); }
+        .ctrl-btn.main:hover::before { transform: scale(1.15); background: rgba(139, 92, 246, 0.25); }
+        .ctrl-btn.main:active { transform: scale(0.95); }
+        .ctrl-btn.main svg { width: 34px; height: 34px; stroke-width: 2.5px; fill: white; }
+        .ctrl-btn.main.is-paused svg { fill: none; }
+
+        /* In-fullscreen navigation rail — pill style */
+        .focus-bottom-nav {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(12px);
+            z-index: 90;
+            display: flex;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 2.5px solid #1a1a2e;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease;
+        }
+
+        .focus-bottom-nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .focus-bottom-nav a {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            text-decoration: none;
+            background: transparent;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .focus-bottom-nav a:hover {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.08);
+            transform: scale(1.05);
+        }
+
+        .focus-bottom-nav a i {
+            width: 18px;
+            height: 18px;
+            stroke-width: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <!-- Close button maps back to dashboard -->
+        <button class="icon-btn" onclick="exitFocusAndNavigate('dashboard.html')" title="Exit Focus Mode">
+            <i data-lucide="x"></i>
+        </button>
+    </div>
+
+    <div class="focus-container">
+        <!-- Mascot Section -->
+        <div class="mascot-wrapper">
+            <div class="speech-bubble" id="mascotBubble">Let's focus! 🚀</div>
+            <!-- Custom Barbell Mascot SVG -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Head Swirl -->
+<path d="M 45 18 C 55 -2, 85 0, 75 30 Z" fill="#FF7A1F"/>
+<!-- Ears (Dark) -->
+<rect x="8" y="40" width="12" height="18" rx="4" fill="#201C2B"/>
+<rect x="80" y="40" width="12" height="18" rx="4" fill="#201C2B"/>
+<!-- Main Orange Head -->
+<rect x="14" y="16" width="72" height="60" rx="28" fill="#FF7A1F"/>
+<!-- Dark Face Screen -->
+<rect x="21" y="24" width="58" height="46" rx="20" fill="#201C2B"/>
+<!-- Harry Potter Scar -->
+<path d="M 48 26 L 45 32 L 49 32 L 46 37" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+<!-- Harry Potter Scar -->
+<path d="M 48 26 L 45 32 L 49 32 L 46 37" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+<!-- Angry Focused Eyes -->
+<g transform="translate(36, 44) rotate(15)">
+<path d="M -8 0 L 8 0 A 8 8 0 0 1 -8 0 Z" fill="#FFFFFF"/>
+</g>
+<g transform="translate(64, 44) rotate(-15)">
+<path d="M -8 0 L 8 0 A 8 8 0 0 1 -8 0 Z" fill="#FFFFFF"/>
+</g>
+<!-- Little smirk -->
+<path d="M 48 53 L 55 50 C 54 56, 48 56, 48 53 Z" fill="#FFFFFF"/>
+<!-- Body -->
+<rect x="42" y="72" width="16" height="22" rx="6" fill="#FF7A1F"/>
+<!-- Feet -->
+<circle cx="45" cy="92" r="5" fill="#FF7A1F"/>
+<circle cx="55" cy="92" r="5" fill="#FF7A1F"/>
+<!-- Barbell -->
+<rect x="2" y="79" width="96" height="4" rx="2" fill="#BCC1C9"/>
+<rect x="18" y="70" width="4" height="22" rx="2" fill="#2A263D"/>
+<rect x="78" y="70" width="4" height="22" rx="2" fill="#2A263D"/>
+<rect x="10" y="62" width="8" height="38" rx="3" fill="#2A263D"/>
+<rect x="82" y="62" width="8" height="38" rx="3" fill="#2A263D"/>
+<rect x="6" y="76" width="4" height="10" rx="2" fill="#2A263D"/>
+<rect x="90" y="76" width="4" height="10" rx="2" fill="#2A263D"/>
+<!-- Orange Hands grabbing the bar -->
+<rect x="26" y="75" width="14" height="12" rx="6" fill="#FF7A1F"/>
+<rect x="60" y="75" width="14" height="12" rx="6" fill="#FF7A1F"/>
+</svg>
+        </div>
+
+        <div class="focus-badge">
+            <i data-lucide="volume-2" style="width: 18px; height: 18px; color:#8B5CF6"></i> Deep Focus Mode
+        </div>
+
+        <!-- Interactive Core Timer -->
+        <div class="timer-circle" id="timerCircle">
+            <div class="time-display" id="timeDisplay">25:00</div>
+            <div class="time-subtext" id="timeSubtext">Stay focused!</div>
+        </div>
+
+        <!-- Duration Picker -->
+        <div class="duration-options" id="durationOptions">
+            <button class="duration-btn" data-time="15">15m</button>
+            <button class="duration-btn active" data-time="25">25m</button>
+            <button class="duration-btn" data-time="45">45m</button>
+            <button class="duration-btn" data-time="60">60m</button>
+        </div>
+
+        <!-- Controls Map -->
+        <div class="controls">
+            <button class="ctrl-btn side" id="resetBtn" title="Reset Timer">
+                <i data-lucide="rotate-ccw"></i>
+            </button>
+            <button class="ctrl-btn main" id="playPauseBtn" title="Start/Pause">
+                <i data-lucide="play" id="playIcon"></i>
+            </button>
+            <button class="ctrl-btn side" id="fullscreenBtn" title="Toggle Fullscreen">
+                <i data-lucide="maximize"></i>
+            </button>
+        </div>
+        <button class="skip-timer-btn" id="skipTimerBtn" onclick="skipTimerForDemo()" title="Skip timer for demo">⏭️ Skip (Demo)</button>
+    </div>
+
+    <nav class="focus-bottom-nav" aria-label="Focus navigation">
+        <a href="dashboard.html" title="Dashboard"><i data-lucide="layout-grid"></i></a>
+        <a href="learning.html" title="Learning Journey"><i data-lucide="route"></i></a>
+        <a href="quiz.html" title="Daily Quiz"><i data-lucide="calendar"></i></a>
+        <a href="revision.html" title="Revision"><i data-lucide="file-text"></i></a>
+        <a href="chat.html" title="AI Tutor"><i data-lucide="message-square"></i></a>
+        <a href="profile.html" title="Profile"><i data-lucide="user"></i></a>
+    </nav>
+
+    <!-- Reward Choice Overlay -->
+    <div class="reward-overlay" id="rewardChoiceOverlay">
+        <div class="reward-card">
+            <div style="font-size:48px;margin-bottom:12px">🎉</div>
+            <h2>Focus Session Complete!</h2>
+            <p>You've earned a break. Choose your reward:</p>
+            <button class="reward-btn break-btn" onclick="startBreakFromReward()">☕ Take a 5-min Break</button>
+            <button class="reward-btn duel-btn" onclick="showWizardDuel()">⚡ Wizard Duel — Battle Voldemort!</button>
+            <button class="reward-btn flappy-btn" onclick="showFlappyBird()">🐦 Flappy Bird — Fly with Harry!</button>
+            <button class="reward-btn spider-btn" onclick="showSpiderVenomGame()">🕷️ Spider-Man vs Green Goblin — NYC Showdown!</button>
+        </div>
+    </div>
+
+    <!-- Wizard Duel Overlay -->
+    <div id="wizardDuelOverlay"></div>
+
+    <!-- Flappy Bird Overlay -->
+    <div id="flappyBirdOverlay"></div>
+
+    <!-- Spider-Man vs Green Goblin Overlay -->
+    <div id="spiderVenomOverlay"></div>
+
+    <!-- Application Logic Implementation -->
+    <script>
+        lucide.createIcons();
+
+        const FOCUS_SESSION_KEY = 'ls-focus-session-v1';
+        const FOCUS_INTERNAL_NAV_TS_KEY = 'ls-focus-internal-nav-ts';
+        const INTERNAL_NAV_GRACE_MS = 1200;
+        
+        let currentDuration = 25; // in minutes
+        let timeLeft = 25 * 60; // in seconds
+        let isRunning = false;
+        let timerInterval = null;
+        let sessionEndTs = null;
+        let isBreakTime = false; // Track if in break mode
+
+        const timeDisplay = document.getElementById('timeDisplay');
+        const timeSubtext = document.getElementById('timeSubtext');
+        const timerCircle = document.getElementById('timerCircle');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const durationBtns = document.querySelectorAll('.duration-btn');
+        const mascotBubble = document.getElementById('mascotBubble');
+        const focusBottomNav = document.querySelector('.focus-bottom-nav');
+
+        function updateFocusNavVisibility(inFullscreen = Boolean(document.fullscreenElement)) {
+            if (!focusBottomNav) return;
+            focusBottomNav.classList.toggle('visible', inFullscreen);
+        }
+
+        function readFocusSession() {
+            try {
+                return JSON.parse(localStorage.getItem(FOCUS_SESSION_KEY)) || null;
+            } catch {
+                return null;
+            }
+        }
+
+        function writeFocusSession(session) {
+            localStorage.setItem(FOCUS_SESSION_KEY, JSON.stringify(session));
+        }
+
+        function clearFocusSession() {
+            localStorage.removeItem(FOCUS_SESSION_KEY);
+        }
+
+        function markInternalNavigationIntent() {
+            try {
+                sessionStorage.setItem(FOCUS_INTERNAL_NAV_TS_KEY, String(Date.now()));
+            } catch {
+                // Ignore storage errors in strict/private environments
+            }
+        }
+
+        function clearInternalNavigationIntent() {
+            try {
+                sessionStorage.removeItem(FOCUS_INTERNAL_NAV_TS_KEY);
+            } catch {
+                // Ignore storage errors in strict/private environments
+            }
+        }
+
+        function isInternalNavigationIntentRecent() {
+            try {
+                const ts = Number(sessionStorage.getItem(FOCUS_INTERNAL_NAV_TS_KEY) || 0);
+                return ts > 0 && (Date.now() - ts) <= INTERNAL_NAV_GRACE_MS;
+            } catch {
+                return false;
+            }
+        }
+
+        function syncFocusSessionState() {
+            const remainingSeconds = Math.max(0, Math.floor(timeLeft));
+
+            if (isRunning && sessionEndTs) {
+                writeFocusSession({
+                    active: true,
+                    isRunning: true,
+                    isBreakTime,
+                    currentDuration,
+                    remainingSeconds,
+                    endTime: sessionEndTs,
+                    updatedAt: Date.now()
+                });
+                return;
+            }
+
+            if (!isRunning && remainingSeconds > 0) {
+                writeFocusSession({
+                    active: false,
+                    isRunning: false,
+                    isBreakTime,
+                    currentDuration,
+                    remainingSeconds,
+                    endTime: null,
+                    updatedAt: Date.now()
+                });
+                return;
+            }
+
+            clearFocusSession();
+        }
+
+        function stopFocusMode(reasonMessage) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            isRunning = false;
+            isBreakTime = false;
+            sessionEndTs = null;
+            timerCircle.classList.remove('active');
+            updatePlayBtnUI();
+            clearFocusSession();
+
+            if (reasonMessage) {
+                timeSubtext.textContent = 'Focus mode stopped';
+                showMascotMessage(reasonMessage, 3500);
+            } else {
+                timeSubtext.textContent = 'Ready to focus?';
+            }
+
+            updateTimeDisplay();
+        }
+
+        function exitFocusAndNavigate(path) {
+            stopFocusMode();
+            markInternalNavigationIntent();
+            window.location.href = path;
+        }
+
+        window.syncFocusSessionState = syncFocusSessionState;
+        window.markFocusInternalNavigation = markInternalNavigationIntent;
+        window.stopFocusMode = stopFocusMode;
+        window.exitFocusAndNavigate = exitFocusAndNavigate;
+
+        function applyDurationButtonState() {
+            durationBtns.forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.time, 10) === currentDuration);
+            });
+        }
+
+        async function ensureFullscreenRequired() {
+            if (document.fullscreenElement) return true;
+            try {
+                await document.documentElement.requestFullscreen();
+                fullscreenBtn.innerHTML = '<i data-lucide="minimize"></i>';
+                updateFocusNavVisibility(true);
+                lucide.createIcons();
+                return true;
+            } catch {
+                stopFocusMode('Fullscreen is required. Focus mode stopped.');
+                return false;
+            }
+        }
+
+        function hydrateFocusSession() {
+            const session = readFocusSession();
+            if (!session) {
+                applyDurationButtonState();
+                updatePlayBtnUI();
+                updateTimeDisplay();
+                return;
+            }
+
+            currentDuration = Number(session.currentDuration) || currentDuration;
+            isBreakTime = Boolean(session.isBreakTime);
+
+            if (session.isRunning && Number(session.endTime)) {
+                sessionEndTs = Number(session.endTime);
+                timeLeft = Math.max(0, Math.ceil((sessionEndTs - Date.now()) / 1000));
+                if (timeLeft > 0) {
+                    isRunning = true;
+                    timerCircle.classList.add('active');
+                    timeSubtext.textContent = isBreakTime ? 'Break time! Relax...' : 'Stay focused!';
+                    timerInterval = setInterval(timerTick, 1000);
+                    ensureFullscreenRequired();
+                } else {
+                    isRunning = false;
+                    sessionEndTs = null;
+                    timeLeft = 0;
+                    timeSubtext.textContent = 'Session complete!';
+                    clearFocusSession();
+                }
+            } else {
+                isRunning = false;
+                sessionEndTs = null;
+                const storedRemaining = Number(session.remainingSeconds);
+                timeLeft = storedRemaining > 0 ? storedRemaining : currentDuration * 60;
+                timeSubtext.textContent = isBreakTime ? 'Break paused' : 'Ready to focus?';
+            }
+
+            applyDurationButtonState();
+            updatePlayBtnUI();
+            updateTimeDisplay();
+        }
+
+        // Show context aware popups on Mascot
+        function showMascotMessage(msg, durationMs = 3500) {
+            mascotBubble.textContent = msg;
+            mascotBubble.classList.add('show');
+            setTimeout(() => mascotBubble.classList.remove('show'), durationMs);
+        }
+
+        // Format and adjust doc title
+        function updateTimeDisplay() {
+            if (isRunning && sessionEndTs) {
+                timeLeft = Math.max(0, Math.ceil((sessionEndTs - Date.now()) / 1000));
+            }
+            const displaySeconds = Math.max(0, timeLeft);
+            const minutes = Math.floor(displaySeconds / 60);
+            const seconds = displaySeconds % 60;
+            timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.title = isRunning ? `(${timeDisplay.textContent}) Focus` : "Deep Focus Mode";
+        }
+
+        function setDuration(minutes) {
+            currentDuration = minutes;
+            timeLeft = minutes * 60;
+            sessionEndTs = null;
+            updateTimeDisplay();
+            if(isRunning) toggleTimer(); // Pause automatically if changing duration
+            
+            applyDurationButtonState();
+            syncFocusSessionState();
+        }
+
+        // Core Countdown
+        function timerTick() {
+            if (isRunning && sessionEndTs) {
+                timeLeft = Math.max(0, Math.ceil((sessionEndTs - Date.now()) / 1000));
+            }
+
+            if (timeLeft > 0) {
+                updateTimeDisplay();
+                syncFocusSessionState();
+            } else {
+                // Timer completed
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isRunning = false;
+                sessionEndTs = null;
+                updatePlayBtnUI();
+                timerCircle.classList.remove('active');
+                
+                if (!isBreakTime) {
+                    // Focus session complete - show reward choices
+                    timeSubtext.textContent = "Session complete!";
+                    showMascotMessage("Great job! You earned a reward! 🎉", 5050);
+                    
+                    if ("Notification" in window && Notification.permission === "granted") {
+                        new Notification("Focus Session Complete!", {
+                            body: "Great work! Choose your reward.",
+                        });
+                    }
+                    
+                    // Show reward choice overlay after brief delay
+                    setTimeout(() => showRewardChoice(), 1500);
+                } else {
+                    // Break completed
+                    timeSubtext.textContent = "Break over! Ready for another session?";
+                    showMascotMessage("Break done! Ready to focus again? 💪", 5050);
+                    isBreakTime = false;
+                    
+                    if ("Notification" in window && Notification.permission === "granted") {
+                        new Notification("Break Complete!", {
+                            body: "Time to get back to work!",
+                        });
+                    }
+                }
+
+                syncFocusSessionState();
+            }
+        }
+
+        async function toggleTimer() {
+            if (isRunning) {
+                // Pause Action
+                if (sessionEndTs) {
+                    timeLeft = Math.max(0, Math.ceil((sessionEndTs - Date.now()) / 1000));
+                }
+                clearInterval(timerInterval);
+                timerInterval = null;
+                isRunning = false;
+                sessionEndTs = null;
+                timerCircle.classList.remove('active');
+                timeSubtext.textContent = "Paused";
+            } else {
+                // Start Action
+                if (timeLeft === 0) setDuration(currentDuration);
+
+                const enteredFullscreen = await ensureFullscreenRequired();
+                if (!enteredFullscreen) return;
+
+                sessionEndTs = Date.now() + (timeLeft * 1000);
+                timerInterval = setInterval(timerTick, 1000);
+                isRunning = true;
+                timerCircle.classList.add('active');
+                timeSubtext.textContent = isBreakTime ? "Break time! Relax..." : "Stay focused!";
+                showMascotMessage("Let's focus! 🚀");
+                
+                // Ensure notification perms are acquired 
+                if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
+                    Notification.requestPermission();
+                }
+            }
+            updatePlayBtnUI();
+            updateTimeDisplay();
+            syncFocusSessionState();
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            isRunning = false;
+            isBreakTime = false;
+            sessionEndTs = null;
+            setDuration(currentDuration);
+            timerCircle.classList.remove('active');
+            updatePlayBtnUI();
+            timeSubtext.textContent = "Ready to focus?";
+            showMascotMessage("Let's go!", 2000);
+            syncFocusSessionState();
+        }
+
+        function updatePlayBtnUI() {
+            if (isRunning) {
+                playPauseBtn.innerHTML = '<i data-lucide="pause"></i>';
+                playPauseBtn.classList.add('is-paused');
+            } else {
+                playPauseBtn.innerHTML = '<i data-lucide="play" style="margin-left:4px"></i>';
+                playPauseBtn.classList.remove('is-paused');
+            }
+            lucide.createIcons();
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                fullscreenBtn.innerHTML = '<i data-lucide="minimize"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    fullscreenBtn.innerHTML = '<i data-lucide="maximize"></i>';
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // Attach listeners
+        playPauseBtn.addEventListener('click', toggleTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        durationBtns.forEach(btn => {
+            btn.addEventListener('click', () => setDuration(parseInt(btn.dataset.time)));
+        });
+
+        // Track in-site navigation so fullscreen and tab handlers do not stop focus during allowed page switches.
+        document.addEventListener('click', (event) => {
+            if (event.defaultPrevented || event.button !== 0) return;
+            const link = event.target.closest('a[href]');
+            if (!link) return;
+            if (link.target && link.target !== '_self') return;
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            if (link.hasAttribute('download')) return;
+
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+            try {
+                const targetUrl = new URL(href, window.location.href);
+                if (targetUrl.origin === window.location.origin) {
+                    markInternalNavigationIntent();
+
+                    const session = readFocusSession();
+                    const activeSession = Boolean(
+                        session &&
+                        session.active &&
+                        session.isRunning &&
+                        Number(session.endTime) > Date.now()
+                    );
+                    if (!activeSession) return;
+
+                    const currentPage = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+                    const targetPage = `${targetUrl.origin}${targetUrl.pathname}${targetUrl.search}`;
+                    if (currentPage === targetPage) return;
+
+                    event.preventDefault();
+                    document.body.classList.add('focus-page-leaving');
+                    // Navigate immediately to preserve user activation as much as possible.
+                    window.location.href = targetUrl.href;
+                }
+            } catch {
+                // Ignore malformed links
+            }
+        }, true);
+
+        // Leaving the tab should immediately end focus mode.
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden && isRunning && !isInternalNavigationIntentRecent()) {
+                stopFocusMode('Focus mode ended because you left this tab.');
+            }
+        });
+        
+        // Exiting fullscreen should strictly reset the Pomodoro session.
+        document.addEventListener('fullscreenchange', () => {
+            const inFullscreen = Boolean(document.fullscreenElement);
+            fullscreenBtn.innerHTML = inFullscreen ? '<i data-lucide="minimize"></i>' : '<i data-lucide="maximize"></i>';
+            updateFocusNavVisibility(inFullscreen);
+            lucide.createIcons();
+
+            if (!inFullscreen && isRunning && !isInternalNavigationIntentRecent()) {
+                if (Notification.permission === 'granted') {
+                    new Notification('Timer Reset!', {
+                        body: 'You exited fullscreen. Timer has been reset.'
+                    });
+                }
+                showMascotMessage('🔄 Timer reset! You exited fullscreen.', 3500);
+                resetTimer();
+            }
+        });
+
+        // Initialize state
+        // New page loaded: clear stale navigation marker so first real tab switch is not ignored.
+        clearInternalNavigationIntent();
+        updateFocusNavVisibility();
+        hydrateFocusSession();
+    </script>
+    <script src="focus-games.js"></script>
+    <script src="i18n.js"></script>
+
+    <script>document.addEventListener('DOMContentLoaded', () => { if (typeof I18n !== 'undefined') I18n.init(); });</script>
+</body>
+</html>

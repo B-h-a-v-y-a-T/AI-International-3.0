@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Quiz - AdaptEd Ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        .level-quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .quiz-header {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 2px solid var(--border, #e5e7eb);
+        }
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .progress-dot {
+            flex: 1;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .progress-dot.active { background: #3B82F6; }
+        .progress-dot.correct { background: #10B981; }
+        .progress-dot.wrong { background: #EF4444; }
+        .question-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            border: 2px solid var(--border, #e5e7eb);
+        }
+        .question-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1E1B4B;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .option {
+            padding: 16px 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .option:hover { border-color: #3B82F6; background: #EFF6FF; }
+        .option.selected { border-color: #3B82F6; background: #EFF6FF; }
+        .option.correct { border-color: #10B981; background: #ECFDF5; }
+        .option.wrong { border-color: #EF4444; background: #FEF2F2; }
+        .option-letter {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: #F3F4F6; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 14px;
+        }
+        .btn-submit {
+            width: 100%; padding: 16px; background: #3B82F6; color: white;
+            border: none; border-radius: 12px; font-size: 16px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
+        }
+        .btn-submit:hover { background: #2563EB; transform: translateY(-2px); }
+        .btn-submit:disabled { background: #9CA3AF; cursor: not-allowed; transform: none; }
+        .result-screen {
+            text-align: center; background: white; border-radius: 20px;
+            padding: 48px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 2px solid var(--border, #e5e7eb);
+        }
+        .result-emoji { font-size: 80px; margin-bottom: 16px; }
+        .result-title { font-size: 32px; font-weight: 800; color: #1E1B4B; margin-bottom: 12px; }
+        .result-subtitle { font-size: 16px; color: #6B7280; margin-bottom: 24px; }
+        .xp-earned { font-size: 48px; font-weight: 800; color: #3B82F6; margin: 24px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+        .stat-box { padding: 20px; background: #F9FAFB; border-radius: 12px; }
+        .stat-value { font-size: 28px; font-weight: 800; color: #1E1B4B; }
+        .stat-label { font-size: 12px; color: #6B7280; text-transform: uppercase; margin-top: 4px; }
+        .pass-badge { display: inline-block; padding: 6px 16px; border-radius: 99px; font-weight: 800; font-size: 14px; margin-bottom: 16px; }
+        .pass-badge.pass { background: #ECFDF5; color: #059669; }
+        .pass-badge.fail { background: #FEF2F2; color: #DC2626; }
+        .explanation-box { background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 16px; margin-top: 12px; text-align: left; font-size: 14px; color: #0369A1; display: none; }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <main class="main-content" style="">
+            <div class="level-quiz-container">
+                <!-- Quiz Screen -->
+                <div id="quizScreen">
+                    <div class="quiz-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h2 id="levelTitle" style="font-size: 20px; font-weight: 800; color: #1E1B4B; margin: 0;">Learning Quiz</h2>
+                            <div style="font-size: 14px; color: #6B7280; font-weight: 600;">
+                                <span id="currentQ">1</span> / <span id="totalQ">5</span>
+                            </div>
+                        </div>
+                        <div class="quiz-progress" id="progressDots"></div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-text" id="questionText">Loading question...</div>
+                        <div id="optionsContainer"></div>
+                        <div class="explanation-box" id="explanationBox"></div>
+                        <button class="btn-submit" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
+                    </div>
+                </div>
+
+                <!-- Result Screen -->
+                <div id="resultScreen" style="display: none;">
+                    <div class="result-screen">
+                        <div class="result-emoji" id="resultEmoji">🎉</div>
+                        <div id="passBadge" class="pass-badge pass">PASSED</div>
+                        <div class="result-title" id="resultTitle">Quiz Complete!</div>
+                        <div class="result-subtitle" id="resultSubtitle"></div>
+
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-value" id="correctCount">0</div>
+                                <div class="stat-label">Correct</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value" id="accuracyPct">0%</div>
+                                <div class="stat-label">Accuracy</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value" id="timeSpent">0s</div>
+                                <div class="stat-label">Time</div>
+                            </div>
+                        </div>
+
+                        <button class="btn-submit" onclick="window.location.href='learning.html'" style="margin-top: 24px;">
+                            Back to Learning Path
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="data-agent.js"></script>
+    <script src="feature-agents.js"></script>
+    <script src="question-bank.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let selectedOption = -1;
+        let correctAnswers = 0;
+        let startTime = Date.now();
+        let questionStartTime = Date.now();
+        let wrongIds = [];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizTopic = urlParams.get('topic') || '';
+
+        function initQuiz() {
+            console.log('[Learning Quiz] Initializing for topic:', quizTopic);
+
+            if (!quizTopic) {
+                console.error('[Learning Quiz] No topic specified in URL');
+                alert('No topic specified. Redirecting...');
+                window.location.href = 'learning.html';
+                return;
+            }
+
+            // Set title
+            const meta = (typeof TopicMetadata !== 'undefined') ? (TopicMetadata[quizTopic] || {}) : {};
+            const displayName = meta.displayName || quizTopic.replace(/_/g, ' ');
+            document.getElementById('levelTitle').textContent = displayName + ' Quiz';
+
+            // Get questions from LearningQuizManager (uses VectorDB + review injection)
+            if (typeof LearningQuizManager !== 'undefined') {
+                questions = LearningQuizManager.getQuizQuestions(quizTopic, 5);
+            } else if (typeof QuestionBank !== 'undefined' && QuestionBank[quizTopic]) {
+                questions = [...QuestionBank[quizTopic]].sort(() => Math.random() - 0.5).slice(0, 5);
+            }
+
+            console.log('[Learning Quiz] Questions loaded:', questions.length);
+
+            if (!questions.length) {
+                console.error('Topic mismatch: no questions for', quizTopic);
+                alert('No questions available for this topic. Redirecting...');
+                window.location.href = 'learning.html';
+                return;
+            }
+
+            document.getElementById('totalQ').textContent = questions.length;
+            renderProgressDots();
+            loadQuestion();
+        }
+
+        function renderProgressDots() {
+            const container = document.getElementById('progressDots');
+            container.innerHTML = questions.map((_, i) =>
+                `<div class="progress-dot ${i === currentIndex ? 'active' : ''}"></div>`
+            ).join('');
+        }
+
+        function loadQuestion() {
+            if (currentIndex >= questions.length) {
+                showResults();
+                return;
+            }
+
+            questionStartTime = Date.now();
+            selectedOption = -1;
+
+            const q = questions[currentIndex];
+            document.getElementById('currentQ').textContent = currentIndex + 1;
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('explanationBox').style.display = 'none';
+
+            const optionsHTML = q.options.map((opt, i) => `
+                <div class="option" onclick="selectOption(${i})">
+                    <div class="option-letter">${'ABCD'[i]}</div>
+                    <span>${opt}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('optionsContainer').innerHTML = optionsHTML;
+            document.getElementById('submitBtn').disabled = true;
+
+            renderProgressDots();
+        }
+
+        function selectOption(index) {
+            selectedOption = index;
+            document.querySelectorAll('.option').forEach((el, i) => {
+                el.classList.toggle('selected', i === index);
+            });
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (selectedOption === -1) return;
+
+            const q = questions[currentIndex];
+            const isCorrect = selectedOption === q.correctIndex;
+            const timeTaken = Math.floor((Date.now() - questionStartTime) / 1000);
+
+            if (isCorrect) {
+                correctAnswers++;
+            } else {
+                wrongIds.push(q.id);
+            }
+
+            // Update per-question tracking in LearningPathEngine if available
+            if (typeof LearningPathEngine !== 'undefined') {
+                LearningPathEngine.updateFromQuiz(quizTopic, isCorrect, timeTaken);
+            }
+
+            // Visual feedback
+            const options = document.querySelectorAll('.option');
+            options[q.correctIndex].classList.add('correct');
+            if (!isCorrect) {
+                options[selectedOption].classList.add('wrong');
+            }
+
+            // Show explanation
+            if (q.explanation) {
+                const explBox = document.getElementById('explanationBox');
+                explBox.textContent = '💡 ' + q.explanation;
+                explBox.style.display = 'block';
+            }
+
+            // Update progress dot
+            const dots = document.querySelectorAll('.progress-dot');
+            dots[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.add(isCorrect ? 'correct' : 'wrong');
+
+            // Disable submit, auto-advance
+            document.getElementById('submitBtn').disabled = true;
+            setTimeout(() => {
+                currentIndex++;
+                loadQuestion();
+            }, 2000);
+        }
+
+        async function showResults() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+
+            const accuracy = Math.round((correctAnswers / questions.length) * 100);
+            const totalTime = Math.floor((Date.now() - startTime) / 1000);
+
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('accuracyPct').textContent = accuracy + '%';
+            document.getElementById('timeSpent').textContent = totalTime + 's';
+
+            // Log study activity
+            if (typeof StudyTracker !== 'undefined') {
+                StudyTracker.logSubmission(questions.length);
+            }
+
+            // Call validateNodeProgress for gated progression
+            let validationResult = { passed: false };
+            if (typeof LearningQuizManager !== 'undefined') {
+                validationResult = LearningQuizManager.validateNodeProgress(
+                    quizTopic, accuracy, questions.length, correctAnswers, wrongIds
+                );
+                console.log('[Learning Quiz] Validation result:', validationResult);
+            }
+
+            if (window.QuizAgent && typeof window.QuizAgent.recordQuizSession === 'function') {
+                try {
+                    await window.QuizAgent.recordQuizSession({
+                        topic: quizTopic,
+                        total: questions.length,
+                        correct: correctAnswers,
+                        score: accuracy,
+                        questions,
+                        wrongQuestionIds: wrongIds,
+                        weakAreas: [quizTopic],
+                        timeTaken: totalTime,
+                        exam: (window.ExamManager && typeof ExamManager.get === 'function') ? ExamManager.get() : 'JEE'
+                    });
+
+                    if (window.LearningPathAgent && typeof window.LearningPathAgent.adaptPlanFromPerformance === 'function') {
+                        await window.LearningPathAgent.adaptPlanFromPerformance();
+                    }
+                } catch (e) {
+                    console.warn('[Learning Quiz] Failed to record Data Agent session:', e);
+                }
+            }
+
+            const badge = document.getElementById('passBadge');
+            if (validationResult.passed) {
+                badge.className = 'pass-badge pass';
+                badge.textContent = '✅ PASSED — Node Unlocked!';
+                document.getElementById('resultEmoji').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = 'Excellent! Module Complete!';
+                document.getElementById('resultSubtitle').textContent = 'Next module has been unlocked on your learning path.';
+            } else {
+                badge.className = 'pass-badge fail';
+                badge.textContent = '❌ NEEDS IMPROVEMENT (Need 70%+)';
+                document.getElementById('resultEmoji').textContent = '📚';
+                document.getElementById('resultTitle').textContent = 'Keep Practicing!';
+                const failCount = validationResult.failureCount || 0;
+                document.getElementById('resultSubtitle').textContent =
+                    failCount >= 3
+                    ? 'A reinforcement module has been added to your path.'
+                    : `Score 70% or higher to unlock the next module. (Attempt ${failCount})`;
+            }
+        }
+
+        // Initialize
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initQuiz);
+        } else {
+            initQuiz();
+        }
+
+        lucide.createIcons();
+    </script>
+
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+</html>

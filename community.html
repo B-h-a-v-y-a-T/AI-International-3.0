@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">       
+    <title>Community – AdaptEd Ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 10px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 16px; box-shadow: 2px 2px 0px var(--border); overflow: hidden; }
+        .sidebar-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; color: var(--text); font-weight: 500; transition: all 0.2s; cursor: pointer; }
+        .sidebar-item:hover { background: rgba(124, 58, 237, 0.08); color: var(--primary); }
+        .sidebar-item.active { background: rgba(124, 58, 237, 0.12); color: var(--primary); position: relative; }
+        .sidebar-item.active::before { content: ''; position: absolute; left: -4px; top: 50%; transform: translateY(-50%); width: 4px; height: 20px; border-radius: 4px; background: var(--primary); }
+        .channel-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-muted); padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .channel-item:hover, .channel-item.active { color: var(--text); background: #f1f5f9; }
+        .post-card { background: white; border: 1px solid var(--border); border-radius: 16px; box-shadow: 2px 2px 0px var(--border); padding: 20px; transition: transform 0.2s ease, box-shadow 0.2s; display: flex; gap: 16px; }
+        .post-card:hover { transform: scale(1.01); box-shadow: 2px 2px 0px var(--border); }
+        .vote-col { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 40px; }
+        .vote-btn { color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+        .vote-btn:hover { color: var(--primary); }
+        .tab-btn { font-weight: 600; padding: 8px 16px; border-radius: 20px; color: var(--text-muted); transition: all 0.2s; border: 2px solid var(--border); background: transparent; cursor: pointer; }
+        .tab-btn.active { background: var(--primary); color: white; }
+        .tag-badge { font-size: 12px; padding: 4px 10px; border-radius: 12px; font-weight: 600; background: #f1f5f9; color: var(--text-muted); display: inline-block;}
+        .tag-badge.physics { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .tag-badge.chemistry { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .tag-badge.mathematics { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .tag-badge.other { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
+        .new-badge { background: #ef4444; color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 6px; margin-left: 8px; vertical-align: middle; }
+        
+        .markdown-content h1, .markdown-content h2, .markdown-content h3 { font-weight: bold; margin-bottom: 10px; margin-top: 15px; color: #1f2937; }
+        .markdown-content h1 { font-size: 1.5em; }
+        .markdown-content h2 { font-size: 1.25em; }
+        .markdown-content h3 { font-size: 1.1em; }
+        .markdown-content ul { list-style-type: disc; padding-left: 20px; margin-bottom: 10px; }
+        .markdown-content ol { list-style-type: decimal; padding-left: 20px; margin-bottom: 10px; }
+        .markdown-content li { margin-bottom: 4px; }
+        .markdown-content p { margin-bottom: 10px; }
+        .markdown-content strong { font-weight: 700; color: #111827; }
+        .markdown-content em { font-style: italic; }
+        .markdown-content code { background: #f1f5f9; padding: 2px 4px; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 20px; height: 20px; display: block;">
+                        <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+                        <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+                        <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+                        <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+                        <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+                        <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+                        <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+                        <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+                        <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <div class="logo-text">AdaptEd Ai</div>
+                    <div class="logo-sub" data-i18n="sidebar.tagline">Emotion-Aware Study Companion</div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav" style="margin-top:20px;">
+                <!-- Links will be populated by app.js -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content flex flex-col items-center" style="padding: 0; position:relative; overflow-y:auto; overflow-x:hidden;">
+            
+            <!-- Page Header -->
+            <div class="w-full max-w-full px-8 md:px-12 pt-8 md:pt-12 flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-extrabold text-[var(--text-primary)] flex items-center gap-2">
+                        <i data-lucide="users" style="width:22px;height:22px"></i> Community Engagement
+                    </h1>
+                    <p class="text-[14px] text-[var(--text-secondary)] mt-1">Connect and collaborate with your JEE squad!</p>
+                </div>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="btn btn-secondary btn-sm" style="border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: white; border: 1px solid var(--border); padding: 0;">
+                </button>
+            </div>
+
+            <div class="w-full flex-1 p-8 md:p-12 md:pt-8 flex flex-col md:flex-row gap-8 lg:gap-12 items-start justify-center max-w-full">
+                <!-- LEFT SIDEBAR -->
+                <div class="hidden md:flex flex-col w-[300px] flex-shrink-0 gap-6 glass-panel p-5 h-fit sticky top-8" style="background:white">
+                    <div>
+                        <div class="sidebar-item active" onclick="loadTab('home', this)">
+                            <i data-lucide="home" style="width:20px;height:20px;"></i> Home
+                        </div>
+                        <div class="sidebar-item" onclick="loadTab('popular', this)">
+                            <i data-lucide="trending-up" style="width:20px;height:20px;"></i> Popular
+                        </div>
+                        <div class="sidebar-item" onclick="loadTab('explore', this)">
+                            <i data-lucide="compass" style="width:20px;height:20px;"></i> Explore
+                        </div>
+                    </div>
+
+                    <hr class="border-[var(--border)]">
+
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-500 mb-3 px-3 uppercase tracking-wider">Your Channels</h3>
+                        <div class="channel-item" onclick="filterByTag('physics', this)"><span class="text-blue-500">#</span> physics</div>
+                        <div class="channel-item" onclick="filterByTag('chemistry', this)"><span class="text-emerald-500">#</span> chemistry</div>
+                        <div class="channel-item" onclick="filterByTag('mathematics', this)"><span class="text-red-500">#</span> mathematics</div>
+                        <div class="channel-item" onclick="filterByTag('jee-mains', this)"><span class="text-purple-500">#</span> jee-mains</div>
+                        <div class="channel-item" onclick="filterByTag('jee-advanced', this)"><span class="text-indigo-500">#</span> jee-advanced</div>
+                        <div class="channel-item" onclick="filterByTag('doubt-solving', this)"><span class="text-orange-500">#</span> doubt-solving</div>
+                    </div>
+                </div>
+
+                <!-- CENTER FEED -->
+                <div class="flex-1 flex flex-col gap-6 w-full" style="min-width: 600px;">
+                    <!-- Search -->
+                    <div class="glass-panel p-5" style="background:white">
+                        <div class="relative bg-white rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-[#7c3aed] flex items-center px-4 py-2">
+                            <i data-lucide="search" class="text-gray-400 mr-2" style="width:18px;height:18px;"></i>
+                            <input type="text" id="searchInput" placeholder="Search discussions..." class="w-full outline-none text-sm text-gray-700 bg-transparent" onkeyup="searchPosts()">
+                        </div>
+                    </div>
+
+                    <!-- Sort Tabs -->
+                    <div class="flex items-center gap-2 px-2 bg-transparent">
+                        <button class="tab-btn active bg-blue-400 text-white shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B] shadow-blue-400/30" onclick="sortPosts('new', this)" style="border-radius: 20px; transition: all 0.2s;">New</button>
+                        <button class="tab-btn text-gray-500" onclick="sortPosts('hot', this)" style="border-radius: 20px; transition: all 0.2s;">Hot</button>
+                        <button class="tab-btn text-gray-500" onclick="sortPosts('top', this)" style="border-radius: 20px; transition: all 0.2s;">Top</button>
+                    </div>
+
+                    <!-- Posts Container -->
+                    <div id="postsContainer" class="flex flex-col gap-4 pb-24">
+                        <!-- Posts dynamically rendered here -->
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR -->
+                <div class="hidden lg:flex flex-col w-[360px] flex-shrink-0 gap-6 sticky top-8 h-fit pb-10">
+                    
+                    <!-- Leaderboard Widget -->
+                    <div class="glass-panel p-5 border-t-4 border-t-[#1e1b4b]" style="background:white">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i data-lucide="trophy" style="width:20px;height:20px;color:#1e1b4b"></i>
+                            <h2 class="font-black text-xl text-[#1e1b4b]" data-i18n="nav.leaderboard">Leaderboard</h2>
+                        </div>
+                        <p class="text-[13px] text-gray-500 font-medium mb-4" data-i18n="lb.subtitle">Friendly competition with your JEE squad!</p>
+                        
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center justify-between bg-gray-50 p-2 rounded-xl border border-gray-100">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="font-black text-yellow-500 w-4 text-center">1</span>
+                                    <div class="w-7 h-7 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center font-bold text-xs" style="box-shadow: 0 0 10px rgba(234,179,8,0.2)">V</div>
+                                    <span class="font-bold text-gray-800 text-sm">Vedant</span>
+                                </div>
+                                <span class="font-bold text-[#7c3aed] text-xs">4,200 XP</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="font-bold text-gray-400 w-4 text-center">2</span>
+                                    <div class="w-7 h-7 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold text-xs">P</div>
+                                    <span class="font-bold text-gray-700 text-sm">PrachiA</span>
+                                </div>
+                                <span class="font-bold text-[#7c3aed] text-xs">3,850 XP</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2">
+                                <div class="flex items-center gap-2.5">
+                                    <span class="font-bold text-orange-400 w-4 text-center">3</span>
+                                    <div class="w-7 h-7 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-xs">A</div>
+                                    <span class="font-bold text-gray-700 text-sm">Aryan</span>
+                                </div>
+                                <span class="font-bold text-[#7c3aed] text-xs">3,120 XP</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-3 pt-3 border-t border-gray-100 text-xs font-bold text-[#7c3aed] hover:text-[#6d28d9] transition-colors text-center">View Full Leaderboard</button>
+                    </div>
+
+                    <!-- About Community -->
+                    <div class="glass-panel p-5 relative overflow-hidden" style="background:white">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#7c3aed] to-pink-500"></div>
+                        <h2 class="font-bold text-lg mb-2 flex items-center gap-2"><i data-lucide="users" style="width:20px;height:20px;color:#7c3aed"></i> About Community</h2>
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">A dedicated space for AdaptEd Ai users to ask doubts, share knowledge, and discuss physics, chemistry, and mathematics.</p>
+                        <div class="flex justify-between text-sm text-gray-500 font-semibold mb-4 border-t border-gray-100 pt-3">
+                            <div class="flex flex-col">
+                                <span class="text-gray-900 font-bold text-lg">24.5k</span>
+                                members
+                            </div>
+                            <div class="flex flex-col text-right">
+                                <span class="text-emerald-500 font-bold text-lg flex items-center justify-end gap-1"><div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> 1,204</span>
+                                online
+                            </div>
+                        </div>
+                        <button class="w-full bg-[#1e1b4b] text-white py-2 rounded-xl font-bold hover:opacity-90 transition-all">Joined</button>
+                    </div>
+
+                    <!-- Trending Tags -->
+                    <div class="glass-panel p-5" style="background:white">
+                        <h2 class="font-bold text-[15px] mb-4 text-gray-800">Trending Topics</h2>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-badge physics cursor-pointer hover:opacity-80" onclick="filterByTag('physics')">#physics</span>
+                            <span class="tag-badge chemistry cursor-pointer hover:opacity-80" onclick="filterByTag('chemistry')">#chemistry</span>
+                            <span class="tag-badge mathematics cursor-pointer hover:opacity-80" onclick="filterByTag('mathematics')">#mathematics</span>
+                            <span class="tag-badge other cursor-pointer hover:opacity-80" onclick="filterByTag('jee-advanced')">#jee-advanced</span>
+                            <span class="tag-badge other cursor-pointer hover:opacity-80" onclick="filterByTag('calculus')">#calculus</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Create Post -->
+                    <div class="glass-panel p-5" style="background:white; border: 2px solid #f1f5f9;">
+                        <h2 class="font-bold text-[16px] mb-4 text-gray-800 flex items-center gap-2">
+                            <i data-lucide="edit-3" style="width:18px;height:18px;color:#7c3aed"></i> Create a Post
+                        </h2>
+                        <div class="flex flex-col gap-3">
+                            <input type="text" id="postTitle" placeholder="Title of your post..." class="w-full text-[14px] font-bold outline-none border-b border-gray-100 pb-2 bg-transparent text-gray-800">
+                            <textarea id="postContent" placeholder="What's on your mind? Ask a doubt..." class="w-full outline-none text-sm text-gray-600 resize-none h-20 custom-scrollbar bg-transparent" oninput="this.style.height = '';this.style.height = this.scrollHeight + 'px'"></textarea>
+                            
+                            <div class="flex justify-between items-center pt-2 gap-2 mt-2">
+                                <select id="postTag" class="text-xs px-2 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 outline-none cursor-pointer flex-1">
+                                    <option value="physics" data-i18n="quiz.physics">Physics</option>
+                                    <option value="chemistry" data-i18n="quiz.chemistry">Chemistry</option>
+                                    <option value="mathematics">Mathematics</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button onclick="createPost()" class="bg-[#7c3aed] text-white px-5 py-1.5 rounded-lg font-bold text-sm hover:bg-[#6d28d9] shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B] transition-all whitespace-nowrap">Post</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- View Post Modal Overlay -->
+    <div id="postModalOverlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 pt-12" onclick="closePostModal()">
+        <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col relative shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B] transition-all duration-200" onclick="event.stopPropagation()">
+            <button onclick="closePostModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 bg-gray-100 rounded-full p-1 z-10"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+            <div class="p-6 md:p-8 overflow-y-auto custom-scrollbar" id="modalContent">
+                <!-- content injected via js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.lucide) {
+                lucide.createIcons();
+            }
+            initCommunity();
+        });
+
+        // ─── Community Data Logic (LocalStorage) ───
+        
+        let posts = [];
+        let currentFilter = '';
+        let currentSort = 'new';
+        
+        const now = Date.now();
+        const hr = 1000 * 60 * 60;
+        
+        // Initial Mock Data (13 Posts with varied comments)
+        const defaultPosts = [
+            {
+                id: 1,
+                title: "How to master Rotational Mechanics for JEE?",
+                content: "I'm really struggling with finding the direction of net torque and angular momentum in complex setups. Does anyone have a good framework for approaching these questions? Also, are HCV problems enough for advanced?",
+                tags: "physics",
+                author: "Alex_JEE",
+                upvotes: 42,
+                comments: [
+                    { author: "PhysicsGuru", text: "Always use the right-hand rule strictly. Curl your fingers from r to F for torque. Also HCV is great for theory but do Irodov for practice!", createdAt: new Date(now - hr * 1.5).toISOString() },
+                    { author: "Vedant", text: "Break it down into pure rotation and pure translation first before trying rolling mechanics!", createdAt: new Date(now - hr * 0.5).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 2).toISOString(),
+            },
+            {
+                id: 2,
+                title: "Best resources for Coordinate Geometry?",
+                content: "Just started Calculus and Coordinate Geometry. Feeling a bit confused with conic sections. Any recommended YouTube channels or specific modules here on AdaptEd?",
+                tags: "mathematics",
+                author: "MathWhiz99",
+                upvotes: 18,
+                comments: [
+                    { author: "Aryan", text: "Mohit Tyagi sir's old lectures on YouTube are unmatched for Conic Sections.", createdAt: new Date(now - hr * 3).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 5).toISOString(),
+            },
+            {
+                id: 3,
+                title: "Inorganic Chemistry memorization tricks? 😭",
+                content: "There's so much to memorize in p-block and s-block. How do you guys manage to retain all these exceptions and reactions without forgetting them a week later?",
+                tags: "chemistry",
+                author: "Vedant",
+                upvotes: 89,
+                comments: [
+                    { author: "ChemNerd", text: "Flashcards! Make Anki cards and review them every morning.", createdAt: new Date(now - hr * 20).toISOString() },
+                    { author: "ReactMaster", text: "Don't just memorize, understand the periodic trends (shielding effect, inert pair effect). The exceptions will start making sense!", createdAt: new Date(now - hr * 18).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 24).toISOString(),
+            },
+            {
+                id: 4,
+                title: "How many mock tests a week should I give?",
+                content: "Is 2 full-length mocks per week too much 3 months before JEE Mains? I get exhausted analyzing them.",
+                tags: "other",
+                author: "Rahul99",
+                upvotes: 120,
+                comments: [],
+                createdAt: new Date(now - hr * 48).toISOString(),
+            },
+            {
+                id: 5,
+                title: "Doubt in Capacitors (Dielectric Insertions)",
+                content: "When we insert a dielectric slab of thickness t into a capacitor of distance d (t < d), wait, does the field inside the dielectric become E/k? I keep messing up the potential difference formula.",
+                tags: "physics",
+                author: "Priya_N",
+                upvotes: 34,
+                comments: [
+                    { author: "Alex_JEE", text: "Yes, field inside is E0/K. Total potential is E0(d-t) + (E0/K)*t", createdAt: new Date(now - hr * 10).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 12).toISOString(),
+            },
+            {
+                id: 6,
+                title: "Integration trick for fractional powers?",
+                content: "Whenever I see integrals with (x+1)^(1/3) and x^(1/2) in the denominator, I get stuck. What substitution should we use?",
+                tags: "mathematics",
+                author: "IntegrationFan",
+                upvotes: 56,
+                comments: [
+                    { author: "MathWhiz99", text: "Take the LCM of the denominators of the fractions. Here it's 6, so substitute x = t^6.", createdAt: new Date(now - hr * 6).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 20).toISOString(),
+            },
+            {
+                id: 7,
+                title: "Is NCERT enough for modern physics?",
+                content: "Everybody says read NCERT line by line for Modern Physics. Is it sufficient for JEE Advanced or just Mains?",
+                tags: "physics",
+                author: "QuantumBoy",
+                upvotes: 77,
+                comments: [
+                    { author: "PhysicsGuru", text: "Mains yes. For advanced you definitely need HC Verma and PYQs. Photoelectric effect has very tricky graphs in Advanced.", createdAt: new Date(now - hr * 30).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 40).toISOString(),
+            },
+            {
+                id: 8,
+                title: "Mechanism of Aldol Condensation",
+                content: "Can someone explain the exact role of base in cross aldol condensation when we have one aldehyde with alpha hydrogen and one without?",
+                tags: "chemistry",
+                author: "CarbonylGroup",
+                upvotes: 21,
+                comments: [],
+                createdAt: new Date(now - hr * 8).toISOString(),
+            },
+            {
+                id: 9,
+                title: "Which branch to choose at old IITs vs new IITs?",
+                content: "Would you prefer Civil at IIT Bombay or CSE at IIT Ropar? I'm highly confused about placement versus college tag.",
+                tags: "other",
+                author: "FutureIITian",
+                upvotes: 110,
+                comments: [
+                    { author: "Senior22", text: "If you want pure tech placement, take CSE. If you want startup culture, consulting, or MBA later, old IIT tag helps massively.", createdAt: new Date(now - hr * 15).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 70).toISOString(),
+            },
+            {
+                id: 10,
+                title: "Limits as Sum formulas",
+                content: "I always forget the standard expansion of Limit n->infinity (1/n) * Sum f(r/n). Any hack to remember limits of integration?",
+                tags: "mathematics",
+                author: "Limitless",
+                upvotes: 43,
+                comments: [
+                    { author: "MathWhiz99", text: "r/n becomes x. 1/n becomes dx. Summation becomes integral from 0 to 1. Easiest chapter once you get the mapping!", createdAt: new Date(now - hr * 7).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 9).toISOString(),
+            },
+            {
+                id: 11,
+                title: "Why is F=ma not applicable for variable mass?",
+                content: "If a rocket is expelling gas, can't we just integrate F=dp/dt? Why does thrust force formula look different?",
+                tags: "physics",
+                author: "AstroNerd",
+                upvotes: 62,
+                comments: [],
+                createdAt: new Date(now - hr * 50).toISOString(),
+            },
+            {
+                id: 12,
+                title: "Reagents for oxidation: PCC vs KMnO4?",
+                content: "Is PCC dry and KMnO4 aqueous? Does PCC only stop at aldehyde for primary alcohols?",
+                tags: "chemistry",
+                author: "ChemNinja",
+                upvotes: 29,
+                comments: [
+                    { author: "Vedant", text: "Yes! PCC is a mild oxidizing agent, it stops primary alcohols at aldehydes. KMnO4 is strong and takes them all the way to carboxylic acids.", createdAt: new Date(now - hr * 1).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 3).toISOString(),
+            },
+            {
+                id: 13,
+                title: "Probability distribution shortcut?",
+                content: "There's a shortcut to find mean and variance for binomial distribution. What was it? np and npq right?",
+                tags: "mathematics",
+                author: "DiceRoller",
+                upvotes: 15,
+                comments: [
+                    { author: "Aryan", text: "Yes. Mean = np. Variance = npq. Standard Deviation = sqrt(npq). Super easy 4 marks for mains.", createdAt: new Date(now - hr * 0.2).toISOString() }
+                ],
+                createdAt: new Date(now - hr * 1).toISOString(),
+            }
+        ];
+
+        function initCommunity() {
+            // First time load might have old items without comments array. Let's fix that dynamically
+            const savedPosts = localStorage.getItem('community_posts');
+            if(savedPosts) {
+                try {
+                    let parsed = JSON.parse(savedPosts);
+                    // Add new defaults to parsed if they don't exist (to satisfy the 10 post requirement if user already has data)
+                    
+                    // Simple logic: if fewer than 10, clear localStorage and load defaults.
+                    if(parsed.length < 5) {
+                         posts = [...defaultPosts];
+                         savePosts();
+                    } else {
+                        posts = parsed;
+                        posts.forEach(p => { if(!p.comments) p.comments = []; });
+                        savePosts();
+                    }
+                } catch(e) { posts = defaultPosts; }
+            } else {
+                posts = [...defaultPosts];
+                savePosts();
+            }
+            renderPosts();
+        }
+
+        function savePosts() {
+            localStorage.setItem('community_posts', JSON.stringify(posts));
+        }
+
+        // ─── Rendering Logic ───
+
+        function formatTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const seconds = Math.floor((new Date() - date) / 1000);
+            if(seconds < 60) return `${Math.max(1, seconds)}s ago`;
+            if(seconds < 3600) return `${Math.floor(seconds/60)}m ago`;
+            if(seconds < 86400) return `${Math.floor(seconds/3600)}h ago`;
+            return `${Math.floor(seconds/86400)}d ago`;
+        }
+
+        function getTagClass(tag) {
+            if(['physics', 'chemistry', 'mathematics'].includes(tag)) return tag;
+            return 'other';
+        }
+
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            if(!container) return;
+
+            let filtered = [...posts];
+
+            // Search filter
+            const searchInput = document.getElementById('searchInput');
+            if(searchInput && searchInput.value) {
+                const q = searchInput.value.toLowerCase();
+                filtered = filtered.filter(p => p.title.toLowerCase().includes(q) || p.content.toLowerCase().includes(q));
+            }
+
+            // Tag filter
+            if(currentFilter) {
+                filtered = filtered.filter(p => p.tags === currentFilter);
+            }
+
+            // Sort
+            filtered.sort((a,b) => {
+                if(currentSort === 'new') return new Date(b.createdAt) - new Date(a.createdAt);
+                if(currentSort === 'top') return b.upvotes - a.upvotes;
+                if(currentSort === 'hot') {
+                    // mix of score and recency
+                    const aScore = a.upvotes / (Math.pow((new Date() - new Date(a.createdAt))/3600000 + 2, 1.5));
+                    const bScore = b.upvotes / (Math.pow((new Date() - new Date(b.createdAt))/3600000 + 2, 1.5));
+                    return bScore - aScore;
+                }
+                return 0;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 bg-white rounded-xl border border-gray-200 mt-2">
+                        <div style="display:flex; justify-content:center; margin-bottom:12px; color:#cbd5e1;">
+                            <i data-lucide="message-square" style="width:40px;height:40px;"></i>
+                        </div>
+                        <p class="font-bold text-gray-500">No posts found.</p>
+                        <p class="text-sm text-gray-400">Be the first to contribute to this topic!</p>
+                    </div>
+                `;
+                if(window.lucide) window.lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => {
+                const isNew = (new Date() - new Date(p.createdAt)) < 1000 * 60 * 60 * 12; // less than 12h
+                const commentCount = p.comments ? p.comments.length : 0;
+                let previewHtml = '';
+                if(p.type === 'study_material' && p.fileUrl) {
+                    if (p.fileUrl.endsWith('.pdf') || p.fileUrl.includes('pdf')) {
+                       previewHtml = `<div class="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-200" onclick="event.stopPropagation(); window.open('${p.fileUrl}', '_blank')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2"><i data-lucide="file-text" style="width:16px;height:16px;color:#3b82f6"></i> <span class="font-bold text-sm text-gray-700">Study Material attached</span></div>
+                                <button class="text-xs bg-[#3b82f6] text-white px-3 py-1.5 rounded-md font-bold hover:bg-blue-600 transition flex items-center justify-center w-max gap-1">
+                                    <i data-lucide="eye" style="width:14px;height:14px"></i> View Material
+                                </button>
+                            </div>
+                       </div>`;
+                    } else if (p.fileUrl.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                       previewHtml = `<div class="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-200" onclick="event.stopPropagation(); window.open('${p.fileUrl}', '_blank')">
+                           <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2"><i data-lucide="image" style="width:16px;height:16px;color:#3b82f6"></i> <span class="font-bold text-sm text-gray-700">Study Image attached</span></div>
+                                <button class="text-xs bg-[#3b82f6] text-white px-3 py-1.5 rounded-md font-bold hover:bg-blue-600 transition flex items-center justify-center w-max gap-1">
+                                    <i data-lucide="eye" style="width:14px;height:14px"></i> View Material
+                                </button>
+                            </div>
+                           <img src="${p.fileUrl}" class="max-h-[150px] w-auto rounded-lg border border-gray-200 object-contain mx-auto" />
+                       </div>`;
+                    } else {
+                       previewHtml = `<div class="mt-3 bg-gray-50 p-3 rounded-lg border border-gray-200" onclick="event.stopPropagation(); window.open('${p.fileUrl}', '_blank')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2"><i data-lucide="link" style="width:16px;height:16px;color:#3b82f6"></i> <span class="font-bold text-sm text-gray-700">Resource Link Attached</span></div>
+                                <button class="text-xs bg-[#3b82f6] text-white px-3 py-1.5 rounded-md font-bold hover:bg-blue-600 transition flex items-center justify-center w-max gap-1">
+                                    <i data-lucide="eye" style="width:14px;height:14px"></i> View Material
+                                </button>
+                            </div>
+                       </div>`;
+                    }
+                }
+
+                return `
+                <div class="post-card cursor-pointer" onclick="openPost(${p.id})">
+                    <div class="vote-col" onclick="handleUpvote(event, ${p.id})">
+                        <i data-lucide="chevron-up" style="width:24px;height:24px;" class="vote-btn cursor-pointer ${p.voted ? 'text-[#7c3aed]' : ''}"></i>
+                        <span class="font-bold text-gray-600 text-sm">${p.upvotes}</span>
+                        <i data-lucide="chevron-down" style="width:24px;height:24px;" class="vote-btn cursor-pointer"></i>
+                    </div>
+                    <div class="flex flex-col flex-1 pl-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <span class="tag-badge ${getTagClass(p.tags)}">#${p.tags}</span>
+                            <span class="text-xs text-gray-400 font-medium whitespace-nowrap overflow-hidden text-ellipsis flex-1">
+                                Posted by <span class="text-gray-600 font-bold">${p.author}</span> • ${formatTimeAgo(p.createdAt)}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-gray-800 text-[17px] mb-1.5 leading-tight flex items-center pr-2">
+                            <span class="truncate">${p.title}</span>
+                            ${isNew ? '<span class="new-badge ml-2 shrink-0">NEW</span>' : ''}
+                        </h3>
+                        <p class="text-[14px] text-gray-500 leading-relaxed line-clamp-2">${typeof marked !== 'undefined' ? marked.parse(p.content).replace(/<[^>]+>/g, '') : p.content.replace(/</g,'&lt;')}</p>
+                        ${previewHtml}
+                        <div class="flex gap-4 mt-3 text-gray-400 text-xs font-semibold">
+                            <span class="flex items-center gap-1.5 hover:text-gray-600 transition"><i data-lucide="message-circle" style="width:14px;height:14px;"></i> ${commentCount} Discuss</span>
+                            <span class="flex items-center gap-1.5 hover:text-gray-600 transition" onclick="event.stopPropagation()"><i data-lucide="share-2" style="width:14px;height:14px;"></i> Share</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            if(window.lucide) window.lucide.createIcons();
+        }
+
+        // ─── Actions ───
+
+        function createPost() {
+            const titleInput = document.getElementById('postTitle');
+            const contentInput = document.getElementById('postContent');
+            const tagInput = document.getElementById('postTag');
+            
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+            const tag = tagInput.value;
+
+            if(!title || !content) {
+                alert("Please fill in both title and content to post.");
+                return;
+            }
+
+            const newPost = {
+                id: Date.now(),
+                title: title,
+                content: content,
+                tags: tag,
+                author: "Vedant", // Current user
+                upvotes: 1, // Start with 1 self-upvote
+                voted: true,
+                comments: [],
+                createdAt: new Date().toISOString()
+            };
+
+            posts.unshift(newPost);
+            savePosts();
+            
+            // clear
+            titleInput.value = '';
+            contentInput.value = '';
+            contentInput.style.height = '80px';
+            
+            // force sorting to 'new' when posting
+            currentSort = 'new';
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.tab-btn').classList.add('active'); 
+            
+            // clear search and tags so user sees their post
+            document.getElementById('searchInput').value = '';
+            currentFilter = '';
+            document.querySelectorAll('.channel-item').forEach(b => b.classList.remove('active'));
+
+            renderPosts();
+            
+            // Scroll to top
+            document.querySelector('.main-content').scrollTop = 0;
+        }
+
+        function handleUpvote(e, id) {
+            e.stopPropagation(); // prevent opening post
+            const post = posts.find(p => p.id === id);
+            if(post) {
+                if(post.voted) {
+                    post.upvotes -= 1;
+                    post.voted = false;
+                } else {
+                    post.upvotes += 1;
+                    post.voted = true;
+                }
+                savePosts();
+                renderPosts();
+            }
+        }
+
+        function searchPosts() {
+            renderPosts();
+        }
+
+        function sortPosts(type, btn) {
+            currentSort = type;
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active', 'bg-blue-400', 'text-white', 'shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B]', 'shadow-blue-400/30');
+                if(!b.classList.contains('text-gray-500')) b.classList.add('text-gray-500');
+            });
+            btn.classList.add('active', 'bg-blue-400', 'text-white', 'shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B]', 'shadow-blue-400/30');
+            btn.classList.remove('text-gray-500');
+            renderPosts();
+        }
+
+        function filterByTag(tag, element) {
+            currentFilter = (currentFilter === tag) ? '' : tag; // toggle
+            
+            // Sidebar UI updates
+            document.querySelectorAll('.channel-item').forEach(b => {
+                b.classList.remove('active');
+                if(currentFilter && b === element) b.classList.add('active');
+            });
+            
+            renderPosts();
+        }
+
+        function loadTab(tab, btn) {
+            document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            if(tab === 'home') {
+                currentFilter = '';
+                document.querySelectorAll('.channel-item').forEach(b => b.classList.remove('active'));
+                currentSort = 'new';
+            } else if (tab === 'popular') {
+                currentFilter = '';
+                document.querySelectorAll('.channel-item').forEach(b => b.classList.remove('active'));
+                currentSort = 'top';
+            } else if (tab === 'explore') {
+                currentFilter = '';
+            }
+            renderPosts();
+        }
+
+        // ─── Full Post View (Modal) & Comments ───
+
+        function openPost(id) {
+            const post = posts.find(p => p.id === id);
+            if(!post) return;
+
+            const modal = document.getElementById('postModalOverlay');
+            const content = document.getElementById('modalContent');
+            
+            const isNew = (new Date() - new Date(post.createdAt)) < 1000 * 60 * 60 * 12;
+            const commentsArray = post.comments || [];
+
+            const commentsHtml = commentsArray.map(c => `
+                <div class="mb-4 bg-gray-50 rounded-xl p-4 border border-gray-100 relative">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-6 h-6 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold text-[10px]">${c.author.charAt(0).toUpperCase()}</div>
+                        <span class="font-bold text-gray-800 text-sm">${c.author}</span>
+                        <span class="text-xs text-gray-400">&bull; ${formatTimeAgo(c.createdAt)}</span>
+                    </div>
+                    <p class="text-gray-700 text-sm pl-8">${c.text}</p>
+                </div>
+            `).join('');
+
+            content.innerHTML = `
+                <div class="flex items-start gap-4 mb-6">
+                     <div class="vote-col pt-1" onclick="handleUpvoteModal(event, ${post.id})">
+                        <i data-lucide="chevron-up" style="width:28px;height:28px;" class="vote-btn cursor-pointer ${post.voted ? 'text-[#7c3aed]' : ''} modal-up"></i>
+                        <span class="font-extrabold text-gray-700 text-lg modal-votes">${post.upvotes}</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="tag-badge ${getTagClass(post.tags)}">#${post.tags}</span>
+                            ${isNew ? '<span class="new-badge">NEW</span>' : ''}
+                        </div>
+                        <h1 class="text-2xl font-black text-gray-900 mb-2 leading-tight">${post.title.replace(/</g,'<')}</h1>
+                        <p class="text-sm text-gray-500 font-medium">Posted by <span class="text-gray-800 font-bold">${post.author}</span> • ${formatTimeAgo(post.createdAt)}</p>
+                    </div>
+                </div>
+
+                
+                <div class="text-gray-700 leading-relaxed text-[15px] whitespace-pre-wrap mb-8 bg-white p-5 rounded-xl border border-gray-100 shadow-[2px_2px_0px_#1E1B4B] border-2 border-[#1E1B4B] min-h-[80px] markdown-content">
+                    ${typeof marked !== 'undefined' ? marked.parse(post.content) : post.content.replace(/</g,'&lt;')}
+                    ${(() => {
+                        if(post.type === 'study_material' && post.fileUrl) {
+                            if (post.fileUrl.endsWith('.pdf') || post.fileUrl.includes('pdf')) {
+                                return `<iframe src="${post.fileUrl}" style="width:100%; height:400px; border:1px solid #e2e8f0; border-radius:8px; margin-top:16px;"></iframe>`;
+                            } else if (post.fileUrl.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                                return `<div class="mt-4"><img src="${post.fileUrl}" style="max-height:400px; width:100%; object-fit:contain; border-radius:8px; border:1px solid #e2e8f0;"></div>`;
+                            } else {
+                                return `<div class="mt-4"><iframe src="${post.fileUrl}" style="width:100%; height:400px; border:1px solid #e2e8f0; border-radius:8px;"></iframe></div>`;
+                            }
+                        }
+                        return '';
+                    })()}
+                </div>
+
+                <div class="border-t border-gray-100 pt-6">
+                    <h3 class="font-bold text-gray-800 mb-4 inline-flex items-center gap-2"><i data-lucide="message-square" style="width:18px;height:18px"></i> Discussion (${commentsArray.length})</h3>
+                    
+                    <div class="mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar flex flex-col gap-1">
+                        ${commentsHtml || '<div class="text-center py-6 text-gray-400 text-sm">No comments yet. Be the first to share your thoughts!</div>'}
+                    </div>
+
+                    <div class="flex gap-3 items-center sticky bottom-0 bg-white pt-2 border-t border-gray-50">
+                        <div class="w-10 h-10 rounded-full bg-[#7c3aed] text-white flex items-center justify-center font-bold flex-shrink-0">V</div>
+                        <input type="text" id="commentInput" placeholder="Add a comment..." class="w-full bg-gray-100 border-none outline-none rounded-xl px-4 py-2.5 text-sm text-gray-700" onkeydown="if(event.key === 'Enter') addComment(${post.id})">
+                        <button onclick="addComment(${post.id})" class="bg-[#1e1b4b] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-opacity-90 transition-all">Send</button>
+                    </div>
+                </div>
+            `;
+            
+            if(window.lucide) window.lucide.createIcons();
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function addComment(id) {
+            const input = document.getElementById('commentInput');
+            if(!input || !input.value.trim()) return;
+            const post = posts.find(p => p.id === id);
+            if(post) {
+                if(!post.comments) post.comments = [];
+                post.comments.push({
+                    author: "Vedant",
+                    text: input.value.trim(),
+                    createdAt: new Date().toISOString()
+                });
+                savePosts();
+                openPost(id); // Re-render modal efficiently
+                renderPosts(); // Update comment counts in feed
+            }
+        }
+
+        // Needed a separate handler for modal upvotes if accessed from inside modal
+        function handleUpvoteModal(e, id) {
+            // first run simple handler
+            handleUpvote(e, id);
+            // Quick local update inside modal to reflect state changes without re-rendering everything
+            const p = posts.find(x=>x.id===id);
+            const upIcon = document.querySelector('.modal-up');
+            const count = document.querySelector('.modal-votes');
+            if(p && count) count.innerText = p.upvotes;
+            if(p && upIcon) {
+                if(p.voted) upIcon.classList.add('text-[#7c3aed]');
+                else upIcon.classList.remove('text-[#7c3aed]');
+            }
+        }
+
+        function closePostModal() {
+            document.getElementById('postModalOverlay').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // restore background scroll
+        }
+    </script>
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item active" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+</html>

@@ -1,0 +1,1 @@
+fetch('http://localhost:56801/api/quiz/init-dfs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ failedQuestions: [{ id: 1, q: 'Integrals', wrong: 'A', correct: 'C' }] }) }).then(r => r.json()).then(console.log).catch(console.error);

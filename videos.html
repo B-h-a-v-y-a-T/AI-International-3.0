@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width,initial-scale=1"></meta>
+    <title>Resources – AdaptEd Ai</title>
+    <link rel="stylesheet" href="styles.css"></link>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .thumb-gradient {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .video-card:hover .play-btn {
+            transform: scale(1.12);
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 99px;
+        }
+
+        .video-info {
+            padding: 14px 16px;
+            cursor: pointer;
+        }
+
+        .video-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .video-summary {
+            margin-top: 8px;
+            font-size: 12px;
+            line-height: 1.45;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .quick-summary-btn {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(108, 168, 241, 0.45);
+            background: rgba(108, 168, 241, 0.18);
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-summary-btn:hover {
+            background: rgba(108, 168, 241, 0.28);
+            transform: translateY(-1px);
+        }
+
+        .quick-summary-btn i {
+            width: 13px;
+            height: 13px;
+        }
+
+        .ai-recommend-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            background: rgba(108, 168, 241, 0.12);
+            color: var(--primary-dark);
+            border-radius: var(--radius-full);
+            font-size: 10.5px;
+            font-weight: 600;
+        }
+
+        
+        .topic-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topic-btn .topic-icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            opacity: 0.9;
+        }
+
+        .topic-btn.active .topic-icon {
+            opacity: 1;
+        }
+        .topic-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+        .topic-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            padding: 10px 16px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+        .topic-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1.5px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .topic-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .topic-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        .search-bar:focus-within {
+            border-color: var(--primary);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 14px;
+            color: var(--text-primary);
+            flex: 1;
+            font-family: inherit;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 2px 2px 0px var(--border);
+            animation: scaleIn 0.3s ease;
+        }
+
+        .video-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .video-modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            flex: 1;
+            padding-right: 16px;
+        }
+
+        .video-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .video-modal-close:hover {
+            background: var(--border);
+            transform: rotate(90deg);
+        }
+
+        .video-modal-body {
+            padding: 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-modal-body iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--border);
+        }
+
+        .summary-glass-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 12, 22, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10010;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .summary-glass-modal.active {
+            display: flex;
+        }
+
+        .summary-glass-card {
+            width: min(540px, 100%);
+            border-radius: 24px;
+            padding: 20px;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.62));
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 20px 45px rgba(24, 29, 54, 0.28);
+            backdrop-filter: blur(14px) saturate(1.05);
+            color: #1f2a44;
+        }
+
+        .summary-glass-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .summary-glass-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 11px;
+            border-radius: 999px;
+            background: rgba(99, 133, 249, 0.2);
+            border: 1px solid rgba(99, 133, 249, 0.35);
+            color: #3653a8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .summary-glass-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(67, 78, 108, 0.25);
+            background: rgba(255, 255, 255, 0.5);
+            color: #2d3a5e;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .summary-glass-close:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        .summary-glass-title {
+            margin: 0 0 8px;
+            font-size: 22px;
+            line-height: 1.3;
+            color: #1f2a44;
+        }
+
+        .summary-glass-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #536280;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .summary-glass-text {
+            margin: 0;
+            color: #32405f;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .summary-glass-best {
+            margin-top: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 100%;
+            font-size: 13px;
+            color: #2e4b97;
+            background: rgba(114, 154, 255, 0.22);
+            border: 1px solid rgba(114, 154, 255, 0.34);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="app-layout">
+        <!-- Sidebar (Vedant structure preserved) -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;"><svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 20px; height: 20px; display: block;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+</svg></div>
+                <div>
+                    <div class="logo-text">AdaptEd Ai</div>
+                    <div class="logo-sub" data-i18n="sidebar.tagline">Emotion-Aware Study Companion</div>
+                </div>
+            </div>
+            <div class="sidebar-user">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="avatar" style="padding:0; background:transparent; width:36px; height:36px; display:inline-block; overflow:hidden; border-radius:50%;"><svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;">
+    <g transform="translate(0, 5)">
+        <path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"></path>
+        <path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"></ellipse>
+        <path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
+        <ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"></ellipse>
+        <path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"></path>
+    </g>
+</svg></div>
+                    <div>
+                        <div class="user-name" data-i18n="sidebar.welcome">Welcome back, Vedant!</div>
+                        <div class="user-streak"><i data-lucide="flame" style="width:13px;height:13px;display:inline;vertical-align:middle;color:#22C55E"></i>
+                            12 Day Streak</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-exam">
+                <select>
+                    <option>JEE</option>
+                    <option>NEET</option>
+                    <option>CAT</option>
+                    <option>UPSC</option>
+                    <option>MHT CET</option>
+                    <option>12th Boards</option>
+                    <option>GATE</option>
+                </select>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="nav-item" data-page="dashboard.html" href="dashboard.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                    </svg>
+                    <span data-i18n="nav.dashboard">Home</span>
+                </a>
+                <a class="nav-item" data-page="learning.html" href="learning.html"><svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg><span data-i18n="nav.learning">Learning Path</span></a>
+                <a class="nav-item" data-page="chat.html" href="chat.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span data-i18n="nav.ai_tutor">AI Tutor</span>
+                </a>
+                <a class="nav-item" data-page="leaderboard.html" href="leaderboard.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    <span data-i18n="nav.leaderboard">Leaderboard</span>
+                </a>
+                <a class="nav-item" data-page="quiz.html" href="quiz.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                        <path d="M16 2v4M8 2v4M3 10h18"></path>
+                    </svg>
+                    <span data-i18n="nav.daily_quiz">Daily Quiz</span>
+                </a>
+                <a class="nav-item" data-page="revision.html" href="revision.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span data-i18n="nav.revision">Revision Notes</span>
+                </a>
+                <a class="nav-item" data-page="exam.html" href="exam.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                    <span>Exam Mode</span>
+                </a>
+                <a class="nav-item active" data-page="videos.html" href="videos.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2"></rect>
+                    </svg>
+                    <span data-i18n="nav.videos">Videos</span>
+                </a>
+                                <a class="nav-item" data-page="focus.html" href="focus.html"><svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Focus Mode</span></a>
+                <a class="nav-item" data-page="profile.html" href="profile.html">
+                    <svg class="nav-icon" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span data-i18n="nav.profile">Profile</span>
+                </a>
+            </nav>
+            <div class="sidebar-lang">
+                <select id="langSwitcher" onchange="I18n.setLang(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="mr">🇮🇳 मराठी</option>
+                    <option value="gu">🇮🇳 ગુજરાતી</option>
+                </select>
+            </div>
+        </aside>
+
+        <main class="main-content" style="padding: 40px; position:relative; min-height:100vh;">
+            <div class="page-header">
+                <div>
+                    <h1 style="display:flex;align-items:center;gap:8px"><i data-lucide="video" style="width:22px;height:22px"></i> <span data-i18n="vid.title">Resources</span></h1>
+                    <p data-i18n="vid.subtitle">AI-curated video lectures &amp; study materials for your JEE prep</p>
+                </div>
+                <button id="themeToggle" class="btn btn-secondary btn-sm" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0">
+                </button>
+            </div>
+
+            <!-- AI Recommendation Banner -->
+            <div class="card mb-20 animate-in" style="background:var(--grad-primary);color:white;border:none;display:flex;align-items:center;gap:16px;padding:20px 24px">
+                <div style="font-size:36px"><div class="mascot-mini" style="width:36px;height:36px"><svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 100%; height: 100%; display: block;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+</svg></div></div>
+                <div style="flex:1">
+                    <div style="font-size:15px;font-weight:700;margin-bottom:2px" data-i18n="vid.ai_tip">AI Study Tip
+                    </div>
+                    <p style="opacity:0.9;font-size:13px" data-i18n-html="" data-i18n="vid.ai_tip_text">Based on your quiz
+                        results, you should focus on
+                        <strong>Thermodynamics</strong> today. Your accuracy was 62% &mdash; watch the recommended lectures
+                        below first!
+                    </p>
+                </div>
+                <button class="btn btn-sm" style="flex-shrink:0" onclick="Toast.show('Switching to Thermodynamics filter!','info')" data-i18n="vid.show_me">
+                    Show me</button>
+            </div>
+
+            <!-- Search + Filters -->
+            <div class="search-bar animate-in delay-1">
+                <i data-lucide="search" style="width:16px;height:16px;color:var(--text-muted);flex-shrink:0"></i>
+                <input type="text" placeholder="Search topics, chapters, teachers..." data-i18n-placeholder="vid.search_placeholder" id="searchInput" oninput="filterVideos()"></input>
+            </div>
+
+            <div class="filter-row animate-in delay-1" id="filterRow">
+                <!-- Rendered dynamically by JS based on selected exam -->
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-grid animate-in delay-2" id="videoGrid">
+                <!-- Rendered by JS -->
+            </div>
+        </main>
+    </div>
+
+    <div class="mascot-fab-container" aria-label="AI Tutor" onclick="window.location.href='chat.html'" title="Open AI Tutor">
+    <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-svg" style="width: 100%; height: 100%; filter: drop-shadow(0 6px 12px rgba(255,122,31,0.25)); transition: transform 0.3s ease;">
+    <!-- Top bun -->
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <!-- Left little ear bump on body -->
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Right little ear bump on body -->
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Main orange body -->
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <!-- Left Side ear -->
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Right Side ear -->
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Dark face plate -->
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Left Eye -->
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <!-- Right Eye -->
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <style>
+        .bot-mascot-svg:hover { transform: scale(1.05) rotate(-3deg); }
+    </style>
+</svg>
+</div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" onclick="if(event.target === this) closeVideoModal()">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 class="video-modal-title" id="videoModalTitle">Video Player</h3>
+                <button class="video-modal-close" onclick="closeVideoModal()">
+                    <i data-lucide="x" style="width:18px;height:18px"></i>
+                </button>
+            </div>
+            <div class="video-modal-body" id="videoModalBody">
+                <!-- YouTube iframe will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-glass-modal" id="summaryModal" onclick="if(event.target === this) closeSummaryCard()">
+        <div class="summary-glass-card">
+            <div class="summary-glass-head">
+                <div class="summary-glass-badge"><i data-lucide="sparkles" style="width:12px;height:12px"></i>Quick Summary</div>
+                <button class="summary-glass-close" onclick="closeSummaryCard()" aria-label="Close summary">
+                    <i data-lucide="x" style="width:16px;height:16px"></i>
+                </button>
+            </div>
+            <h3 class="summary-glass-title" id="summaryCardTitle">Summary</h3>
+            <div class="summary-glass-meta"><i data-lucide="user" style="width:14px;height:14px"></i><span id="summaryCardChannel">Channel</span></div>
+            <p class="summary-glass-text" id="summaryCardText">Summary details.</p>
+            <div class="summary-glass-best"><i data-lucide="target" style="width:14px;height:14px"></i><span id="summaryCardBestFor">Best for</span></div>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="data-agent.js"></script>
+    <script src="feature-agents.js"></script>
+    <script src="agent-client.js"></script>
+    <script src="app.js"></script>
+    <script>
+        const EXAM_TOPICS = {
+            'JEE': ['Physics', 'Chemistry', 'Maths'],
+            'NEET': ['Physics', 'Chemistry', 'Biology'],
+            'MHT CET': ['Physics', 'Chemistry', 'Maths'],
+            'CAT': ['QA', 'DILR', 'VARC'],
+            'UPSC': ['History & Polity', 'Geography', 'Economy', 'Environment', 'Science & Tech'],
+            '12th Boards': ['Physics', 'Chemistry', 'Maths', 'Biology'],
+            'GATE': ['Engineering Maths', 'General Aptitude', 'Data Structures', 'Operating Systems', 'Computer Networks', 'DBMS', 'Algorithms']
+        };
+
+        const TOPIC_ICON = {
+            Physics: 'atom',
+            Chemistry: 'flask-conical',
+            Maths: 'calculator',
+            Biology: 'leaf',
+            QA: 'calculator',
+            DILR: 'puzzle',
+            VARC: 'book-open',
+            'History & Polity': 'landmark',
+            Geography: 'map-pinned',
+            Economy: 'chart-column',
+            Environment: 'sprout',
+            'Science & Tech': 'microscope',
+            'Engineering Maths': 'sigma',
+            'General Aptitude': 'brain',
+            'Data Structures': 'network',
+            'Operating Systems': 'cpu',
+            'Computer Networks': 'network',
+            DBMS: 'database',
+            Algorithms: 'git-branch'
+        };
+
+        function getTopicIcon(topic) {
+            return TOPIC_ICON[topic] || 'book-open';
+        }
+
+        const FALLBACK_VIDEOS = [
+            {
+                title: 'Laws of Motion - Complete Chapter',
+                subject: 'physics',
+                duration: '48:22',
+                teacher: 'Prof. Sharma',
+                views: '124K',
+                gradient: 'linear-gradient(135deg,#6CA8F1,#7C3AED)',
+                ai: true,
+                aiSummary: 'Builds fundamentals of forces, free-body diagrams, and Newton laws with exam-style solved examples.',
+                bestFor: 'Concept clarity and first revision'
+            },
+            {
+                title: 'Thermodynamics Part 1: First Law',
+                subject: 'physics',
+                duration: '36:14',
+                teacher: 'Dr. Mehta',
+                views: '98K',
+                gradient: 'linear-gradient(135deg,#F97316,#EF4444)',
+                ai: true,
+                aiSummary: 'Explains system, surroundings, and first-law numericals in a clear, stepwise sequence.',
+                bestFor: 'Numericals and quick recap'
+            },
+            {
+                title: 'Chemical Bonding - Complete Guide',
+                subject: 'chemistry',
+                duration: '52:08',
+                teacher: 'Prof. Rao',
+                views: '87K',
+                gradient: 'linear-gradient(135deg,#10B981,#059669)',
+                ai: false,
+                aiSummary: 'Covers VSEPR, hybridization, and molecular shape logic used in objective chemistry questions.',
+                bestFor: 'NEET and JEE basics'
+            },
+            {
+                title: 'Integration Techniques - JEE',
+                subject: 'maths',
+                duration: '61:45',
+                teacher: 'Prof. Iyer',
+                views: '145K',
+                gradient: 'linear-gradient(135deg,#A78BFA,#7C3AED)',
+                ai: true,
+                aiSummary: 'Focuses on substitution, parts, and partial fractions with pattern-recognition for faster solving.',
+                bestFor: 'Practice and speed'
+            }
+        ];
+
+        const GRADIENTS = [
+            'linear-gradient(135deg,#6CA8F1,#7C3AED)',
+            'linear-gradient(135deg,#F97316,#EF4444)',
+            'linear-gradient(135deg,#10B981,#059669)',
+            'linear-gradient(135deg,#6EE7B7,#3B82F6)',
+            'linear-gradient(135deg,#A78BFA,#7C3AED)',
+            'linear-gradient(135deg,#FDE68A,#F97316)',
+            'linear-gradient(135deg,#93C5FD,#6CA8F1)'
+        ];
+
+        let activeSubject = 'all';
+        let currentVideos = [];
+        let renderedVideos = [];
+        let searchTimeout = null;
+        let lastSearchQuery = '';
+
+        function getExamTopics() {
+            const exam = (typeof ExamManager !== 'undefined') ? ExamManager.get() : 'JEE';
+            return EXAM_TOPICS[exam] || ['Physics', 'Chemistry', 'Maths'];
+        }
+
+        async function resolveWeakTopicsForResources() {
+            try {
+                if (window.ResourceAgent && typeof window.ResourceAgent.getSuggestions === 'function') {
+                    const suggestions = await window.ResourceAgent.getSuggestions(6);
+                    const topics = [...new Set(
+                        (Array.isArray(suggestions) ? suggestions : [])
+                            .map((item) => String(item?.topic || '').trim())
+                            .filter(Boolean)
+                    )];
+
+                    if (topics.length) return topics.slice(0, 3);
+                }
+            } catch (e) {
+                console.warn('[ResourceAgent] Could not load suggestions:', e);
+            }
+
+            try {
+                if (window.DataAgent && typeof window.DataAgent.getWeakTopics === 'function') {
+                    if (typeof window.DataAgent.ready === 'function') {
+                        await window.DataAgent.ready();
+                    }
+                    const weak = await window.DataAgent.getWeakTopics();
+                    if (Array.isArray(weak) && weak.length) {
+                        return weak.slice(0, 3);
+                    }
+                }
+            } catch {
+                // fallback below
+            }
+
+            let state = null;
+            try {
+                state = JSON.parse(localStorage.getItem('userState'));
+            } catch {
+                state = null;
+            }
+
+            const legacyWeak = state && Array.isArray(state.weakTopics) ? state.weakTopics : [];
+            return legacyWeak.slice(0, 3);
+        }
+
+        function getRandomGradient() {
+            return GRADIENTS[Math.floor(Math.random() * GRADIENTS.length)];
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeJsSingle(value) {
+            return String(value || '')
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/\r?\n/g, ' ');
+        }
+
+        function renderTopicPills() {
+            const container = document.getElementById('filterRow');
+            if (!container) return;
+
+            const topics = getExamTopics();
+            container.innerHTML = [
+                `<button class="topic-btn ${activeSubject === 'all' ? 'active' : ''}" onclick="filterSubject('all', this)"><i data-lucide="layout-grid" class="topic-icon"></i><span data-i18n="vid.all_subjects">All Subjects</span></button>`,
+                ...topics.map((topic) => {
+                    const key = topic.toLowerCase();
+                    return `<button class="topic-btn ${activeSubject === key ? 'active' : ''}" onclick="filterSubject('${key}', this)"><i data-lucide="${getTopicIcon(topic)}" class="topic-icon"></i>${topic}</button>`;
+                })
+            ].join('');
+
+            if (window.lucide) lucide.createIcons();
+
+            if (window.i18n) i18n.translatePage();
+        }
+
+        function openVideoModal(videoUrl, title) {
+            if (!videoUrl || videoUrl.includes('/results?search_query=')) {
+                window.open(videoUrl, '_blank');
+                return;
+            }
+
+            let videoId = null;
+            try {
+                if (videoUrl.includes('youtube.com')) {
+                    videoId = new URL(videoUrl).searchParams.get('v');
+                } else if (videoUrl.includes('youtu.be/')) {
+                    videoId = videoUrl.split('/').pop();
+                }
+            } catch (e) {
+                videoId = null;
+            }
+
+            if (!videoId) {
+                window.open(videoUrl, '_blank');
+                return;
+            }
+
+            const modal = document.getElementById('videoModal');
+            const modalTitle = document.getElementById('videoModalTitle');
+            const modalBody = document.getElementById('videoModalBody');
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const modalBody = document.getElementById('videoModalBody');
+            modalBody.innerHTML = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openSummaryCard(index) {
+            const video = renderedVideos[index];
+            if (!video) return;
+
+            const modal = document.getElementById('summaryModal');
+            const titleEl = document.getElementById('summaryCardTitle');
+            const channelEl = document.getElementById('summaryCardChannel');
+            const textEl = document.getElementById('summaryCardText');
+            const bestForEl = document.getElementById('summaryCardBestFor');
+
+            titleEl.textContent = video.title || 'Video summary';
+            channelEl.textContent = video.teacher || 'Unknown channel';
+            textEl.textContent = video.aiSummary || 'This video helps with concept understanding and exam practice.';
+            bestForEl.textContent = video.bestFor || 'Concept revision and practice planning';
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeSummaryCard() {
+            const modal = document.getElementById('summaryModal');
+            modal.classList.remove('active');
+            if (!document.getElementById('videoModal').classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+                closeSummaryCard();
+            }
+        });
+
+        function showLoadingState() {
+            const grid = document.getElementById('videoGrid');
+            if (!grid) return;
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--text-muted)">
+                    <i data-lucide="loader" style="width:32px;height:32px;display:inline-block;animation:spin 1s linear infinite"></i>
+                    <p style="margin-top:12px">Searching videos...</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function mapApiVideos(data) {
+            const videos = Array.isArray(data?.videos) ? data.videos : [];
+            return videos.map((v, i) => ({
+                title: v.title || 'Untitled video',
+                videoUrl: v.videoUrl || '',
+                thumbnail: v.thumbnail || '',
+                teacher: v.channel || v.teacher || 'Unknown',
+                views: v.views || '',
+                gradient: getRandomGradient(),
+                ai: i < 3,
+                isYouTube: true,
+                aiSummary: v.aiSummary || v.summary || v.description || 'Helpful lecture for this topic.',
+                bestFor: v.bestFor || ''
+            }));
+        }
+
+        async function fetchVideosFromAPI(topic) {
+            const finalTopic = String(topic || '').trim();
+            if (!finalTopic || finalTopic.length < 2) {
+                currentVideos = FALLBACK_VIDEOS;
+                renderVideos();
+                return;
+            }
+
+            showLoadingState();
+
+            try {
+                const response = await fetch('/api/videos/summarize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: finalTopic, maxResults: 8 })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data?.error || 'Video API request failed');
+                }
+
+                const mapped = mapApiVideos(data);
+                if (mapped.length) {
+                    currentVideos = mapped;
+                } else {
+                    currentVideos = FALLBACK_VIDEOS;
+                    Toast.show('No videos found for this topic, showing curated picks.', 'info');
+                }
+            } catch (error) {
+                console.error('Video fetch error:', error);
+                currentVideos = FALLBACK_VIDEOS;
+                Toast.show('Could not fetch live videos, showing curated picks.', 'warning');
+            }
+
+            renderVideos();
+        }
+
+        function filterSubject(sub, btn) {
+            activeSubject = sub;
+            document.querySelectorAll('.filter-row .topic-btn').forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const query = document.getElementById('searchInput')?.value.trim() || '';
+            if (sub === 'all') {
+                if (query) {
+                    fetchVideosFromAPI(query);
+                } else {
+                    initVideos();
+                }
+                return;
+            }
+
+            const mergedQuery = `${query} ${sub}`.trim();
+            fetchVideosFromAPI(mergedQuery);
+        }
+
+        function filterVideos() {
+            const query = document.getElementById('searchInput')?.value.trim() || '';
+            if (searchTimeout) clearTimeout(searchTimeout);
+
+            if (!query) {
+                lastSearchQuery = '';
+                if (activeSubject === 'all') {
+                    initVideos();
+                } else {
+                    fetchVideosFromAPI(activeSubject);
+                }
+                return;
+            }
+
+            searchTimeout = setTimeout(() => {
+                const fullQuery = activeSubject === 'all' ? query : `${query} ${activeSubject}`;
+                if (fullQuery === lastSearchQuery) return;
+                lastSearchQuery = fullQuery;
+                fetchVideosFromAPI(fullQuery);
+            }, 500);
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            if (!grid) return;
+
+            let videosToRender = currentVideos.length ? currentVideos : FALLBACK_VIDEOS;
+            if (activeSubject !== 'all' && !videosToRender[0]?.isYouTube) {
+                videosToRender = videosToRender.filter((v) => v.subject === activeSubject);
+            }
+
+            if (!videosToRender.length) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align:center; padding:60px 20px; color:var(--text-muted)">
+                        <i data-lucide="video-off" style="width:48px;height:48px;display:inline-block;opacity:0.5"></i>
+                        <p style="margin-top:16px;font-size:15px">No videos found. Try a different topic.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            renderedVideos = videosToRender;
+
+            grid.innerHTML = videosToRender.map((v, idx) => {
+                const safeTitle = escapeHtml(v.title);
+                const safeTeacher = escapeHtml(v.teacher || 'Unknown');
+
+                const clickAction = `openVideoModal('${escapeJsSingle(v.videoUrl)}', '${escapeJsSingle(v.title)}')`;
+
+                return `
+                    <div class="video-card">
+                        <div class="video-thumb" onclick="${clickAction}">
+                            ${v.thumbnail
+                                ? `<img src="${escapeHtml(v.thumbnail)}" style="width:100%;height:100%;object-fit:cover" alt="${safeTitle}">
+                                   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2)">
+                                       <div class="play-btn"><i data-lucide="play" style="width:20px;height:20px;color:var(--primary)"></i></div>
+                                   </div>`
+                                : `<div class="thumb-gradient" style="background:${v.gradient || getRandomGradient()}">
+                                       <div class="play-btn"><i data-lucide="play" style="width:20px;height:20px;color:var(--primary)"></i></div>
+                                       ${v.duration ? `<div class="duration-badge">${escapeHtml(v.duration)}</div>` : ''}
+                                   </div>`}
+                        </div>
+                        <div class="video-info" onclick="openSummaryCard(${idx})">
+                            ${v.ai ? '<div class="ai-recommend-badge" style="margin-bottom:8px"><i data-lucide="sparkles" style="width:10px;height:10px"></i> AI Pick</div>' : ''}
+                            <div class="video-title">${safeTitle}</div>
+                            <div class="video-meta">
+                                <i data-lucide="user" style="width:12px;height:12px"></i>${safeTeacher}
+                                ${v.views ? `<span>·</span><i data-lucide="eye" style="width:12px;height:12px"></i>${escapeHtml(v.views)} views` : ''}
+                            </div>
+                            <button class="quick-summary-btn" onclick="event.stopPropagation(); openSummaryCard(${idx})">
+                                <i data-lucide="sparkles"></i>
+                                Quick Summary
+                            </button>
+                        </div>
+                    </div>`;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        async function initVideos() {
+            const exam = (typeof ExamManager !== 'undefined') ? ExamManager.get() : 'JEE';
+            const weakTopics = await resolveWeakTopicsForResources();
+
+            let topicQuery = '';
+            const pageHeaderDesc = document.querySelector('.page-header p');
+
+            if (weakTopics.length > 0) {
+                topicQuery = `${exam} ${weakTopics.join(' and ')} best video lectures`;
+                if (pageHeaderDesc) pageHeaderDesc.innerHTML = `<span style="color:var(--primary);font-weight:600;"><i data-lucide="target" style="width:14px;height:14px;margin-bottom:-2px;"></i> Curated for your weak topics: ${weakTopics.join(', ')}</span>`;
+            } else {
+                const topics = getExamTopics();
+                topicQuery = `${exam} ${topics.join(' ')} best video lectures`;
+                if (pageHeaderDesc) pageHeaderDesc.textContent = 'Discover curated lectures tailored to your goals.';
+            }
+
+            if (window.lucide) lucide.createIcons();
+            await fetchVideosFromAPI(topicQuery);
+        }
+
+        const examDropdown = document.querySelector('.sidebar-exam select');
+        if (examDropdown) {
+            examDropdown.addEventListener('change', () => {
+                activeSubject = 'all';
+                renderTopicPills();
+                initVideos();
+            });
+        }
+
+        renderTopicPills();
+        initVideos();
+    </script>
+
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item active" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+</html>

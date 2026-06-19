@@ -1,0 +1,1 @@
+﻿window.SATHEE_JEE_SCRAPED_DB = window.SATHEE_JEE_SCRAPED_DB || [];

@@ -1,0 +1,1 @@
+const fs = require('fs'); let c = fs.readFileSync('i18n.js','utf8'); c = c.replace('const TRANSLATIONS', 'global.TRANSLATIONS'); eval(c); fs.writeFileSync('i18n_keys.json', JSON.stringify(global.TRANSLATIONS, null, 2)); console.log('success');

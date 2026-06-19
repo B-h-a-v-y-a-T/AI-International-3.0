@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Leaderboard – AdaptEd Ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        .lb-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .top-three {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .top-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 20px 12px;
+            box-shadow: 2px 2px 0px var(--border);
+            transition: var(--transition);
+        }
+
+        .top-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .top-card.gold {
+            border-color: #F59E0B;
+            background: linear-gradient(135deg, #FFFBEB, #FFF3CD);
+        }
+
+        [data-theme="dark"] .top-card.gold {
+            background: linear-gradient(135deg, #2a1f00, #3a2800);
+        }
+
+        .top-card.silver {
+            border-color: #94A3B8;
+            background: linear-gradient(135deg, #F8FAFC, #EFF2F5);
+        }
+
+        [data-theme="dark"] .top-card.silver {
+            background: linear-gradient(135deg, #1C2533, #253342);
+        }
+
+        .top-card.bronze {
+            border-color: #B45309;
+            background: linear-gradient(135deg, #FDF3E7, #FDECD4);
+        }
+
+        [data-theme="dark"] .top-card.bronze {
+            background: linear-gradient(135deg, #221500, #2e1c00);
+        }
+
+        .top-crown {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .top-av {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--grad-primary);
+        }
+
+        .top-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .top-pts {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .top-lbl {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .tab-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .invite-btn {
+            margin-left: auto;
+        }
+
+        .friend-pts-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .friend-pts-fill {
+            height: 100%;
+            background: var(--grad-primary);
+            border-radius: var(--radius-full);
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 20px; height: 20px; display: block;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+</svg></div>
+                <div>
+                    <div class="logo-text">AdaptEd Ai</div>
+                    <div class="logo-sub" data-i18n="sidebar.tagline">Emotion-Aware Study Companion</div>
+                </div>
+            </div>
+            <div class="sidebar-user">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="avatar" style="padding:0; background:transparent; width:36px; height:36px; display:inline-block; overflow:hidden; border-radius:50%;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;">
+    <g transform="translate(0, 5)">
+        <path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"></path>
+        <path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"></ellipse>
+        <path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
+        <ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"></ellipse>
+        <path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"></path>
+    </g>
+</svg></div>
+                    <div>
+                        <div class="user-name" data-i18n="sidebar.welcome">Welcome back, Vedant!</div>
+                        <div class="user-streak">🔥
+                            12 Day Streak</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-exam"><select>
+                    <option>JEE</option>
+                    <option>NEET</option>
+                    <option>CAT</option>
+                    <option>UPSC</option>
+                    <option>MHT CET</option>
+                    <option>12th Boards</option>
+                    <option>GATE</option>
+                </select></div>
+            <nav class="sidebar-nav">
+                <a class="nav-item" data-page="dashboard.html" href="dashboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                    </svg>
+                    <span data-i18n="nav.dashboard">Dashboard</span></a>
+                <a class="nav-item" data-page="learning.html" href="learning.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg><span data-i18n="nav.learning">Learning Path</span></a>
+                <a class="nav-item" data-page="chat.html" href="chat.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span data-i18n="nav.ai_tutor">AI Tutor</span></a>
+                <a class="nav-item active" data-page="leaderboard.html" href="leaderboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    <span data-i18n="nav.leaderboard">Leaderboard</span></a>
+                <a class="nav-item" data-page="quiz.html" href="quiz.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                        <path d="M16 2v4M8 2v4M3 10h18"></path>
+                    </svg>
+                    <span data-i18n="nav.daily_quiz">Daily Quiz</span></a>
+                <a class="nav-item" data-page="revision.html" href="revision.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span data-i18n="nav.revision">Revision Notes</span>
+                </a>
+                <a class="nav-item" data-page="exam.html" href="exam.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg><span>Exam Mode</span></a>
+                <a class="nav-item" data-page="videos.html" href="videos.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2"></rect>
+                    </svg>
+                    <span data-i18n="nav.videos">Videos</span></a>
+                                <a class="nav-item" data-page="focus.html" href="focus.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Focus Mode</span></a>
+                <a class="nav-item" data-page="profile.html" href="profile.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span data-i18n="nav.profile">Profile</span></a>
+            </nav>
+            <div class="sidebar-lang"><select id="langSwitcher" onchange="I18n.setLang(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="mr">🇮🇳 मराठी</option>
+                    <option value="gu">🇮🇳 ગુજરાતી</option>
+                </select></div>
+        </aside>
+
+        <main class="main-content" style="padding: 40px; position:relative; min-height:100vh;">
+            <div class="page-header">
+                <div>
+                    <h1 style="display:flex;align-items:center;gap:8px"><i data-lucide="trophy" style="width:22px;height:22px"></i> Leaderboard</h1>
+                    <p data-i18n="lb.subtitle">Friendly competition with your JEE squad!</p>
+                </div>
+                <button id="themeToggle" class="btn btn-secondary btn-sm" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0"></button>
+            </div>
+
+            <div class="lb-container">
+                <!-- Tab + Invite -->
+                <div class="tab-row">
+                    <button class="topic-btn active" onclick="switchLb('weekly',this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid var(--border);background:var(--primary);color:white;font-size:13px;font-weight:600;cursor:pointer;" data-i18n="lb.this_week">This
+                        Week</button>
+                    <button class="topic-btn" onclick="switchLb('alltime',this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:13px;font-weight:600;cursor:pointer;" data-i18n="lb.all_time">All
+                        Time</button>
+                    <button class="btn btn-secondary btn-sm invite-btn" onclick="Toast.show('Invite link copied! Share with friends','success')">
+                        <i data-lucide="users" style="width:14px;height:14px"></i> Invite Friends</button>
+                </div>
+
+                <!-- Top 3 Podium -->
+                <div class="top-three animate-in">
+                    <div class="top-card silver">
+                        <div class="top-crown">🥈</div>
+                        <div class="top-av" style="background:linear-gradient(135deg,#94A3B8,#64748B)">A</div>
+                        <div class="top-name">Aanya S.</div>
+                        <div class="top-pts">2,840</div>
+                        <div class="top-lbl" data-i18n="lb.points">points</div>
+                    </div>
+                    <div class="top-card gold">
+                        <div class="top-crown">🥇</div>
+                        <div class="top-av" style="background:linear-gradient(135deg,#F59E0B,#D97706)">R</div>
+                        <div class="top-name">Rohan K.</div>
+                        <div class="top-pts">3,210</div>
+                        <div class="top-lbl" data-i18n="lb.points">points</div>
+                    </div>
+                    <div class="top-card bronze">
+                        <div class="top-crown">🥉</div>
+                        <div class="top-av" style="background:linear-gradient(135deg,#B45309,#92400E)">P</div>
+                        <div class="top-name">Priya M.</div>
+                        <div class="top-pts">2,680</div>
+                        <div class="top-lbl" data-i18n="lb.points">points</div>
+                    </div>
+                </div>
+
+                <!-- Full Leaderboard -->
+                <div class="card animate-in delay-1">
+                    <div class="section-title" data-i18n="lb.rankings">Rankings — Friends Only</div>
+                    <div id="lbList">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+
+                <!-- My Position Banner -->
+                <div style="background:var(--primary-light);border:1.5px solid rgba(108,168,241,0.3);border-radius:var(--radius-lg);padding:16px 20px;margin-top:16px;display:flex;align-items:center;justify-content:space-between;animation-delay:0.2s" class="animate-in delay-2">
+                    <div style="font-size:14px;font-weight:600;color:var(--primary-dark);display:flex;align-items:center;gap:6px">
+                        <i data-lucide="map-pin" style="width:16px;height:16px"></i> Your position this week
+                    </div>
+                    <div style="font-size:20px;font-weight:800;color:var(--primary)">#4 • 2,480 pts</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="mascot-fab-container" aria-label="AI Tutor" onclick="window.location.href='chat.html'" title="Open AI Tutor">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-svg" style="width: 100%; height: 100%; filter: drop-shadow(0 6px 12px rgba(255,122,31,0.25)); transition: transform 0.3s ease;">
+    <!-- Top bun -->
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <!-- Left little ear bump on body -->
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Right little ear bump on body -->
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Main orange body -->
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <!-- Left Side ear -->
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Right Side ear -->
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Dark face plate -->
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Left Eye -->
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <!-- Right Eye -->
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <style>
+        .bot-mascot-svg:hover { transform: scale(1.05) rotate(-3deg); }
+    </style>
+</svg>
+</div>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+    <script>
+        const FRIENDS = [
+            { name: 'Rohan Kumar', av: 'R', pts: 3210, rank: 1, badge: '🥇' },
+            { name: 'Aanya Sharma', av: 'A', pts: 2840, rank: 2, badge: '🥈' },
+            { name: 'Priya Mehta', av: 'P', pts: 2680, rank: 3, badge: '🥉' },
+            { name: 'Vedant (You!)', av: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;"><g transform="translate(0, 5)"><path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"/><path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/><ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"/><path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/><ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"/><path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/><path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/><ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"/><ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"/><path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/></g></svg>`, pts: 2480, rank: 4, me: true },
+            { name: 'Arjun Nair', av: 'A', pts: 2200, rank: 5 },
+            { name: 'Simran Kaur', av: 'S', pts: 2100, rank: 6 },
+            { name: 'Dev Patel', av: 'D', pts: 1890, rank: 7 },
+            { name: 'Nisha Rao', av: 'N', pts: 1740, rank: 8 },
+        ];
+
+        const ALLTIME = [
+            { name: 'Rohan Kumar', av: 'R', pts: 14200, rank: 1, badge: '🥇' },
+            { name: 'Vedant (You!)', av: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;"><g transform="translate(0, 5)"><path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"/><path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/><ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"/><path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/><ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"/><path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/><path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/><ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"/><ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"/><path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/></g></svg>`, pts: 12480, rank: 2, me: true, badge: '🥈' },
+            { name: 'Aanya Sharma', av: 'A', pts: 11840, rank: 3, badge: '🥉' },
+            { name: 'Priya Mehta', av: 'P', pts: 10680, rank: 4 },
+            { name: 'Arjun Nair', av: 'A', pts: 9200, rank: 5 },
+        ];
+
+        function renderLb(data) {
+            const list = document.getElementById('lbList');
+            const max = data[0]?.pts || 1;
+            list.innerHTML = data.map(f => `
+    <div class="lb-row ${f.me ? 'me' : ''}">
+      <div class="lb-rank ${f.rank === 1 ? 'gold' : f.rank === 2 ? 'silver' : f.rank === 3 ? 'bronze' : ''}">${f.badge || ('#' + f.rank)}</div>
+      <div class="lb-avatar">${f.av}</div>
+      <div style="flex:1">
+        <div style="font-size:13.5px;font-weight:${f.me ? '800' : '600'};color:var(--text-primary)">${f.name}</div>
+        <div class="friend-pts-bar"><div class="friend-pts-fill" style="width:${Math.round(f.pts / max * 100)}%"></div></div>
+      </div>
+      <div class="lb-points">${f.pts.toLocaleString()}</div>
+    </div>`).join('');
+        }
+
+        function switchLb(type, btn) {
+            document.querySelectorAll('.tab-row button').forEach(b => {
+                b.style.background = 'var(--bg-card)'; b.style.color = 'var(--text-secondary)'; b.style.borderColor = 'var(--border)';
+            });
+            btn.style.background = 'var(--primary)'; btn.style.color = 'white';
+            renderLb(type === 'weekly' ? FRIENDS : ALLTIME);
+        }
+
+        renderLb(FRIENDS);
+        lucide.createIcons();
+    </script>
+
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item active" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - AdaptEd</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body data-module="overview">
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">A</div><div><h1>AdaptEd Admin</h1><p>Control Center</p></div></div>
+      <nav id="adminNav" class="nav-list"></nav>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <div><h2 id="pageTitle" class="page-title"></h2><p class="muted">Modular overview for platform operations and growth.</p></div>
+        <div class="row"><span id="adminIdentity" class="badge"></span><button id="logoutBtn">Logout</button></div>
+      </div>
+
+      <section class="grid cols-3">
+        <article class="card"><div class="kicker">Total Users</div><div id="totalUsers" class="metric">0</div></article>
+        <article class="card"><div class="kicker">Documents Uploaded</div><div id="totalDocs" class="metric">0</div></article>
+        <article class="card"><div class="kicker">Summaries Generated</div><div id="totalSummaries" class="metric">0</div></article>
+      </section>
+
+      <section class="grid cols-2" style="margin-top:14px">
+        <article class="card">
+          <div class="row" style="justify-content:space-between"><h3>Activity Trends</h3><span class="small muted">Daily / Weekly / Monthly</span></div>
+          <canvas id="activityChart"></canvas>
+        </article>
+        <article class="card">
+          <div class="row" style="justify-content:space-between"><h3>System Health</h3><span class="small muted">Response time trend</span></div>
+          <canvas id="healthChart"></canvas>
+          <div class="grid cols-3" style="margin-top:10px">
+            <div><div class="kicker">API Usage</div><div id="apiUsageVal">-</div></div>
+            <div><div class="kicker">Error Rate</div><div id="errorRateVal">-</div></div>
+            <div><div class="kicker">Response Time</div><div id="responseTimeVal">-</div></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid cols-3" style="margin-top:14px">
+        <article class="card">
+          <h3>Quick Actions</h3>
+          <div class="row" style="margin-top:10px">
+            <a class="btn btn-primary" href="content.html">Upload Content</a>
+            <a class="btn" href="users.html">Manage Users</a>
+            <a class="btn" href="feedback.html">View Feedback</a>
+          </div>
+        </article>
+        <article class="card"><h3>Most Active Users</h3><ul id="mostActiveUsers"></ul></article>
+        <article class="card"><h3>Most Accessed Subjects</h3><ul id="mostAccessedSubjects"></ul></article>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

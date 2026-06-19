@@ -1,0 +1,11 @@
+ERROR
+
+[GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [403 Forbidden] Your API key was reported as leaked. Please use another API key.
+
+Stack:
+Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [403 Forbidden] Your API key was reported as leaked. Please use another API key.
+    at handleResponseNotOk (file:///C:/Users/Kushal/Desktop/scoe/frontend2/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (file:///C:/Users/Kushal/Desktop/scoe/frontend2/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/Kushal/Desktop/scoe/frontend2/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async main (file:///C:/Users/Kushal/Desktop/scoe/frontend2/test_dfs.mjs:17:20)

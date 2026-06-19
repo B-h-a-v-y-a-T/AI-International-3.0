@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Daily Quiz – AdaptEd Ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        .quiz-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media(max-width:1100px) {
+            .quiz-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quiz-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            box-shadow: 2px 2px 0px var(--border);
+        }
+
+        .quiz-question {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .quiz-option.correct {
+            border-color: #10B981;
+            background: rgba(110, 231, 183, 0.12);
+            color: #059669;
+        }
+
+        .quiz-option.wrong {
+            border-color: #EF4444;
+            background: rgba(252, 165, 165, 0.12);
+            color: #DC2626;
+        }
+
+        .opt-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quiz-meta {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .qm-badge {
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 11.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .timer-ring {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-left: auto;
+        }
+
+        .topic-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .step-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .step-dot.done {
+            background: #10B981;
+            border-color: #10B981;
+            color: white;
+        }
+
+        .step-dot.current {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+            border-radius: 99px;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: var(--grad-mint);
+            border-radius: var(--radius-full);
+            transition: width 0.4s ease;
+        }
+
+        .topic-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: var(--radius-full);
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topic-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .topic-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .score-bar-wrap {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .bar-pct {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .bar-spacer {
+            flex: 1;
+        }
+
+        .bar-date {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .bar-tooltip {
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 2px 2px 0px var(--border);
+            z-index: 10;
+            pointer-events: none;
+            color: var(--text-primary);
+        }
+
+        .assigned-quiz-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .assigned-quiz-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .assigned-quiz-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .assigned-quiz-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .assigned-quiz-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+    
+        /* Overrides to match Dashboard UI */
+        .quiz-card, .history-card, .achievements-card, .card {
+            background: white !important;
+            border-radius: 24px !important;
+            padding: 28px !important;
+            box-shadow: 2px 2px 0px var(--border) !important;
+            border: 2px solid var(--border) !important;
+            margin-bottom: 24px;
+        }
+
+        [data-theme='dark'] .quiz-card, [data-theme='dark'] .history-card, [data-theme='dark'] .achievements-card, [data-theme='dark'] .card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+        }
+
+        .page-header {
+            margin-bottom: 30px !important;
+            padding-bottom: 0 !important;
+            /* removed border constraint from page-header */
+        }
+        
+        .page-header h1 {
+            font-size: 24px !important; 
+            font-weight: 800 !important;
+        }
+
+        .btn-focus {
+            background: var(--grad-primary) !important;
+            color: white !important;
+            padding: 16px 32px !important;
+            border-radius: 30px !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            border: 2px solid var(--border) !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            box-shadow: 2px 2px 0px var(--border) !important;
+            transition: all 0.3s !important;
+            font-family: inherit !important;
+            width: 100%;
+        }
+
+        .btn-focus:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 2px 2px 0px var(--border) !important;
+        }
+
+        .btn-start {
+             width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 20px; height: 20px; display: block;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+</svg></div>
+                <div>
+                    <div class="logo-text">AdaptEd Ai</div>
+                    <div class="logo-sub" data-i18n="sidebar.tagline">Emotion-Aware Study Companion</div>
+                </div>
+            </div>
+            <div class="sidebar-user">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="avatar" style="padding:0; background:transparent; width:36px; height:36px; display:inline-block; overflow:hidden; border-radius:50%;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block; overflow: hidden; object-fit: cover; background: #7B7B7B; border-radius: 50%;">
+    <g transform="translate(0, 5)">
+        <path d="M 10 100 C 10 80, 90 80, 90 100" fill="#111" stroke="#000" stroke-width="4"></path>
+        <path d="M 38 75 L 62 75 L 62 90 C 50 95, 38 90, 38 90 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <ellipse cx="22" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(-15 22 54)"></ellipse>
+        <path d="M 18 48 Q 23 55, 18 60 M 23 55 L 26 53" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
+        <ellipse cx="78" cy="54" rx="8" ry="12" fill="#F4C299" stroke="#000" stroke-width="3" transform="rotate(15 78 54)"></ellipse>
+        <path d="M 26 42 C 26 15, 74 15, 74 42 C 74 65, 60 75, 50 75 C 40 75, 26 65, 26 42 Z" fill="#F4C299" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 20 40 C 15 20, 25 5, 50 5 C 75 5, 85 20, 80 40 C 75 25, 65 15, 50 15 C 35 15, 25 25, 20 40 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 35 L 30 20 L 40 28" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 68 25 L 80 15 L 75 35" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 24 45 C 30 35, 40 30, 45 32 L 40 40 L 55 32 C 65 30, 70 35, 76 45 C 70 25, 60 20, 50 20 C 40 20, 30 25, 24 45 Z" fill="#111" stroke="#000" stroke-width="3" stroke-linejoin="round"></path>
+        <path d="M 35 42 Q 42 39, 48 42" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <path d="M 58 41 Q 65 39, 72 43" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"></path>
+        <ellipse cx="43" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <ellipse cx="63" cy="51" rx="4" ry="7" fill="#111"></ellipse>
+        <path d="M 56 56 L 59 60 L 55 62" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M 45 68 C 50 72, 57 72, 60 67" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"></path>
+    </g>
+</svg></div>
+                    <div>
+                        <div class="user-name" data-i18n="sidebar.welcome">Welcome back, Vedant!</div>
+                        <div class="user-streak">🔥
+                            12 Day Streak</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-exam"><select>
+                    <option>JEE</option>
+                    <option>NEET</option>
+                    <option>CAT</option>
+                    <option>UPSC</option>
+                    <option>MHT CET</option>
+                    <option>12th Boards</option>
+                    <option>GATE</option>
+                </select></div>
+            <nav class="sidebar-nav">
+                <a class="nav-item" data-page="dashboard.html" href="dashboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                    </svg>
+                    <span data-i18n="nav.dashboard">Dashboard</span></a>
+                <a class="nav-item" data-page="learning.html" href="learning.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"></path></svg><span data-i18n="nav.learning">Learning Path</span></a>
+                <a class="nav-item" data-page="chat.html" href="chat.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span data-i18n="nav.ai_tutor">AI Tutor</span></a>
+                <a class="nav-item" data-page="leaderboard.html" href="leaderboard.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                    <span data-i18n="nav.leaderboard">Leaderboard</span></a>
+                <a class="nav-item active" data-page="quiz.html" href="quiz.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                        <path d="M16 2v4M8 2v4M3 10h18"></path>
+                    </svg>
+                    <span data-i18n="nav.daily_quiz">Daily Quiz</span></a>
+                <a class="nav-item" data-page="revision.html" href="revision.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span data-i18n="nav.revision">Revision Notes</span>
+                </a>
+                <a class="nav-item" data-page="exam.html" href="exam.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg><span>Exam Mode</span></a>
+                <a class="nav-item" data-page="videos.html" href="videos.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2"></rect>
+                    </svg>
+                    <span data-i18n="nav.videos">Videos</span></a>
+                                <a class="nav-item" data-page="focus.html" href="focus.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Focus Mode</span></a>
+                <a class="nav-item" data-page="profile.html" href="profile.html">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span data-i18n="nav.profile">Profile</span></a>
+            </nav>
+            <div class="sidebar-lang"><select id="langSwitcher" onchange="I18n.setLang(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="mr">🇮🇳 मराठी</option>
+                    <option value="gu">🇮🇳 ગુજરાતી</option>
+                </select></div>
+        </aside>
+
+        <main class="main-content" style="padding: 40px; position:relative; min-height:100vh;">
+            <div class="page-header">
+                <div>
+                    <h1 style="display:flex;align-items:center;gap:8px"><i data-lucide="calendar" style="width:22px;height:22px"></i> Daily Quiz</h1>
+                    <p data-i18n="quiz.subtitle">Test your knowledge, earn points, build your streak!</p>
+                </div>
+                <button id="themeToggle" class="btn btn-secondary btn-sm" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0">
+                </button>
+            </div>
+
+            <!-- Landing Screen -->
+            <div id="quizLanding" class="quiz-layout">
+                <div class="quiz-card animate-in">
+                    <div class="section-title" style="margin-bottom:4px;display:flex;align-items:center;gap:8px">
+                        <i data-lucide="sparkles" style="width:18px;height:18px;color:var(--primary)"></i>
+                        Today's Quiz Topics
+                    </div>
+                    <p id="quizDesc" style="font-size:13px;color:var(--text-secondary);margin-bottom:20px" data-i18n="quiz.personalized">Personalized
+                        for your JEE
+                        prep — mixed subjects, medium difficulty</p>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+                        <div class="qm-badge" style="background:rgba(108,168,241,0.1);color:var(--primary);padding:10px 14px;border-radius:10px">
+                            <i data-lucide="clock" style="width:14px;height:14px"></i> 15 minutes
+                        </div>
+                        <div class="qm-badge" style="background:rgba(110,231,183,0.1);color:#059669;padding:10px 14px;border-radius:10px">
+                            <i data-lucide="help-circle" style="width:14px;height:14px"></i> 5 Questions
+                        </div>
+                        <div class="qm-badge" style="background:rgba(252,211,77,0.15);color:#D97706;padding:10px 14px;border-radius:10px">
+                            <i data-lucide="star" style="width:14px;height:14px"></i> 20 pts per correct
+                        </div>
+                        <div class="qm-badge" style="background:rgba(167,139,250,0.1);color:#7C3AED;padding:10px 14px;border-radius:10px">
+                            <i data-lucide="zap" style="width:14px;height:14px"></i> Streak bonus ×1.5
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="font-size:13px;margin-bottom:10px" data-i18n="quiz.select_topic">Select Topic Focus</div>
+                    <div class="topic-pills" id="topicPills"></div>
+
+                    <button onclick="startQuiz()" class="btn btn-primary" style="margin-top:24px;width:100%;gap:8px;display:flex;align-items:center;justify-content:center;font-size:15px;padding:14px">
+                        <i data-lucide="play-circle" style="width:18px;height:18px"></i> Start Quiz
+                    </button>
+                </div>
+
+                <!-- Right panel: Score History -->
+                <div>
+                    <div class="card mb-20 animate-in delay-1">
+                        <div class="section-title" style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                            <i data-lucide="clipboard-list" style="width:18px;height:18px;color:var(--primary)"></i>
+                            Assigned Quizzes
+                        </div>
+                        <div id="assignedQuizList" class="assigned-quiz-list">
+                            <div style="font-size:12px;color:var(--text-muted)">Loading assigned quizzes...</div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-20 animate-in delay-1">
+                        <div class="section-title" style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                            <i data-lucide="bar-chart-2" style="width:18px;height:18px;color:var(--primary)"></i>
+                            Score History
+                        </div>
+                        <div id="scoreHistoryChart" style="display:flex;gap:8px;align-items:stretch;height:180px;margin-bottom:10px"></div>
+                        <div id="scoreBestLine" style="font-size:12px;color:var(--text-muted)">No history yet — take a
+                            quiz!</div>
+                    </div>
+
+                    <div class="card animate-in delay-2">
+                        <div class="section-title" style="display:flex;align-items:center;gap:8px">
+                            <i data-lucide="award" style="width:18px;height:18px;color:var(--primary)"></i>
+                            Achievements
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:10px">
+                            <div style="display:flex;align-items:center;gap:12px">
+                                <div style="width:36px;height:36px;border-radius:10px;background:rgba(252,211,77,0.15);display:flex;align-items:center;justify-content:center;color:#D97706">
+                                    <i data-lucide="zap" style="width:18px;height:18px"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size:13px;font-weight:600" data-i18n="quiz.speed_demon">Speed Demon</div>
+                                    <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.under_5min">Finished in under 5 min</div>
+                                </div>
+                                <div style="margin-left:auto;color:#10B981"><i data-lucide="check-circle" style="width:16px;height:16px"></i></div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:12px">
+                                <div style="width:36px;height:36px;border-radius:10px;background:rgba(110,231,183,0.12);display:flex;align-items:center;justify-content:center;color:#10B981">
+                                    <i data-lucide="target" style="width:18px;height:18px"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size:13px;font-weight:600" data-i18n="quiz.perfect_score">Perfect Score ×3</div>
+                                    <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.perfect_desc">100% three times in a row</div>
+                                </div>
+                                <div style="margin-left:auto;color:#10B981"><i data-lucide="check-circle" style="width:16px;height:16px"></i></div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:12px;opacity:0.45">
+                                <div style="width:36px;height:36px;border-radius:10px;background:var(--bg-hover);display:flex;align-items:center;justify-content:center;color:var(--text-muted)">
+                                    <i data-lucide="star" style="width:18px;height:18px"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size:13px;font-weight:600" data-i18n="quiz.week_master">Week Master</div>
+                                    <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.week_master_desc">Quiz every day for a week</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Screen (hidden by default) -->
+            <div id="quizScreen" style="display:none">
+                <div class="quiz-layout">
+                    <div class="quiz-card animate-in">
+                        <!-- Progress steps -->
+                        <div class="progress-step" id="stepDots" style="margin-bottom:20px"></div>
+
+                        <!-- Timer + meta -->
+                        <div class="quiz-meta">
+                            <span id="topicBadge" class="qm-badge" style="background:var(--primary-light);color:var(--primary-dark)" data-i18n="quiz.mixed">Mixed</span>
+                            <span id="diffBadge" class="qm-badge" style="background:rgba(252,211,77,0.15);color:#D97706" data-i18n="common.medium">Medium</span>
+                            <div class="timer-ring" id="timerDisplay">15</div>
+                        </div>
+
+                        <div class="quiz-question" id="questionText" data-i18n="common.loading">Loading...</div>
+                        <div class="quiz-options" id="optionsList"></div>
+
+                        <div style="display:flex;gap:12px;margin-top:24px">
+                            <button onclick="skipQ()" class="btn btn-secondary" style="flex:1" data-i18n="quiz.skip">Skip</button>
+                            <button onclick="submitQ()" class="btn btn-primary" style="flex:2" data-i18n="quiz.submit">Submit Answer</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="section-title" style="display:flex;align-items:center;gap:8px">
+                            <i data-lucide="activity" style="width:18px;height:18px;color:var(--primary)"></i> Session
+                            Stats
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:14px">
+                            <div>
+                                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                                    <span data-i18n="dash.accuracy">Accuracy</span><span id="accuracy" style="color:var(--primary);font-weight:700">–</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div id="accuracyBar" class="score-bar-fill" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                                <div class="stat-card" style="text-align:center;padding:14px 10px">
+                                    <div style="font-size:24px;font-weight:800;color:#10B981" id="correctCount">0</div>
+                                    <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.correct">Correct</div>
+                                </div>
+                                <div class="stat-card" style="text-align:center;padding:14px 10px">
+                                    <div style="font-size:24px;font-weight:800;color:#EF4444" id="wrongCount">0</div>
+                                    <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.wrong">Wrong</div>
+                                </div>
+                            </div>
+                            <div style="font-size:13px;color:var(--text-secondary)">Points earned: <span id="ptsEarned" style="color:var(--primary);font-weight:700">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Screen -->
+            <div id="resultScreen" style="display:none;max-width:560px;margin:0 auto">
+                <div class="quiz-card animate-in" style="text-align:center">
+                    <div style="font-size:56px;margin-bottom:10px" id="resultEmoji">🎉</div>
+                    <h2 style="font-size:24px;font-weight:800" id="resultTitle" data-i18n="quiz.complete">Quiz Complete!</h2>
+                    <p style="color:var(--text-secondary);margin-top:4px" id="resultMsg"></p>
+                    <p id="nextDiffHint" style="font-size:12px;color:var(--primary);font-weight:600;margin-top:6px"></p>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;text-align:center">
+                        <div class="stat-card" style="padding:16px 10px">
+                            <div style="font-size:28px;font-weight:800;color:#10B981" id="rCorrect">0</div>
+                            <div style="font-size:11px;color:var(--text-muted)" data-i18n="quiz.correct">Correct</div>
+                        </div>
+                        <div class="stat-card" style="padding:16px 10px">
+                            <div style="font-size:28px;font-weight:800;color:var(--primary)" id="rPoints">0</div>
+                            <div style="font-size:11px;color:var(--text-muted)" data-i18n="dash.points">Points</div>
+                        </div>
+                        <div class="stat-card" style="padding:16px 10px">
+                            <div style="font-size:28px;font-weight:800;color:#F59E0B" id="rStreak">12</div>
+                            <div style="font-size:11px;color:var(--text-muted)" data-i18n="sidebar.day_streak">Day Streak</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:12px;justify-content:center" id="resultBtns">
+                        <button onclick="resetQuiz()" class="btn btn-primary w-full" data-i18n="quiz.try_again">Try Again</button>
+                        <a href="leaderboard.html" class="btn btn-secondary w-full" data-i18n="dash.view_leaderboard">View Leaderboard</a>
+                    </div>
+                    <div id="aiAnalyzeBtnWrap"></div>
+                </div>
+            </div>
+
+            <!-- Diagnostic Screen -->
+            <div id="diagnosticScreen" style="display:none;max-width:580px;margin:0 auto">
+                <div class="quiz-card animate-in" style="text-align:center">
+                    <div style="font-size:40px;margin-bottom:10px">🕵️</div>
+                    <h2 style="font-size:24px;font-weight:800;color:var(--primary)">AI Root-Cause Diagnostics</h2>
+                    <p style="color:var(--text-secondary);margin-top:4px" id="diagStatus">Analyzing your failed concepts...</p>
+                    <div id="diagLoader" style="margin:40px 0;">
+                        <svg class="animate-spin" style="margin:0 auto;color:var(--primary)" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="6"></line><line x1="12" x2="12" y1="18" y2="22"></line><line x1="4.93" x2="7.76" y1="4.93" y2="7.76"></line><line x1="16.24" x2="19.07" y1="16.24" y2="19.07"></line><line x1="2" x2="6" y1="12" y2="12"></line><line x1="18" x2="22" y1="12" y2="12"></line><line x1="4.93" x2="7.76" y1="19.07" y2="16.24"></line><line x1="16.24" x2="19.07" y1="7.76" y2="4.93"></line></svg>
+                    </div>
+                    <div id="diagQContainer" style="display:none; text-align:left; margin-top:24px;">
+                        <div id="diagQText" style="font-size:17px;font-weight:700;margin-bottom:20px;line-height:1.5;color:var(--text-primary)"></div>
+                        <div id="diagOptions" class="quiz-options"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="mascot-fab-container" aria-label="AI Tutor" onclick="window.location.href='chat.html'" title="Open AI Tutor">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-svg" style="width: 100%; height: 100%; filter: drop-shadow(0 6px 12px rgba(255,122,31,0.25)); transition: transform 0.3s ease;">
+    <!-- Top bun -->
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"></ellipse>
+    <!-- Left little ear bump on body -->
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Right little ear bump on body -->
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"></circle>
+    <!-- Main orange body -->
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"></ellipse>
+    <!-- Left Side ear -->
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Right Side ear -->
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"></rect>
+    <!-- Dark face plate -->
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B"></rect>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Harry Potter Scar -->
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square"></path>
+    <!-- Left Eye -->
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <!-- Right Eye -->
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"></circle>
+    <style>
+        .bot-mascot-svg:hover { transform: scale(1.05) rotate(-3deg); }
+    </style>
+</svg>
+</div>
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="i18n.js"></script>
+    <script src="data-agent.js"></script>
+    <script src="feature-agents.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // ── Score History Storage ────────────────────────────────────
+        const SCORE_KEY = 'ls-quiz-scores';
+
+        function quizReadShared(key, fallback) {
+            try {
+                if (window.DataAgent && typeof window.DataAgent.readCompat === 'function') {
+                    return window.DataAgent.readCompat(key, fallback);
+                }
+                const raw = localStorage.getItem(key);
+                if (raw === null || raw === undefined) return fallback;
+                return JSON.parse(raw);
+            } catch {
+                return fallback;
+            }
+        }
+
+        function quizWriteShared(key, value) {
+            try {
+                if (window.DataAgent && typeof window.DataAgent.writeCompat === 'function') {
+                    window.DataAgent.writeCompat(key, value);
+                    return;
+                }
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (e) {
+                console.warn('[Quiz] Shared write failed for', key, e);
+            }
+        }
+
+        function getAuthToken() {
+            return localStorage.getItem('ls-token') || localStorage.getItem('token') || '';
+        }
+
+        function getApiBase() {
+            if (typeof window.API === 'string' && window.API.trim()) return window.API;
+            if (window.location && window.location.origin && window.location.origin !== 'null') {
+                return window.location.origin;
+            }
+            return 'http://localhost:5050';
+        }
+
+        async function quizApiRequest(path, options = {}) {
+            const token = getAuthToken();
+            if (!token) throw new Error('Please log in again to access assigned quizzes.');
+
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(options.headers || {}),
+                Authorization: `Bearer ${token}`,
+            };
+
+            const res = await fetch(`${getApiBase()}${path}`, {
+                ...options,
+                headers,
+            });
+
+            let body = {};
+            try {
+                body = await res.json();
+            } catch {
+                body = {};
+            }
+
+            if (!res.ok) {
+                throw new Error(body.error || `Request failed (${res.status})`);
+            }
+
+            return body;
+        }
+
+        function saveScore(pct, topic) {
+            let scores = quizReadShared(SCORE_KEY, []);
+            const now = new Date();
+            const dateKey = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+            scores.push({ date: dateKey, pct, topic, ts: now.getTime() });
+            // Keep last 14 entries
+            if (scores.length > 14) scores = scores.slice(-14);
+            quizWriteShared(SCORE_KEY, scores);
+        }
+
+        function buildScoreHistory() {
+            let scores = quizReadShared(SCORE_KEY, []);
+            const chart = document.getElementById('scoreHistoryChart');
+            const bestLine = document.getElementById('scoreBestLine');
+            if (!scores.length) {
+                chart.innerHTML = '<span style="font-size:12px;color:var(--text-muted);align-self:center">No quizzes taken yet</span>';
+                bestLine.textContent = 'Complete your first quiz to see history!';
+                return;
+            }
+            const recent = scores.slice(-7);
+            const maxPct = 100;
+            const best = scores.reduce((b, s) => s.pct > b.pct ? s : b, scores[0]);
+            chart.innerHTML = recent.map(s => {
+                const barH = Math.max(6, Math.round(s.pct / 100 * 130));
+                const color = s.pct >= 80 ? '#10B981' : s.pct >= 60 ? 'var(--primary)' : '#F59E0B';
+                return `<div class="score-bar-wrap" data-topic="${s.topic}" data-pct="${s.pct}" data-date="${s.date}">
+                    <span class="bar-pct">${s.pct}%</span>
+                    <div class="bar-spacer"></div>
+                    <div style="width:100%;background:rgba(108,168,241,0.15);border-radius:8px;height:${barH}px">
+                        <div style="width:100%;background:${color};border-radius:8px;height:100%"></div>
+                    </div>
+                    <span class="bar-date">${s.date}</span>
+                </div>`;
+            }).join('');
+            bestLine.textContent = `🏆 Best: ${best.pct}% on ${best.date} (${best.topic})`;
+            // Attach click listeners for tooltips
+            chart.querySelectorAll('.score-bar-wrap').forEach(el => {
+                el.addEventListener('click', () => showBarTooltip(el));
+            });
+        }
+
+        function showBarTooltip(el) {
+            // Remove any existing tooltip
+            document.querySelectorAll('.bar-tooltip').forEach(t => t.remove());
+            const topic = el.dataset.topic;
+            const pct = el.dataset.pct;
+            const date = el.dataset.date;
+            const tt = document.createElement('div');
+            tt.className = 'bar-tooltip';
+            tt.innerHTML = `${TOPIC_EMOJI[topic] || '📚'} ${topic}<br><span style="font-weight:400">${pct}% &middot; ${date}</span>`;
+            el.appendChild(tt);
+            setTimeout(() => tt && tt.remove(), 2500);
+        }
+
+        // ── Question Bank (60 questions · 4 topics · 3 difficulty levels) ──
+        const QB = [
+            // ── PHYSICS ────────────────────────────────────────────────────
+            // Easy
+            { id: 'ph1', topic: 'Physics', difficulty: 'easy', q: 'What is the SI unit of force?', options: ['Newton', 'Joule', 'Watt', 'Pascal'], correct: 0 },
+            { id: 'ph2', topic: 'Physics', difficulty: 'easy', q: 'Speed of light in vacuum is approximately:', options: ['3×10⁶ m/s', '3×10⁸ m/s', '3×10¹⁰ m/s', '3×10⁴ m/s'], correct: 1 },
+            { id: 'ph3', topic: 'Physics', difficulty: 'easy', q: "Newton's First Law is also known as the law of:", options: ['Gravitation', 'Inertia', 'Conservation of Energy', 'Acceleration'], correct: 1 },
+            { id: 'ph4', topic: 'Physics', difficulty: 'easy', q: 'SI unit of electric current is:', options: ['Volt', 'Ohm', 'Ampere', 'Watt'], correct: 2 },
+            { id: 'ph5', topic: 'Physics', difficulty: 'easy', q: 'Kinetic energy is given by:', options: ['mgh', '½mv²', 'mv', 'F·d'], correct: 1 },
+            // Medium
+            { id: 'ph6', topic: 'Physics', difficulty: 'medium', q: 'A ball thrown upward at 20 m/s. Maximum height? (g = 10 m/s²)', options: ['10 m', '20 m', '40 m', '5 m'], correct: 1 },
+            { id: 'ph7', topic: 'Physics', difficulty: 'medium', q: 'Two resistors 4 Ω and 6 Ω connected in parallel. Equivalent resistance?', options: ['10 Ω', '2.4 Ω', '5 Ω', '1.5 Ω'], correct: 1 },
+            { id: 'ph8', topic: 'Physics', difficulty: 'medium', q: 'Focal length of a concave mirror is 10 cm. Its radius of curvature is:', options: ['5 cm', '10 cm', '20 cm', '40 cm'], correct: 2 },
+            { id: 'ph9', topic: 'Physics', difficulty: 'medium', q: 'Work done is zero when force and displacement are:', options: ['Parallel', 'Antiparallel', 'Perpendicular', 'Equal in magnitude'], correct: 2 },
+            { id: 'ph10', topic: 'Physics', difficulty: 'medium', q: "Which law relates a gas's pressure and volume at constant temperature?", options: ["Charles' Law", "Boyle's Law", "Gay-Lussac's Law", "Avogadro's Law"], correct: 1 },
+            // Hard
+            { id: 'ph11', topic: 'Physics', difficulty: 'hard', q: 'de Broglie wavelength λ = h/mv. If velocity doubles, λ becomes:', options: ['Double', 'Half', 'Four times', 'Unchanged'], correct: 1 },
+            { id: 'ph12', topic: 'Physics', difficulty: 'hard', q: 'Escape velocity from Earth primarily depends on:', options: ['Mass of the object', 'Radius of Earth only', 'Mass and radius of Earth', 'Atmospheric pressure'], correct: 2 },
+            { id: 'ph13', topic: 'Physics', difficulty: 'hard', q: 'In the photoelectric effect, stopping potential depends on:', options: ['Intensity of light', 'Frequency of light', 'Both intensity and frequency', 'Neither'], correct: 1 },
+            { id: 'ph14', topic: 'Physics', difficulty: 'hard', q: 'A particle in SHM. At the mean position which quantity is maximum?', options: ['Potential energy', 'Acceleration', 'Kinetic energy', 'Displacement'], correct: 2 },
+            { id: 'ph15', topic: 'Physics', difficulty: 'hard', q: "Heisenberg's uncertainty principle primarily relates:", options: ['Position and momentum', 'Mass and velocity', 'Energy and charge', 'Current and resistance'], correct: 0 },
+            // ── CHEMISTRY ──────────────────────────────────────────────────
+            // Easy
+            { id: 'ch1', topic: 'Chemistry', difficulty: 'easy', q: 'Chemical formula of Sodium Bicarbonate?', options: ['NaCl', 'NaOH', 'NaHCO₃', 'Na₂CO₃'], correct: 2 },
+            { id: 'ch2', topic: 'Chemistry', difficulty: 'easy', q: 'Atomic number of Carbon is:', options: ['6', '8', '12', '14'], correct: 0 },
+            { id: 'ch3', topic: 'Chemistry', difficulty: 'easy', q: 'pH of pure water at 25 °C is:', options: ['0', '7', '14', '6'], correct: 1 },
+            { id: 'ch4', topic: 'Chemistry', difficulty: 'easy', q: 'Valency of oxygen is:', options: ['1', '2', '3', '4'], correct: 1 },
+            { id: 'ch5', topic: 'Chemistry', difficulty: 'easy', q: 'Which gas is produced when acid reacts with a metal carbonate?', options: ['O₂', 'H₂', 'CO₂', 'N₂'], correct: 2 },
+            // Medium
+            { id: 'ch6', topic: 'Chemistry', difficulty: 'medium', q: 'Total pressure of a gas mixture equals sum of partial pressures. This is:', options: ["Boyle's Law", "Dalton's Law", "Charles' Law", "Avogadro's Law"], correct: 1 },
+            { id: 'ch7', topic: 'Chemistry', difficulty: 'medium', q: 'Hybridisation of carbon in CH₄ is:', options: ['sp', 'sp²', 'sp³', 'sp³d'], correct: 2 },
+            { id: 'ch8', topic: 'Chemistry', difficulty: 'medium', q: "Avogadro's number is approximately:", options: ['6.022×10²³', '6.022×10²²', '3.011×10²³', '1.38×10⁻²³'], correct: 0 },
+            { id: 'ch9', topic: 'Chemistry', difficulty: 'medium', q: 'Oxidation state of Cr in K₂Cr₂O₇?', options: ['+3', '+6', '+7', '+4'], correct: 1 },
+            { id: 'ch10', topic: 'Chemistry', difficulty: 'medium', q: 'Which type of bond is generally strongest?', options: ['Ionic', 'Covalent', 'Hydrogen', 'Van der Waals'], correct: 1 },
+            // Hard
+            { id: 'ch11', topic: 'Chemistry', difficulty: 'hard', q: "Van't Hoff factor for Na₂SO₄ (fully dissociated) is:", options: ['1', '2', '3', '4'], correct: 2 },
+            { id: 'ch12', topic: 'Chemistry', difficulty: 'hard', q: 'IUPAC name of CH₃–CH(OH)–CH₃ is:', options: ['Propan-1-ol', 'Propan-2-ol', 'Butan-2-ol', 'Propan-3-ol'], correct: 1 },
+            { id: 'ch13', topic: 'Chemistry', difficulty: 'hard', q: 'Which has the highest entropy at 25 °C?', options: ['Ice', 'Liquid water', 'Steam', 'All equal'], correct: 2 },
+            { id: 'ch14', topic: 'Chemistry', difficulty: 'hard', q: 'The Nernst equation corrects cell EMF for:', options: ['Temperature only', 'Concentration of ions', 'Electrode geometry', 'Pressure only'], correct: 1 },
+            { id: 'ch15', topic: 'Chemistry', difficulty: 'hard', q: 'Equivalent weight = Molecular weight / ?', options: ['Valency (n-factor)', 'Molar mass', 'Normality', 'Molarity'], correct: 0 },
+            // ── MATHS ───────────────────────────────────────────────────────
+            // Easy
+            { id: 'ma1', topic: 'Maths', difficulty: 'easy', q: 'Derivative of x² with respect to x:', options: ['x', '2x', 'x²', '2'], correct: 1 },
+            { id: 'ma2', topic: 'Maths', difficulty: 'easy', q: 'Area of a circle of radius r:', options: ['πr', '2πr', 'πr²', '4πr²'], correct: 2 },
+            { id: 'ma3', topic: 'Maths', difficulty: 'easy', q: 'sin 90° =', options: ['0', '1', '√2 / 2', '√3 / 2'], correct: 1 },
+            { id: 'ma4', topic: 'Maths', difficulty: 'easy', q: 'Sum of interior angles of a triangle:', options: ['90°', '180°', '270°', '360°'], correct: 1 },
+            { id: 'ma5', topic: 'Maths', difficulty: 'easy', q: '∫ x dx =', options: ['x²/2 + C', '2x + C', 'x² + C', 'x/2 + C'], correct: 0 },
+            // Medium
+            { id: 'ma6', topic: 'Maths', difficulty: 'medium', q: 'f(x) = x² + 3x + 2. Then f′(x) =', options: ['2x + 3', 'x + 3', '2x + 2', '3x + 2'], correct: 0 },
+            { id: 'ma7', topic: 'Maths', difficulty: 'medium', q: 'Sum of first n natural numbers:', options: ['n(n+1)/2', 'n²', 'n(n−1)/2', 'n(n+2)/2'], correct: 0 },
+            { id: 'ma8', topic: 'Maths', difficulty: 'medium', q: 'cos²θ + sin²θ =', options: ['0', '2', '1', 'cos 2θ'], correct: 2 },
+            { id: 'ma9', topic: 'Maths', difficulty: 'medium', q: 'In a GP with first term 2 and common ratio 3, the 4th term is:', options: ['18', '54', '162', '6'], correct: 1 },
+            { id: 'ma10', topic: 'Maths', difficulty: 'medium', q: 'Distance between points (0, 0) and (3, 4):', options: ['3', '4', '5', '7'], correct: 2 },
+            // Hard
+            { id: 'ma11', topic: 'Maths', difficulty: 'hard', q: 'Number of ways to arrange 5 distinct books on a shelf:', options: ['25', '60', '120', '720'], correct: 2 },
+            { id: 'ma12', topic: 'Maths', difficulty: 'hard', q: '∫₀¹ x² dx =', options: ['1/2', '1/4', '1/3', '2/3'], correct: 2 },
+            { id: 'ma13', topic: 'Maths', difficulty: 'hard', q: 'If |z| = 1 for a complex number z, then z lies on:', options: ['X-axis', 'Y-axis', 'Unit circle', 'Origin'], correct: 2 },
+            { id: 'ma14', topic: 'Maths', difficulty: 'hard', q: 'Determinant of the matrix [[2, 1], [4, 3]] is:', options: ['2', '10', '6', '4'], correct: 0 },
+            { id: 'ma15', topic: 'Maths', difficulty: 'hard', q: 'P(A ∪ B) = P(A) + P(B) − ?', options: ['P(A)·P(B)', 'P(A ∩ B)', 'P(A|B)', 'P(B|A)'], correct: 1 },
+            // ── BIOLOGY ─────────────────────────────────────────────────────
+            // Easy
+            { id: 'bi1', topic: 'Biology', difficulty: 'easy', q: 'The powerhouse of the cell is:', options: ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi body'], correct: 2 },
+            { id: 'bi2', topic: 'Biology', difficulty: 'easy', q: 'Photosynthesis primarily takes place in:', options: ['Root', 'Stem', 'Chloroplast', 'Nucleus'], correct: 2 },
+            { id: 'bi3', topic: 'Biology', difficulty: 'easy', q: 'In DNA, Adenine pairs with:', options: ['Guanine', 'Cytosine', 'Thymine', 'Uracil'], correct: 2 },
+            { id: 'bi4', topic: 'Biology', difficulty: 'easy', q: 'Number of chromosomes in a human somatic cell:', options: ['23', '44', '46', '48'], correct: 2 },
+            { id: 'bi5', topic: 'Biology', difficulty: 'easy', q: 'Which blood group is the universal donor?', options: ['A', 'B', 'AB', 'O'], correct: 3 },
+            // Medium
+            { id: 'bi6', topic: 'Biology', difficulty: 'medium', q: 'The Krebs cycle occurs in the:', options: ['Cytoplasm', 'Nucleus', 'Mitochondrial matrix', 'Ribosome'], correct: 2 },
+            { id: 'bi7', topic: 'Biology', difficulty: 'medium', q: 'Which hormone regulates blood glucose levels?', options: ['Thyroxine', 'Insulin', 'Adrenaline', 'Cortisol'], correct: 1 },
+            { id: 'bi8', topic: 'Biology', difficulty: 'medium', q: "Mendel's Law of Segregation states that:", options: ['Genes are always linked', 'Alleles separate during gamete formation', 'Traits are blended in offspring', 'Dominant allele always expressed'], correct: 1 },
+            { id: 'bi9', topic: 'Biology', difficulty: 'medium', q: 'Which enzyme unwinds the DNA double helix during replication?', options: ['Ligase', 'Helicase', 'Polymerase', 'Topoisomerase'], correct: 1 },
+            { id: 'bi10', topic: 'Biology', difficulty: 'medium', q: 'Antibodies are produced by:', options: ['T-cells', 'B-cells', 'Macrophages', 'Neutrophils'], correct: 1 },
+            // Hard
+            { id: 'bi11', topic: 'Biology', difficulty: 'hard', q: 'In the lac operon, the repressor protein binds to the:', options: ['Promoter', 'Operator', 'Structural gene', 'RNA polymerase'], correct: 1 },
+            { id: 'bi12', topic: 'Biology', difficulty: 'hard', q: 'Which of the following is NOT a post-translational modification?', options: ['Phosphorylation', 'Glycosylation', 'mRNA splicing', 'Ubiquitination'], correct: 2 },
+            { id: 'bi13', topic: 'Biology', difficulty: 'hard', q: 'Which is a density-independent factor affecting population size?', options: ['Competition', 'Predation', 'Natural disaster', 'Disease'], correct: 2 },
+            { id: 'bi14', topic: 'Biology', difficulty: 'hard', q: 'Hardy-Weinberg equilibrium requires:', options: ['Small population', 'Natural selection', 'Random mating', 'Frequent mutation'], correct: 2 },
+            { id: 'bi15', topic: 'Biology', difficulty: 'hard', q: 'Which molecule can act as both an enzyme and genetic material?', options: ['DNA', 'Protein', 'Ribozyme (RNA)', 'Lipid'], correct: 2 },
+
+            // ── QA – Quantitative Aptitude (CAT) ────────────────────────
+            { id: 'qa1', topic: 'QA', difficulty: 'easy', q: 'What is 15% of 200?', options: ['20', '25', '30', '35'], correct: 2 },
+            { id: 'qa2', topic: 'QA', difficulty: 'easy', q: 'A train travels 120 km in 2 hours. Its speed is:', options: ['40 km/h', '50 km/h', '60 km/h', '80 km/h'], correct: 2 },
+            { id: 'qa3', topic: 'QA', difficulty: 'medium', q: 'If a shopkeeper earns 20% profit on an article sold for ₹480, the cost price is:', options: ['₹380', '₹400', '₹420', '₹450'], correct: 1 },
+            { id: 'qa4', topic: 'QA', difficulty: 'medium', q: 'Two pipes A and B fill a tank in 10 and 15 hours. Together in:', options: ['5 h', '6 h', '8 h', '12 h'], correct: 1 },
+            { id: 'qa5', topic: 'QA', difficulty: 'hard', q: 'In how many ways can 5 men and 3 women be seated in a row so no 2 women are adjacent?', options: ['2880', '5040', '720', '1440'], correct: 0 },
+            { id: 'qa6', topic: 'QA', difficulty: 'medium', q: 'Sum of an AP: first term 3, common difference 4, 10 terms:', options: ['210', '200', '220', '190'], correct: 0 },
+
+            // ── DILR – Data Interpretation & Logical Reasoning (CAT) ────
+            { id: 'di1', topic: 'DILR', difficulty: 'easy', q: 'A pie chart shows sales: Electronics 40%, Clothing 30%, Food 20%, Other 10%. If total sales = ₹5 lakh, electronics sales =', options: ['₹1.5 L', '₹2 L', '₹2.5 L', '₹3 L'], correct: 1 },
+            { id: 'di2', topic: 'DILR', difficulty: 'easy', q: 'In a class of 40, 25 like cricket, 20 like football, 10 like both. How many like neither?', options: ['5', '10', '15', '20'], correct: 0 },
+            { id: 'di3', topic: 'DILR', difficulty: 'medium', q: 'A, B, C, D sit in a row. A is not next to B. B is left of C. D is at one end. Who sits second from left?', options: ['A', 'B', 'C', 'D'], correct: 1 },
+            { id: 'di4', topic: 'DILR', difficulty: 'medium', q: 'A bar chart shows Year 2020: 50, 2021: 65, 2022: 80. Percentage growth from 2020 to 2022:', options: ['30%', '50%', '60%', '65%'], correct: 2 },
+            { id: 'di5', topic: 'DILR', difficulty: 'hard', q: '6 friends P, Q, R, S, T, U are in pairs. P is with T. Q is not with R. S is with U. Who is Q with?', options: ['P', 'R', 'T', 'S'], correct: 0 },
+            { id: 'di6', topic: 'DILR', difficulty: 'hard', q: 'In a Venn diagram: A∪B = 70, A = 45, B = 40. Then A∩B =', options: ['10', '15', '20', '25'], correct: 1 },
+
+            // ── VARC – Verbal Ability & Reading Comprehension (CAT) ─────
+            { id: 'va1', topic: 'VARC', difficulty: 'easy', q: 'Choose the correctly spelled word:', options: ['Accomodate', 'Accommodate', 'Acommodate', 'Acomodate'], correct: 1 },
+            { id: 'va2', topic: 'VARC', difficulty: 'easy', q: 'Antonym of "Loquacious":', options: ['Talkative', 'Verbose', 'Taciturn', 'Garrulous'], correct: 2 },
+            { id: 'va3', topic: 'VARC', difficulty: 'medium', q: 'Choose the correct sentence:', options: ['She has went there.', 'She have gone there.', 'She has gone there.', 'She went there yesterday.'], correct: 2 },
+            { id: 'va4', topic: 'VARC', difficulty: 'medium', q: 'Para-jumble: Choose the logical order — P: The river overflowed. Q: It rained heavily. R: Crops were damaged. S: Farmers suffered losses.', options: ['QPRS', 'PQRS', 'RSPQ', 'QRPS'], correct: 0 },
+            { id: 'va5', topic: 'VARC', difficulty: 'hard', q: "The passage says: 'Economic growth without equity is meaningless.' The author implies:", options: ['Growth is always harmful', 'Growth benefits all automatically', 'Growth must be accompanied by fair distribution', 'Equity is more important than growth'], correct: 2 },
+            { id: 'va6', topic: 'VARC', difficulty: 'hard', q: 'Critical Reasoning: All birds fly. Penguins are birds. Therefore:', options: ['Penguins fly — valid conclusion', 'Penguins fly — invalid (penguins cannot fly)', 'Penguins are mammals', 'Cannot conclude'], correct: 1 },
+
+            // ── History & Polity (UPSC) ──────────────────────────────────
+            { id: 'hp1', topic: 'History & Polity', difficulty: 'easy', q: 'Who drafted the Constitution of India?', options: ['Jawaharlal Nehru', 'B.R. Ambedkar', 'Sardar Patel', 'Rajendra Prasad'], correct: 1 },
+            { id: 'hp2', topic: 'History & Polity', difficulty: 'easy', q: 'Which year did India adopt its Constitution?', options: ['1947', '1948', '1949', '1950'], correct: 3 },
+            { id: 'hp3', topic: 'History & Polity', difficulty: 'medium', q: 'The "Battle of Plassey" (1757) was fought between:', options: ['British and Marathas', 'British and Nawab of Bengal', 'French and British', 'Mughal Emperor and British'], correct: 1 },
+            { id: 'hp4', topic: 'History & Polity', difficulty: 'medium', q: 'Under the Indian Constitution, Education is in which list?', options: ['Union List', 'State List', 'Concurrent List', 'Residuary List'], correct: 2 },
+            { id: 'hp5', topic: 'History & Polity', difficulty: 'hard', q: 'The Directive Principles of State Policy are enumerated in which Part of the Constitution?', options: ['Part II', 'Part III', 'Part IV', 'Part V'], correct: 2 },
+            { id: 'hp6', topic: 'History & Polity', difficulty: 'hard', q: 'Which Act transferred power from the East India Company to the British Crown?', options: ['Regulating Act 1773', 'Pitt\'s India Act 1784', 'Government of India Act 1858', 'Indian Councils Act 1892'], correct: 2 },
+
+            // ── Geography (UPSC) ─────────────────────────────────────────
+            { id: 'geo1', topic: 'Geography', difficulty: 'easy', q: 'The Tropic of Cancer passes through how many Indian states?', options: ['6', '7', '8', '9'], correct: 2 },
+            { id: 'geo2', topic: 'Geography', difficulty: 'easy', q: 'Which is the largest river basin in India?', options: ['Ganga', 'Godavari', 'Krishna', 'Brahmaputra'], correct: 0 },
+            { id: 'geo3', topic: 'Geography', difficulty: 'medium', q: "India's highest peak is:", options: ['Kanchenjunga', 'Mt. Everest', 'Nanda Devi', 'K2'], correct: 0 },
+            { id: 'geo4', topic: 'Geography', difficulty: 'medium', q: 'The Western Ghats are the source of rivers flowing to:', options: ['Bay of Bengal', 'Arabian Sea', 'Both coasts', 'Indian Ocean only'], correct: 1 },
+            { id: 'geo5', topic: 'Geography', difficulty: 'hard', q: 'Which type of rainfall occurs in Western Ghats coast due to moisture-laden winds?', options: ['Convectional', 'Orographic', 'Cyclonic', 'Frontal'], correct: 1 },
+            { id: 'geo6', topic: 'Geography', difficulty: 'hard', q: 'The International Date Line passes through which ocean?', options: ['Atlantic', 'Indian', 'Arctic', 'Pacific'], correct: 3 },
+
+            // ── Economy (UPSC) ────────────────────────────────────────────
+            { id: 'eco1', topic: 'Economy', difficulty: 'easy', q: 'GDP stands for:', options: ['Gross Domestic Product', 'General Development Plan', 'Gross Development Plan', 'Government Domestic Policy'], correct: 0 },
+            { id: 'eco2', topic: 'Economy', difficulty: 'easy', q: 'Which index measures inflation of goods at wholesale level?', options: ['CPI', 'WPI', 'PPI', 'RPI'], correct: 1 },
+            { id: 'eco3', topic: 'Economy', difficulty: 'medium', q: 'Repo rate is the rate at which:', options: ['Banks lend to each other', 'RBI lends to commercial banks', 'Commercial banks lend to RBI', 'Government borrows from RBI'], correct: 1 },
+            { id: 'eco4', topic: 'Economy', difficulty: 'medium', q: 'Green Revolution in India was mainly associated with which crop?', options: ['Rice', 'Wheat', 'Pulses', 'Cotton'], correct: 1 },
+            { id: 'eco5', topic: 'Economy', difficulty: 'hard', q: "India's FRBM Act requires the government to maintain fiscal discipline by targeting:", options: ['Trade deficit', 'Fiscal deficit & revenue deficit', 'Current account deficit', 'Capital account surplus'], correct: 1 },
+            { id: 'eco6', topic: 'Economy', difficulty: 'hard', q: 'Which committee recommended GST for India?', options: ['Kelkar Committee', 'Vijay Kelkar Task Force', 'Asim Dasgupta Committee', 'Raja Chellaiah Committee'], correct: 2 },
+
+            // ── Environment (UPSC) ────────────────────────────────────────
+            { id: 'env1', topic: 'Environment', difficulty: 'easy', q: 'The Kyoto Protocol primarily deals with:', options: ['Ozone layer protection', 'Greenhouse gas reduction', 'Marine pollution', 'Biodiversity'], correct: 1 },
+            { id: 'env2', topic: 'Environment', difficulty: 'easy', q: 'Which gas is primarily responsible for the greenhouse effect?', options: ['Oxygen', 'CO₂', 'Nitrogen', 'Hydrogen'], correct: 1 },
+            { id: 'env3', topic: 'Environment', difficulty: 'medium', q: 'The "Red Data Book" lists species that are:', options: ['Extinct', 'Endangered or threatened', 'Commonly found', 'Invasive'], correct: 1 },
+            { id: 'env4', topic: 'Environment', difficulty: 'medium', q: 'CITES is an international agreement protecting:', options: ['Marine boundaries', 'Wild Flora and Fauna trade', 'Ozone layer', 'Forest cover'], correct: 1 },
+            { id: 'env5', topic: 'Environment', difficulty: 'hard', q: "India's BioSphere Reserves count that are UNESCO-recognised is approximately:", options: ['5', '8', '11', '18'], correct: 2 },
+
+            // ── Science & Tech (UPSC) ─────────────────────────────────────
+            { id: 'st1', topic: 'Science & Tech', difficulty: 'easy', q: 'ISRO\'s mission to Mars was called:', options: ['Chandrayaan', 'Mangalyaan', 'Aditya', 'Gaganyaan'], correct: 1 },
+            { id: 'st2', topic: 'Science & Tech', difficulty: 'medium', q: '5G uses which frequency band primarily?', options: ['700 MHz', '2.4 GHz', 'Sub-6 GHz and mmWave', '450 MHz'], correct: 2 },
+            { id: 'st3', topic: 'Science & Tech', difficulty: 'hard', q: 'mRNA vaccines work by:', options: ['Injecting weakened virus', 'Instructing cells to produce spike protein for immunity', 'Direct antibody injection', 'Using DNA recombination'], correct: 1 },
+
+            // ── Engineering Maths (GATE) ──────────────────────────────────
+            { id: 'em1', topic: 'Engineering Maths', difficulty: 'easy', q: 'Eigenvalues of the matrix [[2, 0], [0, 3]] are:', options: ['2 and 3', '0 and 2', '1 and 6', '2 and 0'], correct: 0 },
+            { id: 'em2', topic: 'Engineering Maths', difficulty: 'easy', q: 'The degree of the differential equation d²y/dx² + dy/dx = 5 is:', options: ['0', '1', '2', '3'], correct: 2 },
+            { id: 'em3', topic: 'Engineering Maths', difficulty: 'medium', q: 'The Laplace transform of e^(at) is:', options: ['1/(s+a)', '1/(s-a)', 'a/(s-a)', 's/(s-a)'], correct: 1 },
+            { id: 'em4', topic: 'Engineering Maths', difficulty: 'medium', q: 'P(A∩B) = 0.3, P(A) = 0.5. Then P(B|A) =', options: ['0.4', '0.5', '0.6', '0.7'], correct: 2 },
+            { id: 'em5', topic: 'Engineering Maths', difficulty: 'hard', q: 'The rank of the matrix [[1,2,3],[4,5,6],[7,8,9]] is:', options: ['3', '1', '2', '0'], correct: 2 },
+            { id: 'em6', topic: 'Engineering Maths', difficulty: 'hard', q: 'Using Bayes theorem: P(A|B)=P(B|A)·P(A)/P(B). If P(B|A)=0.8, P(A)=0.4, P(B)=0.5, then P(A|B)=', options: ['0.56', '0.64', '0.72', '0.80'], correct: 1 },
+
+            // ── General Aptitude (GATE) ───────────────────────────────────
+            { id: 'ga1', topic: 'General Aptitude', difficulty: 'easy', q: '12 is what percent of 80?', options: ['12%', '15%', '16%', '20%'], correct: 1 },
+            { id: 'ga2', topic: 'General Aptitude', difficulty: 'easy', q: 'Complete the series: 2, 6, 12, 20, 30, ?', options: ['40', '42', '44', '48'], correct: 1 },
+            { id: 'ga3', topic: 'General Aptitude', difficulty: 'medium', q: 'If MANGO = 13+1+14+7+15 = 50, what is GRAPE?', options: ['48', '50', '52', '54'], correct: 2 },
+            { id: 'ga4', topic: 'General Aptitude', difficulty: 'medium', q: 'A is twice as old as B. In 5 years A will be 1.5× B\'s age then. A\'s present age:', options: ['10', '15', '20', '25'], correct: 2 },
+            { id: 'ga5', topic: 'General Aptitude', difficulty: 'hard', q: 'All honest people are kind. Some kind people are brave. Which conclusion is correct?', options: ['All honest people are brave', 'Some honest people may be brave', 'No honest person is brave', 'Some brave people are honest'], correct: 1 },
+
+            // ── Data Structures (GATE) ────────────────────────────────────
+            { id: 'ds1', topic: 'Data Structures', difficulty: 'easy', q: 'The time complexity of binary search on a sorted array of n elements is:', options: ['O(n)', 'O(log n)', 'O(n log n)', 'O(n²)'], correct: 1 },
+            { id: 'ds2', topic: 'Data Structures', difficulty: 'easy', q: 'A stack is a __ data structure:', options: ['FIFO', 'LIFO', 'Random access', 'Circular'], correct: 1 },
+            { id: 'ds3', topic: 'Data Structures', difficulty: 'medium', q: 'Height of a balanced BST with n nodes is:', options: ['O(n)', 'O(log n)', 'O(n²)', 'O(1)'], correct: 1 },
+            { id: 'ds4', topic: 'Data Structures', difficulty: 'medium', q: 'Which traversal of a BST gives sorted order?', options: ['Preorder', 'Postorder', 'Inorder', 'Level order'], correct: 2 },
+            { id: 'ds5', topic: 'Data Structures', difficulty: 'hard', q: 'In a hash table with open addressing and load factor α, average probes for successful search is approximately:', options: ['1/(1-α)', '½(1+1/(1-α))', 'log(1/(1-α))', 'α/(1-α)'], correct: 1 },
+            { id: 'ds6', topic: 'Data Structures', difficulty: 'hard', q: 'Minimum number of nodes in a B-tree of order m and height h is:', options: ['2⌈m/2⌉ʰ − 1', 'm^h', '2 × (⌈m/2⌉^h) − 1', 'h × m'], correct: 0 },
+
+            // ── Operating Systems (GATE) ──────────────────────────────────
+            { id: 'os1', topic: 'Operating Systems', difficulty: 'easy', q: 'A process waiting for I/O is in which state?', options: ['Running', 'Ready', 'Blocked/Waiting', 'Terminated'], correct: 2 },
+            { id: 'os2', topic: 'Operating Systems', difficulty: 'easy', q: 'FCFS (First Come First Served) scheduling is:', options: ['Preemptive', 'Non-preemptive', 'Both', 'Dynamic'], correct: 1 },
+            { id: 'os3', topic: 'Operating Systems', difficulty: 'medium', q: 'Deadlock can be prevented by using:', options: ['Banker\'s algorithm', 'Round-robin scheduling', 'LRU replacement', 'FCFS scheduling'], correct: 0 },
+            { id: 'os4', topic: 'Operating Systems', difficulty: 'medium', q: 'Thrashing in an OS occurs when:', options: ['Too many processes wait for I/O', 'CPU spends more time paging than executing', 'Memory is fragmented', 'Cache miss rate is high'], correct: 1 },
+            { id: 'os5', topic: 'Operating Systems', difficulty: 'hard', q: 'In the Peterson\'s solution for mutual exclusion, the variables used are:', options: ['Semaphore only', 'flag[] and turn', 'mutex and condition', 'busy-wait and lock'], correct: 1 },
+
+            // ── Computer Networks (GATE) ──────────────────────────────────
+            { id: 'cn1', topic: 'Computer Networks', difficulty: 'easy', q: 'Which layer of the OSI model is responsible for routing?', options: ['Data Link', 'Network', 'Transport', 'Session'], correct: 1 },
+            { id: 'cn2', topic: 'Computer Networks', difficulty: 'easy', q: 'TCP ensures:', options: ['Best-effort delivery', 'Reliable, ordered delivery', 'Fastest delivery', 'Connectionless delivery'], correct: 1 },
+            { id: 'cn3', topic: 'Computer Networks', difficulty: 'medium', q: 'An IPv4 address is __ bits long:', options: ['16', '32', '64', '128'], correct: 1 },
+            { id: 'cn4', topic: 'Computer Networks', difficulty: 'medium', q: 'Which protocol is used to resolve IP to MAC address?', options: ['DNS', 'DHCP', 'ARP', 'ICMP'], correct: 2 },
+            { id: 'cn5', topic: 'Computer Networks', difficulty: 'hard', q: 'In Dijkstra\'s algorithm for shortest path, the time complexity using a binary heap is:', options: ['O(V²)', 'O(E log V)', 'O(V log E)', 'O(E + V)'], correct: 1 },
+
+            // ── DBMS (GATE) ───────────────────────────────────────────────
+            { id: 'db1', topic: 'DBMS', difficulty: 'easy', q: 'SQL SELECT DISTINCT eliminates:', options: ['NULL values', 'Duplicate rows', 'Empty tables', 'Foreign keys'], correct: 1 },
+            { id: 'db2', topic: 'DBMS', difficulty: 'easy', q: 'A primary key constraint ensures:', options: ['Referential integrity', 'Entity integrity (uniqueness + not null)', 'Domain integrity', 'Check constraint'], correct: 1 },
+            { id: 'db3', topic: 'DBMS', difficulty: 'medium', q: 'Which normal form eliminates transitive dependencies?', options: ['1NF', '2NF', '3NF', 'BCNF'], correct: 2 },
+            { id: 'db4', topic: 'DBMS', difficulty: 'medium', q: 'ACID properties stand for:', options: ['Atomic, Consistent, Isolated, Durable', 'Accurate, Complete, Integrated, Dependable', 'Atomic, Complete, Isolated, Defined', 'Available, Consistent, Integrated, Durable'], correct: 0 },
+            { id: 'db5', topic: 'DBMS', difficulty: 'hard', q: 'A relation R(A,B,C,D) with FDs: A→B, B→C, C→D is in which highest normal form?', options: ['1NF', '2NF', '3NF', 'BCNF'], correct: 1 },
+
+            // ── Algorithms (GATE) ─────────────────────────────────────────
+            { id: 'al1', topic: 'Algorithms', difficulty: 'easy', q: 'Best-case time complexity of Quick Sort is:', options: ['O(n)', 'O(n log n)', 'O(n²)', 'O(log n)'], correct: 1 },
+            { id: 'al2', topic: 'Algorithms', difficulty: 'easy', q: 'Dynamic Programming solves problems by:', options: ['Divide and conquer without memoization', 'Storing solutions to subproblems', 'Greedy choices only', 'Exhaustive enumeration'], correct: 1 },
+            { id: 'al3', topic: 'Algorithms', difficulty: 'medium', q: 'The activity selection problem is optimally solved by:', options: ['Dynamic programming', 'Backtracking', 'Greedy algorithm', 'Divide and conquer'], correct: 2 },
+            { id: 'al4', topic: 'Algorithms', difficulty: 'medium', q: 'Floyd-Warshall algorithm finds:', options: ['Single source shortest path', 'All-pairs shortest path', 'Minimum spanning tree', 'Maximum flow'], correct: 1 },
+            { id: 'al5', topic: 'Algorithms', difficulty: 'hard', q: 'The problem of determining if a Boolean formula is satisfiable is:', options: ['P', 'NP-complete (SAT)', 'NP-hard but not NP', 'Undecidable'], correct: 1 },
+        ];
+
+        // ── Exam → Topic mapping ─────────────────────────────────────────
+        const EXAM_TOPICS = {
+            'JEE': ['Physics', 'Chemistry', 'Maths'],
+            'NEET': ['Physics', 'Chemistry', 'Biology'],
+            'MHT CET': ['Physics', 'Chemistry', 'Maths'],
+            'CAT': ['QA', 'DILR', 'VARC'],
+            'UPSC': ['History & Polity', 'Geography', 'Economy', 'Environment', 'Science & Tech'],
+            '12th Boards': ['Physics', 'Chemistry', 'Maths', 'Biology'],
+            'GATE': ['Engineering Maths', 'General Aptitude', 'Data Structures', 'Operating Systems', 'Computer Networks', 'DBMS', 'Algorithms'],
+        };
+
+        function getExamTopics() {
+            const exam = ExamManager.get();
+            return EXAM_TOPICS[exam] || ['Physics', 'Chemistry', 'Maths'];
+        }
+
+        function renderTopicPills() {
+            const exam = ExamManager.get();
+            const topics = getExamTopics();
+            // Reset selectedTopic if it no longer belongs to this exam
+            if (selectedTopic !== 'Mixed' && !topics.includes(selectedTopic)) selectedTopic = 'Mixed';
+            const container = document.getElementById('topicPills');
+            if (!container) return;
+            container.innerHTML =
+                ['Mixed', ...topics].map(t =>
+                    `<button class="topic-btn ${selectedTopic === t ? 'active' : ''}" onclick="setTopic(this,'${t}')">
+                        <i data-lucide="${TOPIC_ICON[t] || 'circle'}" style="width:13px;height:13px"></i> ${t}
+                    </button>`
+                ).join('');
+            lucide.createIcons();
+            refreshLandingDesc();
+        }
+
+        // ── State ────────────────────────────────────────────────────────
+        const TOPIC_EMOJI = {
+            Physics: '⚛️', Chemistry: '🧪', Maths: '📐', Biology: '🌱', Mixed: '🎲',
+            QA: '🔢', DILR: '🧩', VARC: '📖',
+            'History & Polity': '🏛️', Geography: '🗺️', Economy: '📊', Environment: '🌿', 'Science & Tech': '🔬',
+            'Engineering Maths': '∑', 'General Aptitude': '🧠', 'Data Structures': '🌲',
+            'Operating Systems': '💻', 'Computer Networks': '🌐', DBMS: '🗄️', Algorithms: '⚙️'
+        };
+        const TOPIC_ICON = {
+            Physics: 'atom', Chemistry: 'flask-conical', Maths: 'calculator', Biology: 'leaf', Mixed: 'layers',
+            QA: 'calculator', DILR: 'bar-chart-2', VARC: 'book-open',
+            'History & Polity': 'landmark', Geography: 'map', Economy: 'trending-up', Environment: 'leaf', 'Science & Tech': 'microscope',
+            'Engineering Maths': 'sigma', 'General Aptitude': 'brain', 'Data Structures': 'git-branch',
+            'Operating Systems': 'cpu', 'Computer Networks': 'network', DBMS: 'database', Algorithms: 'code-2'
+        };
+        const DIFF_STYLE = {
+            easy: 'background:rgba(110,231,183,0.15);color:#059669',
+            medium: 'background:rgba(252,211,77,0.15);color:#D97706',
+            hard: 'background:rgba(252,165,165,0.17);color:#DC2626',
+        };
+
+        let selectedTopic = 'Mixed';
+        let QUESTIONS = [];
+        let cur = 0, correct = 0, wrong = 0, selected = -1, timerInterval, timeLeft;
+        let wrongQIds = [];
+        let wrongConcepts = [];
+        let failedQuestionLogs = [];
+        let CONCEPT_GRAPH = {};
+        let activeAssignedQuiz = null;
+        let assignedQuizCache = [];
+        let answersByQuestion = [];
+
+        function captureFailedQuestion(q, selectedIdx, reason = 'wrong') {
+            if (!q) return;
+
+            const selectedAnswer = (typeof selectedIdx === 'number' && selectedIdx >= 0)
+                ? (Array.isArray(q.options) ? q.options[selectedIdx] : '')
+                : (reason === 'skipped' ? 'Skipped by user' : 'No response (timer ended)');
+
+            failedQuestionLogs.push({
+                id: q.id,
+                topic: q.topic || selectedTopic || 'General Concepts',
+                concept: q.concept || q.topic || selectedTopic || 'General Concepts',
+                question: q.q || '',
+                userAnswer: selectedAnswer || '',
+                correctAnswer: Array.isArray(q.options) ? (q.options[q.correct] || '') : '',
+                reason,
+            });
+
+            if (failedQuestionLogs.length > 30) {
+                failedQuestionLogs = failedQuestionLogs.slice(-30);
+            }
+        }
+
+        // ── Topic selection ──────────────────────────────────────────────
+        function setTopic(btn, topic) {
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedTopic = topic;
+            refreshLandingDesc();
+        }
+
+        function refreshLandingDesc() {
+            const topics = selectedTopic === 'Mixed'
+                ? getExamTopics()
+                : [selectedTopic];
+            const diffs = topics.map(t => cap(QuizEngine.getDifficulty(t)));
+            const unique = [...new Set(diffs)];
+            const diffLabel = unique.length === 1 ? unique[0] : 'Adaptive';
+            const attempts = QuizEngine.getTopicPerf(topics[0]).attempts;
+            const hint = attempts < 5 ? 'Starting at medium — difficulty adapts as you play!' : `Current level: ${diffLabel}`;
+            document.getElementById('quizDesc').textContent =
+                `${TOPIC_EMOJI[selectedTopic] || ''} ${selectedTopic} · ${hint}`;
+        }
+
+        function normalizeAssignedQuestion(q) {
+            return {
+                id: q.id,
+                topic: q.topic || 'General',
+                difficulty: q.difficulty || 'medium',
+                q: q.question || q.q || 'Untitled question',
+                options: Array.isArray(q.options) ? q.options.slice(0, 4) : ['A', 'B', 'C', 'D'],
+                correct: Number.isInteger(q.correct) ? q.correct : (Number.isInteger(q.correctIndex) ? q.correctIndex : 0),
+                explanation: q.explanation || ''
+            };
+        }
+
+        function renderAssignedQuizList() {
+            const root = document.getElementById('assignedQuizList');
+            if (!root) return;
+
+            if (!assignedQuizCache.length) {
+                root.innerHTML = '<div style="font-size:12px;color:var(--text-muted)">No assigned quizzes yet.</div>';
+                return;
+            }
+
+            root.innerHTML = assignedQuizCache.map((quiz) => {
+                const topics = Array.isArray(quiz.topics) ? quiz.topics.join(', ') : 'General';
+                const attempted = !!quiz.lastAttempt;
+                const badgeStyle = attempted
+                    ? 'background:rgba(110,231,183,0.15);color:#059669'
+                    : 'background:rgba(252,211,77,0.15);color:#D97706';
+                const label = attempted ? `Attempted (${quiz.lastAttempt.score}%)` : 'Pending';
+                return `<div class="assigned-quiz-item">
+                    <div class="assigned-quiz-top">
+                        <div class="assigned-quiz-title">${quiz.title || 'Assigned Quiz'}</div>
+                        <span class="qm-badge" style="${badgeStyle}">${label}</span>
+                    </div>
+                    <div class="assigned-quiz-meta">
+                        <span>${quiz.quizType}</span>
+                        <span>${quiz.questionCount || 0} questions</span>
+                        <span>${topics}</span>
+                    </div>
+                    <button class="btn btn-secondary" style="width:100%" onclick="startAssignedQuiz('${quiz.quizType}','${quiz.id}')">Start Assigned Quiz</button>
+                </div>`;
+            }).join('');
+        }
+
+        async function loadAssignedQuizzes() {
+            const root = document.getElementById('assignedQuizList');
+            if (!root) return;
+            root.innerHTML = '<div style="font-size:12px;color:var(--text-muted)">Loading assigned quizzes...</div>';
+
+            try {
+                if (window.QuizAgent && typeof window.QuizAgent.getAssignedQuizzes === 'function') {
+                    const data = await window.QuizAgent.getAssignedQuizzes();
+                    assignedQuizCache = Array.isArray(data.quizzes) ? data.quizzes : [];
+                } else {
+                    const data = await quizApiRequest('/api/quiz/assigned', { method: 'GET' });
+                    assignedQuizCache = Array.isArray(data.quizzes) ? data.quizzes : [];
+                }
+            } catch (err) {
+                root.innerHTML = `<div style="font-size:12px;color:#EF4444">${err.message || 'Could not load assigned quizzes'}</div>`;
+                return;
+            }
+
+            renderAssignedQuizList();
+        }
+
+        async function startAssignedQuiz(quizType, quizId) {
+            try {
+                let response;
+                if (window.QuizAgent && typeof window.QuizAgent.getAssignedQuiz === 'function') {
+                    response = await window.QuizAgent.getAssignedQuiz(quizType, quizId);
+                } else {
+                    response = await quizApiRequest(`/api/quiz/assigned/${encodeURIComponent(quizType)}/${encodeURIComponent(quizId)}`, { method: 'GET' });
+                }
+
+                const quiz = response && response.quiz ? response.quiz : null;
+                if (!quiz || !Array.isArray(quiz.questions) || !quiz.questions.length) {
+                    throw new Error('Assigned quiz has no questions');
+                }
+
+                activeAssignedQuiz = {
+                    id: quiz.id,
+                    quizType: quiz.quizType || quizType,
+                    title: quiz.title || 'Assigned Quiz',
+                    topics: Array.isArray(quiz.topics) ? quiz.topics : [],
+                };
+
+                QUESTIONS = quiz.questions.map(normalizeAssignedQuestion);
+                selectedTopic = 'Mixed';
+                cur = 0;
+                correct = 0;
+                wrong = 0;
+                selected = -1;
+                wrongQIds = [];
+                wrongConcepts = [];
+                failedQuestionLogs = [];
+                answersByQuestion = Array(QUESTIONS.length).fill(-1);
+
+                document.getElementById('quizLanding').style.display = 'none';
+                document.getElementById('quizScreen').style.display = 'block';
+                document.getElementById('quizDesc').textContent = `${activeAssignedQuiz.title} · Assigned`;
+                loadQ();
+            } catch (err) {
+                Toast.show(err.message || 'Failed to start assigned quiz', 'warning');
+            }
+        }
+
+        window.startAssignedQuiz = startAssignedQuiz;
+
+        function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+        // ── Quiz start ───────────────────────────────────────────────────
+        function startQuiz() {
+            activeAssignedQuiz = null;
+            QUESTIONS = QuizEngine.selectQuestions(QB, selectedTopic, 5, getExamTopics());
+            if (!QUESTIONS.length) { Toast.show('No questions found!', 'warning'); return; }
+            cur = 0; correct = 0; wrong = 0; wrongQIds = []; wrongConcepts = [];
+            failedQuestionLogs = [];
+            answersByQuestion = Array(QUESTIONS.length).fill(-1);
+            document.getElementById('quizLanding').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            loadQ();
+        }
+
+        // ── Load question ────────────────────────────────────────────────
+        function loadQ() {
+            if (cur >= QUESTIONS.length) { showResult(); return; }
+            selected = -1;
+            const q = QUESTIONS[cur];
+
+            // Topic badge
+            document.getElementById('topicBadge').textContent =
+                (TOPIC_EMOJI[q.topic] || '') + ' ' + q.topic;
+
+            // Difficulty badge (dynamic per question)
+            const ds = DIFF_STYLE[q.difficulty] || DIFF_STYLE.medium;
+            document.getElementById('diffBadge').style.cssText =
+                'padding:4px 12px;border-radius:999px;font-size:11.5px;font-weight:600;' + ds;
+            document.getElementById('diffBadge').textContent = cap(q.difficulty);
+
+            document.getElementById('questionText').textContent = q.q;
+
+            document.getElementById('optionsList').innerHTML = q.options.map((o, i) =>
+                `<div class="quiz-option" onclick="selectOpt(this,${i})">
+                    <div class="opt-letter">${'ABCD'[i]}</div><span>${o}</span>
+                </div>`).join('');
+
+            // Step dots
+            document.getElementById('stepDots').innerHTML = QUESTIONS.map((_, i) => {
+                const cls = i < cur ? 'done' : i === cur ? 'current' : '';
+                return `${i > 0 ? '<div class="step-line"></div>' : ''}
+                        <div class="step-dot ${cls}">${i < cur ? '✓' : i + 1}</div>`;
+            }).join('');
+
+            startTimer();
+        }
+
+        // ── Timer ────────────────────────────────────────────────────────
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 15;
+            document.getElementById('timerDisplay').textContent = timeLeft;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timerDisplay').textContent = timeLeft;
+                if (timeLeft <= 5) document.getElementById('timerDisplay').style.color = '#EF4444';
+                else document.getElementById('timerDisplay').style.color = 'var(--primary)';
+                if (timeLeft <= 0) { clearInterval(timerInterval); autoNext(); }
+            }, 1000);
+        }
+
+        // ── Answer selection ─────────────────────────────────────────────
+        function selectOpt(el, i) {
+            document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            selected = i;
+        }
+
+        function submitQ() {
+            if (selected === -1) { Toast.show('Please select an answer!', 'warning'); return; }
+            clearInterval(timerInterval);
+            answersByQuestion[cur] = selected;
+            const q = QUESTIONS[cur];
+            const opts = document.querySelectorAll('.quiz-option');
+            opts[q.correct].classList.add('correct');
+            if (selected !== q.correct) {
+                opts[selected].classList.add('wrong');
+                wrong++;
+                wrongQIds.push(q.id);
+                if (q.concept && !wrongConcepts.includes(q.concept)) wrongConcepts.push(q.concept);
+                captureFailedQuestion(q, selected, 'wrong');
+            } else {
+                correct++;
+            }
+            updateStats();
+            setTimeout(() => { cur++; loadQ(); }, 1300);
+        }
+
+        function skipQ() {
+            clearInterval(timerInterval);
+            answersByQuestion[cur] = -1;
+            const q = QUESTIONS[cur];
+            wrongQIds.push(q.id);
+            if (q.concept && !wrongConcepts.includes(q.concept)) wrongConcepts.push(q.concept);
+            captureFailedQuestion(q, -1, 'skipped');
+            wrong++; updateStats(); cur++; loadQ();
+        }
+
+        function autoNext() {
+            answersByQuestion[cur] = -1;
+            const q = QUESTIONS[cur];
+            wrongQIds.push(q.id);
+            if (q.concept && !wrongConcepts.includes(q.concept)) wrongConcepts.push(q.concept);
+            captureFailedQuestion(q, -1, 'timeout');
+            wrong++; updateStats(); cur++; loadQ();
+        }
+
+        function updateStats() {
+            const total = correct + wrong;
+            const pct = total ? Math.round(correct / total * 100) : 0;
+            document.getElementById('accuracy').textContent = pct + '%';
+            document.getElementById('accuracyBar').style.width = pct + '%';
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('wrongCount').textContent = wrong;
+            document.getElementById('ptsEarned').textContent = correct * 20;
+        }
+
+        // ── Show results ─────────────────────────────────────────────────
+        async function showResult() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            const total = QUESTIONS.length;
+            const pct = Math.round(correct / total * 100);
+
+            document.getElementById('rCorrect').textContent = correct;
+            document.getElementById('rPoints').textContent = correct * 20;
+            document.getElementById('resultEmoji').textContent = pct >= 80 ? '🎉' : pct >= 60 ? '😊' : '📚';
+            document.getElementById('resultTitle').textContent =
+                pct >= 80 ? 'Excellent Work!' : pct >= 60 ? 'Good Job!' : 'Keep Practicing!';
+            document.getElementById('resultMsg').textContent =
+                `You scored ${correct}/${total} (${pct}%) — ${correct * 20} points earned!`;
+
+            // ── Update ML engine & Global State ──────────────────────────
+            if (typeof QuizEngine !== 'undefined') {
+                let userState = { weakTopics: [] };
+                userState = quizReadShared('userState', userState) || userState;
+                if (!userState.weakTopics) userState.weakTopics = [];
+
+                if (selectedTopic === 'Mixed') {
+                    getExamTopics().forEach(t => {
+                        const tqs = QUESTIONS.filter(q => q.topic === t);
+                        if (!tqs.length) return;
+                        const tWrong = wrongQIds.filter(id => tqs.some(q => q.id === id));
+                        const correctCnt = tqs.length - tWrong.length;
+                        QuizEngine.updatePerf(t, correctCnt, tqs.length, tWrong);
+                        
+                        const pct = Math.round(correctCnt / tqs.length * 100);
+                        if (pct < 60 && !userState.weakTopics.includes(t)) {
+                            userState.weakTopics.push(t);
+                        } else if (pct >= 80) {
+                            userState.weakTopics = userState.weakTopics.filter(wt => wt !== t);
+                        }
+                    });
+                } else {
+                    QuizEngine.updatePerf(selectedTopic, correct, total, wrongQIds);
+                    if (pct < 60 && !userState.weakTopics.includes(selectedTopic)) {
+                        userState.weakTopics.push(selectedTopic);
+                    } else if (pct >= 80) {
+                        userState.weakTopics = userState.weakTopics.filter(wt => wt !== selectedTopic);
+                    }
+                }
+                quizWriteShared('userState', userState);
+
+                const topics = selectedTopic === 'Mixed' ? getExamTopics() : [selectedTopic];
+                const nextDiffs = [...new Set(topics.map(t => cap(QuizEngine.getDifficulty(t))))];
+                document.getElementById('nextDiffHint').textContent = `📈 Next quiz difficulty: ${nextDiffs.join(' / ')}`;
+            }
+
+            if (window.QuizAgent && typeof window.QuizAgent.recordQuizSession === 'function') {
+                const weakAreas = [...new Set(
+                    wrongQIds
+                        .map(id => QUESTIONS.find(q => q.id === id)?.topic)
+                        .filter(Boolean)
+                )];
+                try {
+                    await window.QuizAgent.recordQuizSession({
+                        topic: activeAssignedQuiz ? (activeAssignedQuiz.topics[0] || activeAssignedQuiz.title || 'Assigned Quiz') : selectedTopic,
+                        total,
+                        correct,
+                        score: pct,
+                        questions: QUESTIONS,
+                        wrongQuestionIds: wrongQIds,
+                        weakAreas,
+                        timeTaken: total * 15,
+                        skipBackendSync: !!activeAssignedQuiz,
+                        exam: (window.ExamManager && typeof ExamManager.get === 'function') ? ExamManager.get() : 'JEE'
+                    });
+
+                    if (window.LearningPathAgent && typeof window.LearningPathAgent.adaptPlanFromPerformance === 'function') {
+                        await window.LearningPathAgent.adaptPlanFromPerformance();
+                    }
+                } catch (e) {
+                    console.warn('[QuizAgent] Failed to record quiz session:', e);
+                }
+            }
+
+            if (activeAssignedQuiz) {
+                try {
+                    if (window.QuizAgent && typeof window.QuizAgent.submitAssignedQuiz === 'function') {
+                        await window.QuizAgent.submitAssignedQuiz(activeAssignedQuiz.quizType, activeAssignedQuiz.id, {
+                            answers: answersByQuestion,
+                            timeTaken: total * 15,
+                        });
+                    } else {
+                        await quizApiRequest(`/api/quiz/assigned/${encodeURIComponent(activeAssignedQuiz.quizType)}/${encodeURIComponent(activeAssignedQuiz.id)}/submit`, {
+                            method: 'POST',
+                            body: JSON.stringify({ answers: answersByQuestion, timeTaken: total * 15 })
+                        });
+                    }
+                    await loadAssignedQuizzes();
+                } catch (e) {
+                    console.warn('[AssignedQuiz] submit failed:', e);
+                    Toast.show(e.message || 'Assigned quiz submission failed', 'warning');
+                }
+            }
+
+            // ── Persist score to history ─────────────────────────────────────
+            saveScore(pct, selectedTopic);
+            // ── Persist activity for heatmap ─────────────────────────────
+            if (typeof StudyTracker !== 'undefined') StudyTracker.logSubmission(correct);
+
+            // DFS Diagnostic Initiation Button
+            const aiWrap = document.getElementById('aiAnalyzeBtnWrap');
+            if (wrongQIds.length > 0) {
+                aiWrap.innerHTML = `<button onclick="startDiagnostics()" class="btn-focus" style="margin-top:24px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;"><i data-lucide="brain" style="width:18px"></i> AI Diagnostic Starting...</button>`;
+                lucide.createIcons();
+                // Auto-start diagnostics
+                setTimeout(startDiagnostics, 2000);
+            } else {
+                aiWrap.innerHTML = '';
+            }
+        }
+
+        // ── DFS AI DIAGNOSTICS ───────────────────────────────────────────
+        let dfsStack = [];
+        let visitedObj = {};
+        let currentDiagQ = null;
+        let globalFailedQuestions = [];
+
+        async function startDiagnostics() {
+            document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('diagnosticScreen').style.display = 'block';
+            document.getElementById('diagStatus').innerHTML = `Initializing AI Depth-First Search Graph...`;
+            document.getElementById('diagLoader').style.display = 'block';
+            document.getElementById('diagQContainer').style.display = 'none';
+
+            globalFailedQuestions = failedQuestionLogs.length
+                ? failedQuestionLogs
+                : wrongQIds
+                    .map((id) => QB.find((x) => x.id === id))
+                    .filter(Boolean)
+                    .map((q) => ({
+                        id: q.id,
+                        topic: q.topic || selectedTopic || 'General Concepts',
+                        concept: q.concept || q.topic || selectedTopic || 'General Concepts',
+                        question: q.q || '',
+                        userAnswer: '',
+                        correctAnswer: Array.isArray(q.options) ? (q.options[q.correct] || '') : '',
+                        reason: 'unknown',
+                    }));
+
+            try {
+                const res = await fetch('/api/quiz/init-dfs', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ failedQuestions: globalFailedQuestions })
+                });
+                if (!res.ok) {
+                    const errData = await res.json().catch(() => ({}));
+                    throw new Error(errData.error || `Server responded with ${res.status}`);
+                }
+                const data = await res.json();
+                CONCEPT_GRAPH = data.concept_graph || {};
+                dfsStack = data.starting_concepts || [];
+                if (dfsStack.length === 0 && Object.keys(CONCEPT_GRAPH).length > 0) {
+                    dfsStack = Object.keys(CONCEPT_GRAPH).slice(0, 3);
+                }
+                visitedObj = {};
+                processDFS(); // traverse
+            } catch(e) {
+                console.error('[DFS Init Error]', e);
+                document.getElementById('diagLoader').style.display = 'none';
+                document.getElementById('diagQContainer').style.display = 'block';
+                document.getElementById('diagQText').innerHTML = `<div style="text-align:center;">
+                    <div style="font-size:40px;margin-bottom:12px;">⚠️</div>
+                    <h3 style="color:#EF4444;margin-bottom:8px;">AI Analysis Failed</h3>
+                    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:20px;">${e.message || 'Could not connect to AI service. Please check that the server is running.'}</p>
+                </div>`;
+                document.getElementById('diagOptions').innerHTML = `
+                    <button class="btn btn-primary" style="width:100%;padding:14px;margin-bottom:10px;" onclick="startDiagnostics()">🔄 Retry Analysis</button>
+                    <button class="btn btn-secondary" style="width:100%;padding:14px;" onclick="document.getElementById('diagnosticScreen').style.display='none';document.getElementById('resultScreen').style.display='block';">← Back to Results</button>
+                `;
+                if (typeof Toast !== 'undefined') Toast.show('AI analysis failed — check console for details', 'error');
+            }
+        }
+
+        async function processDFS() {
+            if (dfsStack.length === 0) {
+                // Show completion message before returning
+                document.getElementById('diagLoader').style.display = 'none';
+                document.getElementById('diagQContainer').style.display = 'block';
+                document.getElementById('diagStatus').innerHTML = `<span style="color:#10B981;font-weight:700;">✅ Analysis Complete!</span>`;
+                document.getElementById('diagQText').innerHTML = `<div style="text-align:center;">
+                    <div style="font-size:48px;margin-bottom:12px;">🎯</div>
+                    <h3 style="margin-bottom:8px;">Root Cause Analysis Complete</h3>
+                    <p style="color:var(--text-secondary);font-size:14px;">All weakness paths have been explored. Review the concepts above and practice!</p>
+                </div>`;
+                document.getElementById('diagOptions').innerHTML = `
+                    <button class="btn btn-primary" style="width:100%;padding:14px;margin-top:16px;" onclick="resetQuiz()">🏠 Back to Quiz Home</button>
+                `;
+                return;
+            }
+
+            const concept = dfsStack.pop();
+            if (visitedObj[concept]) return processDFS();
+            visitedObj[concept] = true;
+
+            document.getElementById('diagStatus').innerHTML = `Tracing prerequisites for finding root cause in <b>${concept}</b>...`;
+            document.getElementById('diagQContainer').style.display = 'none';
+            document.getElementById('diagLoader').style.display = 'block';
+
+            try {
+                const res = await fetch('/api/quiz/get-diagnostic', {
+                    method:'POST', headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({ concept, failedQuestions: globalFailedQuestions })
+                });
+                if (!res.ok) {
+                    const errData = await res.json().catch(() => ({}));
+                    throw new Error(errData.error || `Server error ${res.status}`);
+                }
+                currentDiagQ = await res.json();
+                currentDiagQ.concept = concept;
+                
+                document.getElementById('diagLoader').style.display = 'none';
+                document.getElementById('diagQContainer').style.display = 'block';
+                document.getElementById('diagQText').textContent = currentDiagQ.question;
+                document.getElementById('diagOptions').innerHTML = currentDiagQ.options.map((o, i) => 
+                    `<div class="quiz-option" onclick="answerDiag(${i})" id="diagOpt${i}"><div class="opt-letter">${'ABCD'[i] || '•'}</div><span>${o}</span></div>`
+                ).join('');
+            } catch(e) {
+                console.error(`[DFS diagnostic] Error for concept "${concept}":`, e.message);
+                // Skip this concept and try the next one
+                if (typeof Toast !== 'undefined') Toast.show(`Skipped "${concept}" — ${e.message}`, 'warning');
+                setTimeout(processDFS, 500);
+            }
+        }
+
+        function answerDiag(idx) {
+            const isCorrect = idx === currentDiagQ.correct;
+            const optCls = document.getElementById('diagOpt'+idx);
+            
+            if (isCorrect) {
+                optCls.classList.add('correct');
+                document.getElementById('diagStatus').innerHTML = `<span style="color:#10B981;font-weight:700;">✓ Correct Foundation! Moving to next issue...</span>`;
+                setTimeout(processDFS, 1200);
+            } else {
+                optCls.classList.add('wrong');
+                document.getElementById('diagOpt'+currentDiagQ.correct).classList.add('correct');
+                document.getElementById('diagStatus').innerHTML = `<span style="color:#EF4444;font-weight:700;">⚠️ Weakness isolated! Digging deeper into prerequisites...</span>`;
+                
+                setTimeout(() => {
+                    const prereqs = CONCEPT_GRAPH[currentDiagQ.concept] || [];
+                    if (prereqs.length === 0) {
+                        teachRootCause(currentDiagQ.concept);
+                    } else {
+                        dfsStack.push(...prereqs);
+                        processDFS();
+                    }
+                }, 1500);
+            }
+        }
+
+        async function teachRootCause(concept) {
+            document.getElementById('diagQContainer').style.display = 'none';
+            document.getElementById('diagLoader').style.display = 'block';
+            document.getElementById('diagStatus').innerHTML = `Generating specific lesson for root cause: <b>${concept}</b>`;
+
+            try {
+                const res = await fetch('/api/quiz/teach', {
+                    method:'POST', headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({ concept })
+                });
+                const data = await res.json();
+                
+                document.getElementById('diagLoader').style.display = 'none';
+                document.getElementById('diagQContainer').style.display = 'block';
+                document.getElementById('diagQText').innerHTML = `<h3 style="color:#EF4444;margin-bottom:12px;">Root Found: ${concept}</h3>` + data.lesson.replace(/\n\n/g, '<br><br>');
+                document.getElementById('diagOptions').innerHTML = `<button class="btn btn-primary lg" style="width:100%;margin-top:20px;padding:16px" onclick="processDFS()">Continue Analysis</button>`;
+            } catch(e) {
+                processDFS();
+            }
+        }
+
+        // ── Reset to landing ─────────────────────────────────────────────
+        function resetQuiz() {
+            activeAssignedQuiz = null;
+            document.getElementById('resultScreen').style.display = 'none';
+            document.getElementById('diagnosticScreen').style.display = 'none';
+            document.getElementById('quizLanding').style.display = 'grid';
+            refreshLandingDesc();
+        }
+
+        // ── Init ─────────────────────────────────────────────────────────
+        lucide.createIcons();
+        renderTopicPills();
+        buildScoreHistory();
+        loadAssignedQuizzes();
+    </script>
+
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="AI Tutor">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item active" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+</body>
+</html>
