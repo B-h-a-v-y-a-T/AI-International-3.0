@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -1067,6 +1067,20 @@
         </div>
     </div>
 
+    <!-- Violation Modal -->
+    <div class="modal-overlay" id="violationModal" style="display:none;align-items:center;justify-content:center;z-index:99999;">
+        <div class="modal-box" style="padding:30px;max-width:400px;text-align:center;border-color:#ef4444;box-shadow:4px 4px 0px #ef4444;">
+            <div style="display:flex;justify-content:center;margin-bottom:12px;">
+                <i data-lucide="shield-alert" style="width:40px;height:40px;color:#ef4444;"></i>
+            </div>
+            <div style="font-size:22px;font-weight:900;margin-bottom:15px;color:#ef4444;">Exam Terminated</div>
+            <div id="violationReason" style="font-size:15px;color:var(--text-muted);margin-bottom:25px;line-height:1.6;font-weight:500;">
+                <!-- Reason goes here -->
+            </div>
+            <button onclick="window.location.href='dashboard.html'" class="btn btn-primary" style="width:100%;background:#ef4444;border-color:#b91c1c;">Return to Dashboard</button>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="submitModal">
         <div class="modal-box">
             <div style="font-size:20px;font-weight:800;margin-bottom:8px">Submit Exam?</div>
@@ -1797,6 +1811,8 @@
         let _webcamStream = null;
         let _startedAt = 0;
         let _jeeTopicUiMounted = false;
+        let proctorSocket = null;
+        let proctorInterval = null;
         function showWarningModal() { document.getElementById('warningModal').style.display = 'flex'; }
         function closeWarningModal() { document.getElementById('warningModal').style.display = 'none'; }
 
@@ -2008,14 +2024,16 @@
             const el = document.getElementById('examHistory');
             if (!hist.length) { el.innerHTML = '<div style="font-size:13px;color:var(--text-muted)">No attempts yet. Take your first exam!</div>'; return; }
             el.innerHTML = hist.map(h => {
-                const grade = h.pct >= 80 ? '🏆' : h.pct >= 60 ? '😊' : '📚';
+                const isFailed = h.status === 'Failed';
+                const grade = isFailed ? '❌' : (h.pct >= 80 ? '🏆' : h.pct >= 60 ? '😊' : '📚');
+                const label = isFailed ? `Failed (${h.reason || 'Proctor Violation'})` : `${h.pct}%`;
                 return `<div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)">
             <div style="font-size:22px">${grade}</div>
             <div style="flex:1">
-                <div style="font-size:13px;font-weight:700">${ExamEngine.getConfig(h.exam)?.fullName || h.exam} — ${h.pct}%</div>
+                <div style="font-size:13px;font-weight:700">${ExamEngine.getConfig(h.exam)?.fullName || h.exam} — ${isFailed ? 'Failed' : h.pct + '%'}</div>
                 <div style="font-size:11px;color:var(--text-muted)">${new Date(h.ts).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })} · ${h.marks}/${h.maxMarks} marks</div>
             </div>
-            <div style="font-size:12px;font-weight:700;color:${h.pct >= 60 ? '#10B981' : '#EF4444'}">${h.pct}%</div>
+            <div style="font-size:12px;font-weight:700;color:${!isFailed && h.pct >= 60 ? '#10B981' : '#EF4444'}">${label}</div>
         </div>`;
             }).join('');
         }
@@ -2119,9 +2137,106 @@
                 _webcamStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
                 const v = document.getElementById('webcamFeed');
                 v.srcObject = _webcamStream;
-                document.getElementById('webcamStatus').textContent = '● Monitoring active';
-            } catch {
+                const statusEl = document.getElementById('webcamStatus');
+                statusEl.textContent = '● Monitoring active';
+
+                // --- PROCTORING: Setup WebSocket connection to your Python backend (port 8050) ---
+                proctorSocket = new WebSocket('ws://' + window.location.hostname + ':8050/ws/proctor');
+                
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d', { willReadFrequently: true });
+
+                v.onloadedmetadata = () => {
+                    v.play().catch(() => {});
+                };
+
+                // Send a frame every 2 seconds (2000ms)
+                proctorInterval = setInterval(() => {
+                    if (proctorSocket && proctorSocket.readyState === WebSocket.OPEN && v.readyState === v.HAVE_ENOUGH_DATA) {
+                        canvas.width = v.videoWidth;
+                        canvas.height = v.videoHeight;
+                        context.drawImage(v, 0, 0, canvas.width, canvas.height);
+                        const frameData = canvas.toDataURL('image/jpeg', 0.6);
+                        proctorSocket.send(JSON.stringify({ image: frameData }));
+                    }
+                }, 2000);
+
+                proctorSocket.onmessage = (event) => {
+                    const response = JSON.parse(event.data);
+                    
+                    if (response.alerts && response.alerts.length > 0) {
+                        console.warn("Proctor Alerts:", response.alerts);
+                        statusEl.textContent = '⚠ ' + response.alerts[0]; // Show the first alert
+                        statusEl.style.color = '#ef4444'; // Red warning text
+                    } else {
+                        statusEl.textContent = '● Monitoring active';
+                        statusEl.style.color = '#10b981'; // Green safe text
+                    }
+
+                    if (response.terminate_exam) {
+                        terminateExamProctor(response.alerts.join(", "));
+                    }
+                };
+
+                proctorSocket.onerror = (err) => {
+                    console.error("Proctor WebSocket error:", err);
+                };
+
+            } catch (err) {
+                console.error("Webcam error:", err);
                 document.getElementById('webcamStatus').textContent = '⚠ No webcam detected';
+            }
+
+            // AI Proctoring Lockout Logic
+            function terminateExamProctor(reason) {
+                if (!_examActive) return;
+                _examActive = false;
+                
+                clearInterval(_timerInterval);
+                if (proctorInterval) clearInterval(proctorInterval);
+                if (proctorSocket) {
+                    try { proctorSocket.close(); } catch(e) {}
+                }
+
+                document.removeEventListener("visibilitychange", handleVisibilityChange);
+                window.removeEventListener("blur", handleBlur);
+                document.removeEventListener("fullscreenchange", handleFullscreenChange);
+
+                // Stop webcam
+                if (_webcamStream) { _webcamStream.getTracks().forEach(t => t.stop()); _webcamStream = null; }
+
+                // Exit fullscreen
+                try { if (document.fullscreenElement) document.exitFullscreen(); } catch { }
+
+                document.getElementById('examRoom').style.display = 'none';
+                document.getElementById('warningBanner').style.display = 'none';
+
+                // Add the exam session with Failed status to database
+                const maxMarks = _questions.length * (_cfg.sections[0]?.marks || 4);
+                ExamEngine.saveHistory({
+                    exam: _exam,
+                    pct: 0,
+                    marks: 0,
+                    maxMarks: maxMarks,
+                    status: 'Failed',
+                    reason: reason
+                });
+
+                // Show violation modal instead of native alert
+                const vReasonEl = document.getElementById('violationReason');
+                if (vReasonEl) {
+                    vReasonEl.innerHTML = `<strong>Violation Detected:</strong><br><br>${reason}<br><br>Your exam session has been terminated and graded as <strong>Failed</strong>.`;
+                }
+                const vModal = document.getElementById('violationModal');
+                if (vModal) {
+                    vModal.style.display = 'flex';
+                } else {
+                    alert(`Student failed in ${_cfg.fullName} due to proctoring violation: ${reason}. The exam has been terminated.`);
+                    window.location.href = 'dashboard.html';
+                }
+                
+                // Refresh lucide icons for the new modal
+                lucide.createIcons();
             }
 
             showScreen('none');
@@ -2256,6 +2371,11 @@
 
             // Stop webcam
             if (_webcamStream) { _webcamStream.getTracks().forEach(t => t.stop()); _webcamStream = null; }
+
+            if (proctorInterval) clearInterval(proctorInterval);
+            if (proctorSocket) {
+                try { proctorSocket.close(); } catch(e) {}
+            }
 
             // Exit fullscreen
             try { if (document.fullscreenElement) document.exitFullscreen(); } catch { }

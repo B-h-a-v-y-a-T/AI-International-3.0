@@ -2728,5 +2728,24 @@
     "quiz_history": [],
     "bandit": {},
     "last_active": "2026-06-19T17:13:31.012Z"
+  },
+  "test@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "revise",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-06-20T13:58:42.584Z"
   }
 }
