@@ -323,6 +323,7 @@ const ExamEngine = {
         'UPSC': { fullName: 'UPSC Prelims', icon: '🏛️', durationMin: 120, sections: [{ subject: 'History & Polity', count: 7, marks: 2, negative: -0.67 }, { subject: 'Geography', count: 7, marks: 2, negative: -0.67 }, { subject: 'Economy & Environment', count: 6, marks: 2, negative: -0.67 }] },
         'MHT CET': { fullName: 'MHT CET', icon: '🎯', durationMin: 180, sections: [{ subject: 'Physics', count: 8, marks: 2, negative: 0 }, { subject: 'Chemistry', count: 8, marks: 2, negative: 0 }, { subject: 'Maths', count: 9, marks: 2, negative: 0 }] },
         'GATE': { fullName: 'GATE CSE', icon: '🔬', durationMin: 180, sections: [{ subject: 'Engineering Maths', count: 7, marks: 2, negative: -0.67 }, { subject: 'General Aptitude', count: 6, marks: 1, negative: -0.33 }, { subject: 'CSE Core', count: 7, marks: 2, negative: -0.67 }] },
+        'SAT': { fullName: 'SAT', icon: '📝', durationMin: 134, sections: [{ subject: 'Reading and Writing', count: 54, marks: 1, negative: 0 }, { subject: 'Math', count: 44, marks: 1, negative: 0 }] },
     },
     SESSION_KEY: 'ls-exam-session',
     HISTORY_KEY: 'ls-exam-history',

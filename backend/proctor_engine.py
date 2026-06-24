@@ -36,7 +36,7 @@ class ProctorEngine:
             
         # 2. Face Detection
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = self.face_cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+        faces = self.face_cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=8, minSize=(60, 60))
         
         num_faces = len(faces)
             

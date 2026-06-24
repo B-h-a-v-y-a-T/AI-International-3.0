@@ -207,5 +207,16 @@
     "stream": "PCM",
     "passwordHash": "$2b$10$iwKFJTlz.lEy66/fAc23eOK71SezgygTrqK/csarTDy9ZWjGVYpia",
     "createdAt": "2026-06-20T12:30:46.789Z"
+  },
+  {
+    "id": "1782313617556",
+    "name": "ex",
+    "email": "ex@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$GpLRhSXIWRFqQSdZmoS9PO4ctud0RUJ/IRzL1/bM.JUL.0ROmAAp.",
+    "createdAt": "2026-06-24T15:06:57.557Z"
   }
 ]
