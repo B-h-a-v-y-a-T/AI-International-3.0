@@ -17,6 +17,7 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import multer from 'multer';
 import mammoth from 'mammoth';
+import tutorRouter, { initTutor, updateProviders as updateTutorProviders } from './tutor/tutor-routes.js';
 import { getAgentDecision, buildUserState, recordQuizResults, getStoredUserState, updateStoredUserState } from './agent-engine.js';
 import {
   getQuestionBankCatalog,
@@ -40,6 +41,15 @@ const __dirname = path.dirname(__filename);
 
 const require = createRequire(import.meta.url);
 const Sentiment = require('sentiment');
+if (typeof global.DOMMatrix === 'undefined') {
+  global.DOMMatrix = class DOMMatrix {};
+}
+if (typeof global.ImageData === 'undefined') {
+  global.ImageData = class ImageData {};
+}
+if (typeof global.Path2D === 'undefined') {
+  global.Path2D = class Path2D {};
+}
 const pdfParse = require('pdf-parse');
 const execFileAsync = promisify(execFile);
 const LOCAL_TESSDATA_PATH = path.join(__dirname, '..', 'node_modules', '@tesseract.js-data', 'eng', '4.0.0');
@@ -85,7 +95,7 @@ const app = express();
 const PORT = process.env.PORT || 5050;
 const JWT_SECRET = process.env.JWT_SECRET || 'adapted_dev_secret_2024';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
-const GEMINI_CHAT_MODEL = process.env.GEMINI_CHAT_MODEL || 'gemini-1.5-flash';
+const GEMINI_CHAT_MODEL = process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
 const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || '';
 const uploadMemory = multer({
@@ -2876,6 +2886,15 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
+
+// ── Mount AI Tutor Module ────────────────────────────────────────────────────
+try {
+  app.use(tutorRouter);
+  initTutor({ geminiModel, groqClient });
+  console.log('🧠 AI Tutor module loaded with multi-agent architecture');
+} catch (err) {
+  console.error('⚠️ AI Tutor module failed to load:', err.message);
+}
 
 app.listen(PORT, () => {
   console.log(`🚀 AdaptEd Ai API running on http://localhost:${PORT}`);

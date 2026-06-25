@@ -10,6 +10,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.11.1",
     "body-parser": "^2.2.2",
     "cheerio": "^1.2.0",
     "cors": "^2.8.6",
@@ -23,6 +24,7 @@
     "node-fetch": "^3.3.2",
     "pdf-parse": "^2.4.5",
     "sentiment": "^5.0.2",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "^7.0.0",
+    "uuid": "^14.0.1"
   }
 }

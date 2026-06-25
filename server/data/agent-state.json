@@ -2728,5 +2728,777 @@
     "quiz_history": [],
     "bandit": {},
     "last_active": "2026-06-19T17:13:31.012Z"
+  },
+  "test@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "revise",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-06-20T13:58:42.584Z"
+  },
+  "vedantshah36@gmail.com": {
+    "scores": {
+      "mixed": 51,
+      "physics": 60,
+      "adaptive": 80
+    },
+    "weak_topics": [
+      "mixed",
+      "assigned: doubt quiz: electrostatics",
+      "chemistry",
+      "work energy power",
+      "optics",
+      "modern physics",
+      "thermodynamics",
+      "waves",
+      "mechanics",
+      "kinematics",
+      "electromagnetism",
+      "chemical kinetics",
+      "equilibrium",
+      "electrochemistry",
+      "chemical bonding",
+      "organic chemistry",
+      "atomic structure",
+      "thermochemistry",
+      "trigonometry",
+      "calculus",
+      "vectors and 3d geometry",
+      "coordinate geometry",
+      "combinatorics",
+      "probability",
+      "algebra",
+      "maths"
+    ],
+    "strong_topics": [
+      "laws of motion",
+      "assigned: physics",
+      "adaptive"
+    ],
+    "streak": 14,
+    "recent_scores": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      1,
+      0.8,
+      1,
+      0.2
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "stable",
+    "confidence": "low",
+    "quiz_history": [
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:11.917Z"
+      },
+      {
+        "subject": "mixed",
+        "topic": "mixed",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.035Z"
+      },
+      {
+        "subject": "physics",
+        "topic": "assigned: doubt quiz: electrostatics",
+        "score": 0.5,
+        "mistakes": [],
+        "timestamp": "2026-06-24T09:29:12.042Z"
+      }
+    ],
+    "bandit": {
+      "mixed": {
+        "shown": 246290604704757,
+        "reward": 0.5,
+        "last_seen": "2026-06-24T09:29:12.035Z"
+      },
+      "assigned: doubt quiz: electrostatics": {
+        "shown": 105553116257280,
+        "reward": 0.5,
+        "last_seen": "2026-06-24T09:29:12.042Z"
+      },
+      "assigned: physics": {
+        "shown": 18430,
+        "reward": 0.755,
+        "last_seen": null
+      },
+      "adaptive": {
+        "shown": 9215,
+        "reward": 0.59,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-06-24T11:33:16.120Z"
+  },
+  "tutor_test@example.com": {
+    "scores": {
+      "mixed": 50,
+      "physics": 50
+    },
+    "weak_topics": [
+      "mixed",
+      "assigned: doubt quiz: electrostatics"
+    ],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "revise",
+    "trend": "stable",
+    "confidence": "medium",
+    "quiz_history": [],
+    "bandit": {
+      "mixed": {
+        "shown": 2,
+        "reward": 0.5,
+        "last_seen": null
+      },
+      "assigned: doubt quiz: electrostatics": {
+        "shown": 1,
+        "reward": 0.5,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-06-24T10:23:45.095Z"
+  },
+  "tutor_test2@example.com": {
+    "scores": {
+      "mixed": 50,
+      "physics": 50
+    },
+    "weak_topics": [
+      "mixed",
+      "assigned: doubt quiz: electrostatics"
+    ],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "revise",
+    "trend": "stable",
+    "confidence": "medium",
+    "quiz_history": [],
+    "bandit": {
+      "mixed": {
+        "shown": 6,
+        "reward": 0.5,
+        "last_seen": null
+      },
+      "assigned: doubt quiz: electrostatics": {
+        "shown": 3,
+        "reward": 0.5,
+        "last_seen": null
+      }
+    },
+    "last_active": "2026-06-24T10:29:58.011Z"
+  },
+  "paramshah@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-06-24T14:30:04.810Z"
+  },
+  "parammshah@gmail.com": {
+    "scores": {},
+    "weak_topics": [],
+    "strong_topics": [],
+    "streak": 14,
+    "recent_scores": [
+      0.6,
+      0.7,
+      0.5
+    ],
+    "current_subject": "",
+    "exam": "JEE",
+    "last_action": "practice",
+    "trend": "declining",
+    "confidence": "high",
+    "quiz_history": [],
+    "bandit": {},
+    "last_active": "2026-06-24T17:05:03.147Z"
   }
 }

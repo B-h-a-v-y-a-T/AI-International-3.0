@@ -196,5 +196,71 @@
     "stream": "PCM",
     "passwordHash": "$2b$10$cX33QBRoXOR9B.KSXd/4ZOkyKsH2jca0XK03oOpGkj2ZDrcYAY8/e",
     "createdAt": "2026-06-19T15:14:51.300Z"
+  },
+  {
+    "id": "1781958646789",
+    "name": "test",
+    "email": "test@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$iwKFJTlz.lEy66/fAc23eOK71SezgygTrqK/csarTDy9ZWjGVYpia",
+    "createdAt": "2026-06-20T12:30:46.789Z"
+  },
+  {
+    "id": "1782293350731",
+    "name": "Vedant Shah",
+    "email": "vedantshah36@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$Y/UqTxhnimyXQrgR5GFxW.VT./npHtJjhW4AJpK0NgX.By4pdSOYa",
+    "createdAt": "2026-06-24T09:29:10.731Z"
+  },
+  {
+    "id": "1782296624728",
+    "name": "Test Student",
+    "email": "tutor_test@example.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$NyrkLKyNGKGFc6gsJjmm.u59911lN7kRJ.PyvAUcqLD1x5owfjCSq",
+    "createdAt": "2026-06-24T10:23:44.728Z"
+  },
+  {
+    "id": "1782296976240",
+    "name": "Tutor Student",
+    "email": "tutor_test2@example.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$nMMoNcjoNlB0VSp.qlkbDuExXDEFsplVwZOcu59stufZmXwSJgpHa",
+    "createdAt": "2026-06-24T10:29:36.240Z"
+  },
+  {
+    "id": "1782311302190",
+    "name": "param shah",
+    "email": "paramshah@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$Fn7QH1ascCUY7mphRmrPquEmLIpfABX8LRPfYFAWELgkPsZRPI1xe",
+    "createdAt": "2026-06-24T14:28:22.190Z"
+  },
+  {
+    "id": "1782313321890",
+    "name": "param shah",
+    "email": "parammshah@gmail.com",
+    "role": "Student",
+    "banned": false,
+    "grade": "11",
+    "stream": "PCM",
+    "passwordHash": "$2b$10$a4ZKvRkiCtDqAD89uEC9pudr0CdmqTNOmLwJH7SiCgM8enMrTbX9y",
+    "createdAt": "2026-06-24T15:02:01.890Z"
   }
 ]

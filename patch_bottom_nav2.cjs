@@ -17,7 +17,8 @@ htmlFiles.forEach(file => {
         const items = [
             { page: 'dashboard.html', icon: 'layout-grid', title: 'Dashboard' },
             { page: 'learning.html', icon: 'route', title: 'Learning Path' },
-            { page: 'chat.html', icon: 'message-square', title: 'AI Tutor' },
+            { page: 'ai-tutor.html', icon: 'bot', title: 'AI Tutor' },
+            { page: 'chat.html', icon: 'message-square', title: 'Chat' },
             { page: 'community.html', icon: 'users', title: 'Community' },
             { page: 'leaderboard.html', icon: 'trending-up', title: 'Leaderboard' },
             { page: 'quiz.html', icon: 'calendar', title: 'Daily Quiz' },

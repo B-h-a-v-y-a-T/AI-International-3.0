@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Tutor – AdaptEd Ai</title>
+  <meta name="description" content="Personalized AI Tutor with Socratic teaching, adaptive quizzes, and smart study plans for JEE, NEET, and competitive exams.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ai-tutor.css?v=1782305398050">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <!-- ═══ Sidebar (reuses existing nav) ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon" style="display:flex;align-items:center;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"/>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"/>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"/>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"/>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B" />
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"/>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"/>
+</svg></span>
+      <span class="logo-text">AdaptEd Ai</span>
+    </div>
+    <nav class="nav-menu">
+      <a href="dashboard.html" class="nav-item" data-page="dashboard.html"><i data-lucide="layout-dashboard" class="nav-icon"></i><span class="nav-label">Dashboard</span></a>
+      <a href="ai-tutor.html" class="nav-item active" data-page="ai-tutor.html"><i data-lucide="bot" class="nav-icon"></i><span class="nav-label">AI Tutor</span></a>
+      <a href="chat.html" class="nav-item" data-page="chat.html"><i data-lucide="message-circle" class="nav-icon"></i><span class="nav-label">Chat</span></a>
+      <a href="revision.html" class="nav-item" data-page="revision.html"><i data-lucide="book-open" class="nav-icon"></i><span class="nav-label">Revision</span></a>
+      <a href="quiz.html" class="nav-item" data-page="quiz.html"><i data-lucide="check-circle" class="nav-icon"></i><span class="nav-label">Quiz</span></a>
+      <a href="exam.html" class="nav-item" data-page="exam.html"><i data-lucide="clock" class="nav-icon"></i><span class="nav-label">Exam Mode</span></a>
+      <a href="videos.html" class="nav-item" data-page="videos.html"><i data-lucide="play-circle" class="nav-icon"></i><span class="nav-label">Videos</span></a>
+      <a href="community.html" class="nav-item" data-page="community.html"><i data-lucide="users" class="nav-icon"></i><span class="nav-label">Community</span></a>
+      <a href="profile.html" class="nav-item" data-page="profile.html"><i data-lucide="user" class="nav-icon"></i><span class="nav-label">Profile</span></a>
+      <a href="settings.html" class="nav-item" data-page="settings.html"><i data-lucide="settings" class="nav-icon"></i><span class="nav-label">Settings</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="themeToggle" class="theme-toggle" onclick="ThemeManager.toggle()"></button>
+    </div>
+  </aside>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="main-content" style="margin-left:var(--sidebar-width);">
+
+    <!-- Mode Tabs -->
+    <div class="tutor-mode-tabs" id="tutorModeTabs">
+      <button class="tutor-mode-tab active" data-mode="ask">
+        <i data-lucide="message-square" style="width:16px;height:16px;margin-right:6px"></i> Ask AI
+      </button>
+      <button class="tutor-mode-tab" data-mode="learn">
+        <i data-lucide="book-open" style="width:16px;height:16px;margin-right:6px"></i> Learn
+      </button>
+      <button class="tutor-mode-tab" data-mode="practice">
+        <i data-lucide="dumbbell" style="width:16px;height:16px;margin-right:6px"></i> Practice
+      </button>
+      <button class="tutor-mode-tab" data-mode="revise">
+        <i data-lucide="file-edit" style="width:16px;height:16px;margin-right:6px"></i> Revise
+      </button>
+      <button class="tutor-mode-tab" data-mode="exam">
+        <i data-lucide="timer" style="width:16px;height:16px;margin-right:6px"></i> Exam
+      </button>
+    </div>
+
+    <!-- Tutor Layout -->
+    <div class="tutor-layout">
+
+      <!-- Chat Container -->
+      <div class="tutor-chat-container">
+        <!-- Chat Header -->
+        <div class="tutor-chat-header">
+          <div>
+            <h2 style="display:flex;align-items:center;gap:8px;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"/>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"/>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"/>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"/>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B" />
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"/>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"/>
+</svg> AI Tutor</h2>
+            <div class="subtitle">Open chat with your AI tutor</div>
+          </div>
+          <div class="tutor-header-actions">
+            <button class="tutor-header-btn" onclick="StudyPlanManager.load(7)" title="Generate Study Plan"><i data-lucide="clipboard-list" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;"></i> Study Plan</button>
+            <button class="tutor-header-btn" id="dashboardMobileToggle" title="Toggle Dashboard"><i data-lucide="bar-chart-2" style="width:14px;height:14px;vertical-align:middle;"></i></button>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="tutor-messages" id="tutorMessages">
+          <!-- Welcome Screen -->
+          <div class="tutor-welcome" id="tutorWelcome">
+            <div class="tutor-welcome-icon" style="display:flex;justify-content:center;margin-bottom:12px;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="bot-mascot-mini" style="width: 96px; height: 96px; display: inline-block; vertical-align: middle;">
+    <ellipse cx="50" cy="18" rx="14" ry="11" fill="#FF7A1F"/>
+    <circle cx="21" cy="72" r="8" fill="#FF7A1F"/>
+    <circle cx="79" cy="72" r="8" fill="#FF7A1F"/>
+    <ellipse cx="50" cy="54" rx="36" ry="32" fill="#FF7A1F"/>
+    <rect x="16" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="68" y="42" width="16" height="24" rx="8" fill="#FF7A1F" stroke="#1E1B4B" stroke-width="2.5"/>
+    <rect x="24" y="36" width="52" height="42" rx="16" fill="#1E1B4B" />
+    <path d="M 52 38 L 49 44 L 53 44 L 50 49" stroke="#FFD700" stroke-width="2" fill="none" stroke-linejoin="miter" stroke-linecap="square" />
+    <circle cx="41" cy="56" r="5.5" fill="#FFFFFF"/>
+    <circle cx="59" cy="56" r="5.5" fill="#FFFFFF"/>
+</svg></div>
+            <h3>Welcome to AI Tutor</h3>
+            <p>Your personal Socratic teaching assistant. I guide you through concepts with questions, not just answers. Pick a mode above or start chatting!</p>
+            <div class="tutor-quick-actions">
+              <button class="tutor-quick-action" data-message="Explain electrostatics step by step"><i data-lucide="zap" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#F59E0B"></i> Electrostatics</button>
+              <button class="tutor-quick-action" data-message="Teach me organic chemistry reactions"><i data-lucide="test-tube" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#10B981"></i> Organic Chemistry</button>
+              <button class="tutor-quick-action" data-message="Help me with calculus integration"><i data-lucide="function-square" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#3B82F6"></i> Integration</button>
+              <button class="tutor-quick-action" data-message="Generate a quiz on thermodynamics"><i data-lucide="help-circle" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#8B5CF6"></i> Quiz Me</button>
+              <button class="tutor-quick-action" data-message="Create revision flashcards for kinematics"><i data-lucide="layers" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#EC4899"></i> Flashcards</button>
+              <button class="tutor-quick-action" data-message="What are my weak topics?"><i data-lucide="bar-chart" style="width:14px;height:14px;margin-right:4px;vertical-align:middle;color:#EF4444"></i> My Weak Topics</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="tutor-input-area">
+          <div class="tutor-input-row">
+            <button class="tutor-upload-btn" id="tutorUploadBtn" title="Upload document to knowledge base">
+              📎
+            </button>
+            <input type="file" id="tutorFileInput" style="display:none" accept=".pdf,.docx,.doc,.txt,.png,.jpg,.jpeg">
+            <textarea class="tutor-input" id="tutorInput" placeholder="Ask your tutor anything..." rows="1"></textarea>
+            <button class="tutor-send-btn" id="tutorSendBtn">Send ➤</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Dashboard Panel ═══ -->
+      <div class="tutor-dashboard-panel" id="tutorDashboard">
+
+        <!-- Stats Overview -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="bar-chart-2" style="width:16px;height:16px"></i> Overview</div>
+          <div class="tutor-dash-card-body">
+            <div class="tutor-stats-row" id="tutorStatsRow">
+              <div class="tutor-stat-box">
+                <span class="tutor-stat-value">0%</span>
+                <span class="tutor-stat-label">Mastery</span>
+              </div>
+              <div class="tutor-stat-box">
+                <span class="tutor-stat-value">50%</span>
+                <span class="tutor-stat-label">Confidence</span>
+              </div>
+              <div class="tutor-stat-box">
+                <span class="tutor-stat-value">0</span>
+                <span class="tutor-stat-label">Attempts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Risk Level -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="alert-triangle" style="width:16px;height:16px;color:#EAB308"></i> Risk Level</div>
+          <div class="tutor-dash-card-body" id="riskIndicator">
+            <div class="risk-indicator low">
+              <span class="risk-dot low"></span>
+              <span><i data-lucide="check-circle" style="width:14px;height:14px;display:inline-block;vertical-align:middle;color:#22C55E"></i> Risk Level: LOW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mastery Heatmap -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="map" style="width:16px;height:16px;color:#3B82F6"></i> Mastery Heatmap</div>
+          <div class="tutor-dash-card-body">
+            <div class="mastery-heatmap" id="masteryHeatmap">
+              <div style="color:var(--text-muted);font-size:13px;text-align:center;padding:16px;">No topics studied yet</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weak Topics -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="circle-dot" style="width:16px;height:16px;color:#EF4444"></i> Weak Topics</div>
+          <div class="tutor-dash-card-body" id="weakTopicsList">
+            <div style="color:var(--text-muted);font-size:13px;padding:8px 0;">Start studying to track weak topics</div>
+          </div>
+        </div>
+
+        <!-- Strong Topics -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="circle-dot" style="width:16px;height:16px;color:#22C55E"></i> Strong Topics</div>
+          <div class="tutor-dash-card-body" id="strongTopicsList">
+            <div style="color:var(--text-muted);font-size:13px;padding:8px 0;">Keep studying to build mastery!</div>
+          </div>
+        </div>
+
+        <!-- Daily Progress -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="trending-up" style="width:16px;height:16px;color:#8B5CF6"></i> Daily Progress</div>
+          <div class="tutor-dash-card-body">
+            <div class="tutor-chart-container">
+              <canvas id="progressChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confidence Trend -->
+        <div class="tutor-dash-card" onclick="openTutorModal(this)">
+          <div class="tutor-dash-card-header"><i data-lucide="trending-down" style="width:16px;height:16px;color:#F43F5E"></i> Confidence Trend</div>
+          <div class="tutor-dash-card-body">
+            <div class="tutor-chart-container">
+              <canvas id="confidenceChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile Dashboard Toggle Button -->
+  <button class="tutor-mobile-toggle" id="dashboardMobileToggle2" onclick="document.querySelector('.tutor-dashboard-panel').classList.toggle('mobile-open')">📊</button>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="app.js?v=1782305398046"></script>
+  <script src="ai-tutor.js"></script>
+
+
+<!-- FLOATING BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+            <a href="dashboard.html" class="b-nav-item" title="Dashboard">
+                <i data-lucide="layout-grid"></i>
+            </a>
+            <a href="learning.html" class="b-nav-item" title="Learning Path">
+                <i data-lucide="route"></i>
+            </a>
+            <a href="ai-tutor.html" class="b-nav-item active" title="AI Tutor">
+                <i data-lucide="bot"></i>
+            </a>
+            <a href="chat.html" class="b-nav-item" title="Chat">
+                <i data-lucide="message-square"></i>
+            </a>
+            <a href="community.html" class="b-nav-item" title="Community">
+                <i data-lucide="users"></i>
+            </a>
+            <a href="leaderboard.html" class="b-nav-item" title="Leaderboard">
+                <i data-lucide="trending-up"></i>
+            </a>
+            <a href="quiz.html" class="b-nav-item" title="Daily Quiz">
+                <i data-lucide="calendar"></i>
+            </a>
+            <a href="revision.html" class="b-nav-item" title="Revision Notes">
+                <i data-lucide="file-text"></i>
+            </a>
+            <a href="exam.html" class="b-nav-item" title="Exam Mode">
+                <i data-lucide="graduation-cap"></i>
+            </a>
+            <a href="videos.html" class="b-nav-item" title="Videos">
+                <i data-lucide="video"></i>
+            </a>
+            <a href="profile.html" class="b-nav-item" title="Profile">
+                <i data-lucide="user"></i>
+            </a>
+    </div>
+</nav>
+<script>if(window.lucide) window.lucide.createIcons();</script>
+<!-- END FLOATING BOTTOM NAV -->
+
+    <!-- Glass Modal for Dashboard Cards -->
+    <div class="summary-glass-modal" id="summaryModal" onclick="if(event.target === this) closeTutorModal()">
+        <div class="summary-glass-card">
+            <div class="summary-glass-head">
+                <div class="summary-glass-badge"><i data-lucide="sparkles" style="width:12px;height:12px;margin-right:4px;"></i>Detail View</div>
+                <button class="summary-glass-close" onclick="closeTutorModal()" aria-label="Close details">
+                    <i data-lucide="x" style="width:16px;height:16px"></i>
+                </button>
+            </div>
+            <h3 class="summary-glass-title" id="summaryCardTitle" style="display:flex;align-items:center;gap:8px;">Detail</h3>
+            <div id="summaryModalBody"></div>
+        </div>
+    </div>
+
+</body>
+</html>

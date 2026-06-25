@@ -1,8 +1,21 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 from fastapi.middleware.cors import CORSMiddleware
 from tutor_engine import tutor_engine
+import base64
+import cv2
+import numpy as np
+import json
+
+# Try to initialize ProctorEngine (gracefully handle missing packages during setup)
+try:
+    from proctor_engine import ProctorEngine
+    proctor_engine = ProctorEngine()
+except Exception as e:
+    proctor_engine = None
+    print(f"ProctorEngine not loaded: {e}")
+
 
 # Database integration (silent - no impact if fails)
 try:
@@ -21,6 +34,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Mount RAG Service ─────────────────────────────────────────────────────────
+try:
+    from rag_service import router as rag_router
+    app.include_router(rag_router)
+    print("[OK] RAG service mounted at /api/rag")
+except Exception as e:
+    print(f"[WARN] RAG service not loaded: {e}")
 
 # 1. Strict Input Data Schema Configuration
 class StudentInput(BaseModel):
@@ -133,3 +154,38 @@ def get_analytics(user_id: str):
         return {"has_data": False}
 
 # To boot server manually: uvicorn tutor_api:app --host 0.0.0.0 --port 8050
+
+# Helper function to decode base64 images to OpenCV format
+def base64_to_cv2(base64_string):
+    """Decodes the JS base64 image into an OpenCV format"""
+    # Remove the "data:image/jpeg;base64," prefix from the frontend
+    encoded_data = base64_string.split(',')[1]
+    nparr = np.frombuffer(base64.b64decode(encoded_data), np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    return img
+
+@app.websocket("/ws/proctor")
+async def websocket_proctor_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    if proctor_engine is None:
+        print("ProctorEngine is not initialized.")
+        await websocket.close(code=1011, reason="ProctorEngine not initialized")
+        return
+    try:
+        while True:
+            data = await websocket.receive_text()
+            json_data = json.loads(data)
+            
+            # 1. Decode image
+            frame = base64_to_cv2(json_data['image'])
+            
+            # 2. Run AI Analysis
+            result = proctor_engine.analyze_frame(frame)
+            
+            # 3. Send results back to the browser
+            await websocket.send_json(result)
+            
+    except WebSocketDisconnect:
+        print("Student disconnected from proctoring socket.")
+    except Exception as e:
+        print(f"Error in proctoring socket: {e}")
